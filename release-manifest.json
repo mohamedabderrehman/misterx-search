@@ -26,13 +26,13 @@
   },
   {
     "path": "README.ar.md",
-    "bytes": 7821,
-    "sha256": "b2908d07597cf44eb1a2c8482a4c58118238ee72a7159f46a103ab65a427da00"
+    "bytes": 7837,
+    "sha256": "299610398e8ea94bc1b5350a418521ce9f7f84a8c65b0c767c12dc65ebb3138a"
   },
   {
     "path": "README.md",
-    "bytes": 6953,
-    "sha256": "ad5b4c298c0a45731d413de462c68082efbdf7a78a84aaa8458470d094395cdf"
+    "bytes": 6969,
+    "sha256": "ea9348db9452a1f373d1311818421b3148caa54af5cdc2df914ade655f3d921a"
   },
   {
     "path": "SECURITY.md",
@@ -463,6 +463,16 @@
     "path": "docs/images/account-interface.jpg",
     "bytes": 47478,
     "sha256": "7937df027e3addcb11c54364eec888601130afa9b9c61b399450bbd9070cc276"
+  },
+  {
+    "path": "docs/publication.ar.md",
+    "bytes": 725,
+    "sha256": "a38ec5e791b1546448e863995f96faf80007f5a6bd578ebd3d489a1246b94fa8"
+  },
+  {
+    "path": "docs/publication.md",
+    "bytes": 645,
+    "sha256": "2b14504cff3094ad424fe61a72448ca168125d886476bf9647deffaccf075296"
   },
   {
     "path": "docs/setup.ar.md",

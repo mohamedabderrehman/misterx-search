@@ -1,5 +1,6 @@
 # Enable Rewrite Engine
 RewriteEngine On
+RewriteRule ^login/?$ signin.html [L,NC]
 RewriteRule ^(?:data|tools|docs|fixtures|vendor)/ - [F,L]
 <FilesMatch "\.(sql|env|sqlite|md)$">
 Require all denied

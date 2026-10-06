@@ -12,7 +12,7 @@ set_exception_handler(function($exception) {
     header('Content-Type: application/json');
     echo json_encode([
         'success' => false,
-        'message' => 'Uncaught exception: ' . $exception->getMessage()
+        'message' => 'Search service unavailable'
     ]);
     exit;
 });
@@ -30,7 +30,8 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-$userData = authenticate();
+try { $userData = authenticate(); }
+catch (Exception $e) { http_response_code(401); echo json_encode(['success'=>false,'message'=>'Authentication required']); exit; }
 $data = json_decode(file_get_contents('php://input'), true);
 
 if (empty($data['query'])) {
@@ -378,10 +379,10 @@ try {
     // Return error message - this will be visible even with security measures
     echo json_encode([
         'success' => false,
-        'message' => 'Search failed: ' . $e->getMessage(), // Show actual error for debugging
+        'message' => 'Search service unavailable. Check the configured synthetic index and service connectivity.', // Show actual error for debugging
         'error_type' => 'Exception',
-        'error_file' => basename($e->getFile()),
-        'error_line' => $e->getLine()
+        'error_file' => null,
+        'error_line' => null
     ]);
     exit;
 } catch (Error $e) {
@@ -403,10 +404,10 @@ try {
     header('Content-Type: application/json');
     echo json_encode([
         'success' => false,
-        'message' => 'Search failed: ' . $e->getMessage(),
+        'message' => 'Search service unavailable. Check the configured synthetic index and service connectivity.',
         'error_type' => 'Fatal Error',
-        'error_file' => basename($e->getFile()),
-        'error_line' => $e->getLine()
+        'error_file' => null,
+        'error_line' => null
     ]);
     exit;
 } catch (Throwable $e) {
@@ -428,10 +429,10 @@ try {
     header('Content-Type: application/json');
     echo json_encode([
         'success' => false,
-        'message' => 'Search failed: ' . $e->getMessage(),
+        'message' => 'Search service unavailable. Check the configured synthetic index and service connectivity.',
         'error_type' => 'Throwable',
-        'error_file' => basename($e->getFile()),
-        'error_line' => $e->getLine()
+        'error_file' => null,
+        'error_line' => null
     ]);
     exit;
 }

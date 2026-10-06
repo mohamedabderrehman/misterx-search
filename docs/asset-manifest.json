@@ -1,0 +1,17 @@
+[
+  {
+    "path": "favicon.ico",
+    "sha256": "a1f888e1f1a689aff1608cb520e22c165824bb4cefc61bb74fd1260876c3e82a",
+    "scope": "Original supplied application asset; third-party rights are separate from source MIT"
+  },
+  {
+    "path": "docs/architecture.svg",
+    "sha256": "147aef06c84e44bc73b09cfbee2c0f38766340b92ffe47ca08b9ddfbed2c5232",
+    "scope": "Actual synthetic application capture"
+  },
+  {
+    "path": "docs/images/account-interface.jpg",
+    "sha256": "7937df027e3addcb11c54364eec888601130afa9b9c61b399450bbd9070cc276",
+    "scope": "Actual synthetic application capture"
+  }
+]

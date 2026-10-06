@@ -10,8 +10,24 @@
     <link rel="stylesheet" href="styles.css">
     <script src="js/api.js"></script>
     <script src="js/utils.js"></script>
-    <!-- Google reCAPTCHA v2 Checkbox -->
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script>
+        const publicConfig = fetch('/api/health.php').then(r => r.json());
+        function onRecaptchaLoad() {
+            publicConfig.then(config => {
+                if (!config.demoMode && config.recaptchaSiteKey) grecaptcha.render('recaptcha-container', {sitekey:config.recaptchaSiteKey});
+            });
+        }
+        window.addEventListener('DOMContentLoaded', async () => {
+            const config = await publicConfig;
+            if (config.demoMode) {
+                document.getElementById('recaptcha-container').textContent = 'عرض اصطناعي محلي — استخدم حساب التجربة فقط';
+            } else if (config.recaptchaSiteKey) {
+                const script=document.createElement('script');
+                script.src='https://www.google.com/recaptcha/api.js?onload=onRecaptchaLoad&render=explicit';
+                script.async=true; document.head.appendChild(script);
+            }
+        });
+    </script>
 </head>
 <body>
     <!-- Header -->
@@ -162,7 +178,9 @@
                 // Get reCAPTCHA token (v2 Checkbox)
                 let recaptchaToken = '';
                 try {
-                    if (typeof grecaptcha !== 'undefined') {
+                    if ((await publicConfig).demoMode) {
+                        recaptchaToken = '';
+                    } else if (typeof grecaptcha !== 'undefined') {
                         recaptchaToken = grecaptcha.getResponse();
                         if (!recaptchaToken) {
                             Toast.error('Please complete the reCAPTCHA verification');

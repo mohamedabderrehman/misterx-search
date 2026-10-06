@@ -1,11 +1,15 @@
-# Attribution and asset scope
+# Source licensing and asset attribution
 
-MIT applies to the author's source code. Dependency code retains its upstream license; package/Composer/Python/Gradle manifests identify upstream packages.
+MIT applies to Mohamed Abderrehmane’s source code. It does not relicense dependency code, third-party photographs, fonts, provider logos or trademarks. Dependency manifests and lockfiles identify upstream packages; keep their notices when redistributing built applications.
 
-Existing imagery, fonts, logos and icons retain their original rights. The owner states the projects are theirs; this statement alone does not establish a transferable license for every third-party image. Provider logos identify integrations and do not imply endorsement.
+## Asset inventory
 
-An asset manifest is produced before publication. Unresolved asset provenance must be reviewed before redistribution; replace an asset only if its license does not permit publication.
+See [the file-level asset manifest](docs/asset-manifest.json), including SHA-256 identifiers. Existing application graphics are retained from the owner's supplied projects. No new claim of authorship or transferable rights is made for third-party artwork. Review the original creator's terms before reusing those assets in another product. Provider marks identify interface choices and do not imply endorsement or a functioning financial integration.
+
+Font families loaded through Google Fonts (including Cairo, IBM Plex Sans Arabic, Inter and the portfolio's Manrope) retain their upstream font licenses; see [Google Fonts](https://github.com/google/fonts). Icons and images generated from Expo/React Navigation/Mapbox packages retain the respective package notices. Seed image URLs are presentation placeholders and not evidence of a commercial partnership.
+
+Screenshots capture the actual application interface with synthetic demonstration accounts and records. They are not production usage evidence. Unattributed original images are not included in the MIT source grant.
 
 ## العربية
 
-ينطبق MIT على شيفرة المؤلف فقط. تحتفظ الحزم والخطوط والصور والشعارات بحقوقها الأصلية. لا تعني شعارات المزودين تأييداً. يجب مراجعة حقوق الأصول غير المحسومة قبل إعادة توزيعها.
+ينطبق MIT على شيفرة محمد عبد الرحمن فقط ولا يعيد ترخيص الحزم والصور والخطوط وشعارات المزودين والعلامات. يجرد ملف الأصول كل ملف وبصمته. بقيت رسوم المشاريع التي قدمها المالك، دون ادعاء تأليف صور خارجية أو نقل حقوقها. راجع شروط المبدع الأصلي قبل استخدامها في منتج آخر. شعارات المزودين لا تعني تأييداً أو تكاملاً مالياً يعمل. تبقى تراخيص خطوط Google Fonts وأصول الحزم الأصلية سارية. الصور الملتقطة من التطبيق ببيانات اصطناعية لا تثبت استخداماً إنتاجياً، ولا يشمل منح MIT الصور الأصلية غير المنسوبة.

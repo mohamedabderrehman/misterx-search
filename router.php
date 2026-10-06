@@ -1,5 +1,8 @@
 <?php
 $path=parse_url($_SERVER['REQUEST_URI'],PHP_URL_PATH);
+$path=strtolower($path);
+$aliases=['/login'=>'/signin','/home'=>'/index'];
+$path=$aliases[rtrim($path,'/')] ?? $path;
 if (preg_match('#^/(?:uploads/projects|docs|tools)/#',$path) || preg_match('/\.(sql|env|sqlite|md)$/i',$path)) {http_response_code(403);exit;}
 if (is_file(__DIR__.$path)) return false;
 if (str_starts_with($path,'/api/')) {

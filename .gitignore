@@ -28,10 +28,26 @@ credentials.json
 google-services.json
 GoogleService-Info.plist
 local.properties
-release-manifest.json
 
 .next/
 *.tsbuildinfo
 *.pyd
 *.so
 *.egg-info/
+
+# Publication boundary: deployment files and every environment file spelling.
+*.env
+*.env.*
+!*.env.example
+.env
+.env.*
+!.env.example
+**/deploy/
+deploy.*
+deploy_*
+deploy-*
+.sftpconfig
+sftp.json
+ftp.json
+
+build-commands.ps1

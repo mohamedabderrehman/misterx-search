@@ -1,0 +1,567 @@
+[
+  {
+    "path": ".github/workflows/release.yml",
+    "bytes": 1778,
+    "sha256": "c5cf98002b5ca78aa47a0aba34d02f0aed8c8924fa01d1c9381ba135cdf7f459"
+  },
+  {
+    "path": ".gitignore",
+    "bytes": 643,
+    "sha256": "fce9b87b29654ad57d951465929cd84564afedf9f31702b0122a0caa1321e37d"
+  },
+  {
+    "path": ".htaccess",
+    "bytes": 2052,
+    "sha256": "ecc421f0d7f9a10aacb722df6872c8de3389ce5af811a885300f5988ae796883"
+  },
+  {
+    "path": "CONTRIBUTING.md",
+    "bytes": 324,
+    "sha256": "11f44e1400db68dc2eb2604192b39bb672a5f6b4b543ce9ebe4bcfda1282668a"
+  },
+  {
+    "path": "LICENSE",
+    "bytes": 1098,
+    "sha256": "2f0710fed6c9393bb1e564c55d00df43608b35631d84cc245d414a6e001368d5"
+  },
+  {
+    "path": "README.ar.md",
+    "bytes": 7821,
+    "sha256": "b2908d07597cf44eb1a2c8482a4c58118238ee72a7159f46a103ab65a427da00"
+  },
+  {
+    "path": "README.md",
+    "bytes": 6953,
+    "sha256": "ad5b4c298c0a45731d413de462c68082efbdf7a78a84aaa8458470d094395cdf"
+  },
+  {
+    "path": "SECURITY.md",
+    "bytes": 2259,
+    "sha256": "647f8af294afb3272e24ebc9bd98e94dc96196ca5d1038014251333451c35cbc"
+  },
+  {
+    "path": "THIRD_PARTY_NOTICES.md",
+    "bytes": 2334,
+    "sha256": "e564e47d6802d9b741bcf96cc31e719417234c2cde744d687b5ca290261391a6"
+  },
+  {
+    "path": "admin-login.html",
+    "bytes": 11376,
+    "sha256": "44e3f79e2172193d5bb12fed7471633b00f025f076f2aadc7bb0cf6ef19a214d"
+  },
+  {
+    "path": "admin.html",
+    "bytes": 174015,
+    "sha256": "c96d7bf454d6f677e58f0bcfb788b847d2977ec0619b6af8fe155762e5ba9ee3"
+  },
+  {
+    "path": "api/.htaccess",
+    "bytes": 767,
+    "sha256": "913c41161a91e6f106be07d0039c11184e047ad48fbcadf318c4bca4acccba68"
+  },
+  {
+    "path": "api/admin/activity-logs.php",
+    "bytes": 5636,
+    "sha256": "fbeb67f7597db18dc221918e6a800a21d70a794a3ca3f3123b78bef9cd270b91"
+  },
+  {
+    "path": "api/admin/activity/recent.php",
+    "bytes": 1853,
+    "sha256": "63b602695d028f1f467fc23179531ec700e2c88d14fa5234a92853ffde1f2ab7"
+  },
+  {
+    "path": "api/admin/api-keys.php",
+    "bytes": 2130,
+    "sha256": "a750f7d7ac81890c8d960086dffe3beb596525f9d77aacf52f3e6f8b1d6a0264"
+  },
+  {
+    "path": "api/admin/login.php",
+    "bytes": 2908,
+    "sha256": "e2f8767beeeb37c628563c38adafba26e5563e3c9fad3a6c94a6c936bf64c23c"
+  },
+  {
+    "path": "api/admin/notifications.php",
+    "bytes": 2241,
+    "sha256": "159b505ef8c138fcbe0ee5d0920663850d8975508cd71ce3aabc165dbf0b5715"
+  },
+  {
+    "path": "api/admin/payments.php",
+    "bytes": 5444,
+    "sha256": "73511b557568ac381e3e3e045220e4cf5cbe67e919aeab06dd259b2c24368cee"
+  },
+  {
+    "path": "api/admin/search-history.php",
+    "bytes": 6867,
+    "sha256": "435ba073077a77a19003f4ef2ba6e7757119bde15c8d764e6d0bd29e5177ea52"
+  },
+  {
+    "path": "api/admin/settings.php",
+    "bytes": 2798,
+    "sha256": "3ea032942c398c444b5166a6cddaba787347b069bf209ab93b9250f938762a26"
+  },
+  {
+    "path": "api/admin/stats.php",
+    "bytes": 3325,
+    "sha256": "64b7a1c39f3609f27c53c2bc9ac619a02f3468bec4b962095f49d3577ad6c262"
+  },
+  {
+    "path": "api/admin/users.php",
+    "bytes": 12526,
+    "sha256": "418aa08f620ac89023511d7ee911c1733c6e209d4380ac61e22d69e722f3b602"
+  },
+  {
+    "path": "api/admin/users/bulk-delete.php",
+    "bytes": 2685,
+    "sha256": "629f788eae1322bf945ae2fcc33164c8b82dfb9638241c29822f366b54601e37"
+  },
+  {
+    "path": "api/admin/users/bulk-update.php",
+    "bytes": 2778,
+    "sha256": "dd991238ea8d6134a43db0c7788eb22dda1d19d57601e874ceea26ee5a5cd5c7"
+  },
+  {
+    "path": "api/admin/wallets.php",
+    "bytes": 6198,
+    "sha256": "77f65e97d7a5d35f4d77ac00e9e82e8a3c9cac588af018df6f614f3f1b487497"
+  },
+  {
+    "path": "api/auth/csrf_token.php",
+    "bytes": 490,
+    "sha256": "e30c3138e3b2a64a02ceebacd626c9fd9505799e1050a19e1cb7b920220bc9db"
+  },
+  {
+    "path": "api/auth/login.php",
+    "bytes": 3497,
+    "sha256": "947cd0204184baffc7e674b437a7fd24ae103338dd53f7b33f87860570539bec"
+  },
+  {
+    "path": "api/auth/me.php",
+    "bytes": 1887,
+    "sha256": "3e6ea4168edf970b74d5b9e34b4ea5853fd36808355d518a13f0e5fcfe374ddc"
+  },
+  {
+    "path": "api/auth/register.php",
+    "bytes": 10463,
+    "sha256": "7d8c082884a82ab9dd91641414fca44f31eed39f581ff7165ef49ff9726e11e9"
+  },
+  {
+    "path": "api/config.php",
+    "bytes": 8901,
+    "sha256": "ac524426aa52d54bff71686fa91e40e4d521570381b29f05a11fc1571e639f40"
+  },
+  {
+    "path": "api/health.php",
+    "bytes": 324,
+    "sha256": "800c6e01bed06d5189d777e60fcd86166b86510eed2aa809d6c6c649e09ab00c"
+  },
+  {
+    "path": "api/keys/generate.php",
+    "bytes": 1152,
+    "sha256": "b975eb1dfdf10e015ed617c9434c2747f85bec8c453d2acafb9b8dd2796d627e"
+  },
+  {
+    "path": "api/keys/index.php",
+    "bytes": 2946,
+    "sha256": "e4f108bb55c39cc1869f1c09f46d9112d617c4d860296c0d5b282295d5d7f28d"
+  },
+  {
+    "path": "api/models/ApiKey.php",
+    "bytes": 2145,
+    "sha256": "b8eeea52a5eb7f4d2701c2d2c5daf32ec374bbd003363d14c9081ecc2ab1271d"
+  },
+  {
+    "path": "api/models/CryptoWallet.php",
+    "bytes": 6721,
+    "sha256": "600720c957bb475deb53eae9dec22942467a5d468ef4e0185af3a6835a301d6a"
+  },
+  {
+    "path": "api/models/PaymentRequest.php",
+    "bytes": 6146,
+    "sha256": "36ee81f99c982551cd4052ebed1f3e8e4b0680dfa686e94016436784fa63f531"
+  },
+  {
+    "path": "api/models/Search.php",
+    "bytes": 3391,
+    "sha256": "d5d5137a44448498db4221a489f86ce2c34d4d86707d143b9f987ac8c2acf9e7"
+  },
+  {
+    "path": "api/models/SearchJob.php",
+    "bytes": 5013,
+    "sha256": "f8b37a789f016def735294a9d3b6a4a424a94c3db8fe901a7b12bea7721cb7bd"
+  },
+  {
+    "path": "api/models/Subscription.php",
+    "bytes": 3147,
+    "sha256": "1007d405bb31b5ba0d626dc4e2c3ea7e98a30bfd849c1d910caae9fa1b35f982"
+  },
+  {
+    "path": "api/models/Ticket.php",
+    "bytes": 7362,
+    "sha256": "59a1a0cb9b64d792dfb2547d7336a1db9c85add92cc2b2260a72920edaeb5f37"
+  },
+  {
+    "path": "api/models/User.php",
+    "bytes": 6334,
+    "sha256": "bf4870b596660a146ee0725c4a22f3d059ffbb2a458dfbbbf9925dad61c7d83f"
+  },
+  {
+    "path": "api/payments/create.php",
+    "bytes": 6507,
+    "sha256": "0245105b364d3e8c13ba368a4640fa3a90f4fc32e48c83a980258d5db3034694"
+  },
+  {
+    "path": "api/payments/submit.php",
+    "bytes": 1245,
+    "sha256": "e8d844a0a464bc23d5e436c43099e405d61cef67b47265e9c727c6a81c7013bd"
+  },
+  {
+    "path": "api/payments/wallets.php",
+    "bytes": 482,
+    "sha256": "0d783c29d74585db7613658f2caf3d120e4b468ea5b1f6d08d02f1fe2e2b7c01"
+  },
+  {
+    "path": "api/search/async.php",
+    "bytes": 5538,
+    "sha256": "47c02c0766bf441af5bea9f2b63ab9cce0006411a700aeb7d2b9092cac6dacaa"
+  },
+  {
+    "path": "api/search/download.php",
+    "bytes": 11033,
+    "sha256": "179d1813aeb3ee7ef26ee51bdab22afb628624b7bee6e7492109c7c2e26fd8c6"
+  },
+  {
+    "path": "api/search/history.php",
+    "bytes": 725,
+    "sha256": "8938437444b6b8d596823cdbbe82d81e6180c2bec21fe39c8dcf50db9cb8b388"
+  },
+  {
+    "path": "api/search/index.php",
+    "bytes": 20347,
+    "sha256": "e9410c70c8a43723b39336680c05fdf398dfbad063481433d0899c19974346db"
+  },
+  {
+    "path": "api/search/job-status.php",
+    "bytes": 5405,
+    "sha256": "9ad9ff4652ba8bbbfa6f2ca6c2d1d07a383d1dba1b3e39aec78f42672377d210"
+  },
+  {
+    "path": "api/search/results.php",
+    "bytes": 2691,
+    "sha256": "7174d06f1200182884c706f8d5173c5c97e94beb4a0245596d8381ed16c6a477"
+  },
+  {
+    "path": "api/search/stream.php",
+    "bytes": 752,
+    "sha256": "9d8797f8cb14dcf42b887129e7160d318139ad691f18ff4a0320b88174851ad8"
+  },
+  {
+    "path": "api/settings/public.php",
+    "bytes": 1632,
+    "sha256": "14cbee2a7036dcd0b794cc65c69a67fd4e3be9985a5e496b210b3b288053dcb4"
+  },
+  {
+    "path": "api/subscriptions/current.php",
+    "bytes": 981,
+    "sha256": "ffafae3e011cca092730ff0217c56bb4c9202406f18970e88266facaaaf658de"
+  },
+  {
+    "path": "api/subscriptions/plans.php",
+    "bytes": 453,
+    "sha256": "b590bf66b33fb9efcb83834a62987d856b3e3b4d0308619e2507d1dc18275d04"
+  },
+  {
+    "path": "api/subscriptions/subscribe.php",
+    "bytes": 2845,
+    "sha256": "64b2b0710eae72c5e3cc335af7681e3f89f9c2669bc32654c7868252074d9a12"
+  },
+  {
+    "path": "api/support/contact-info.php",
+    "bytes": 4281,
+    "sha256": "d7ebc7e0020c388fb1719434ada5f305fb3ffe624940ee103cce00a43b60e6e3"
+  },
+  {
+    "path": "api/support/ticket-detail.php",
+    "bytes": 6064,
+    "sha256": "1e28330eefa85ea0aa3fb11161ec40dd5d62f6a44bf61df0957c8e3246c475d0"
+  },
+  {
+    "path": "api/support/tickets.php",
+    "bytes": 4126,
+    "sha256": "bbfb6a00268d3742e0f23cccdc0aa5f6873119140afed18192f44735a3244a9d"
+  },
+  {
+    "path": "api/user/password.php",
+    "bytes": 1913,
+    "sha256": "9e964f97359a26a4b90d64a910881bbc273a162ec442cff82b7a8aa0c6b52562"
+  },
+  {
+    "path": "api/user/profile.php",
+    "bytes": 2462,
+    "sha256": "9e66e28d505fa13a58a3123e0196b28cc4e460d5755ea8b84bce44e47319cf27"
+  },
+  {
+    "path": "api/user/upload-profile-picture.php",
+    "bytes": 4240,
+    "sha256": "920316c5c4c208cdaeafeee9828b7fd83dcb2ef53aed6071037327d85179f8f1"
+  },
+  {
+    "path": "api/utils/OpenSearchClient.php",
+    "bytes": 41125,
+    "sha256": "12b53837983a4a1372755cfc9e90dde1ddc1482970ecdc387f5b8bd22638636e"
+  },
+  {
+    "path": "api/utils/activity_logger.php",
+    "bytes": 1190,
+    "sha256": "0df01356c5e3c00fbe388ec5d8977ec46cc03a3c3bd1824772112bae9a6c92c8"
+  },
+  {
+    "path": "api/utils/auth.php",
+    "bytes": 1860,
+    "sha256": "14692eb7f78471b6dbbce235ad9f1b3281af8053b605f1e2707dede2feca3056"
+  },
+  {
+    "path": "api/utils/background_search.php",
+    "bytes": 2879,
+    "sha256": "d8acb3fda773777bca2d3ac26996718bed5abd83a43b39ded25e2f7aeac0d5fb"
+  },
+  {
+    "path": "api/utils/check_indexing_status.php",
+    "bytes": 3606,
+    "sha256": "b8a2152bc307c61d8c790c341d4149cf6853c6ab88bcea5247d0985eb68520a7"
+  },
+  {
+    "path": "api/utils/clear_search_cache.php",
+    "bytes": 2007,
+    "sha256": "ae99639d3f018338bd45675c529fe1651f67a280d0c9ff2df7f8d1ef76fd1167"
+  },
+  {
+    "path": "api/utils/csrf.php",
+    "bytes": 3367,
+    "sha256": "6a163cd692303f14da7fb7599f3a985e80f3017adcd6f75905341f3ee9b6bff5"
+  },
+  {
+    "path": "api/utils/fast_search.php",
+    "bytes": 16230,
+    "sha256": "7532c3a7a266697b46d2c5693bac6249dd0b030f216ff739130e5f0f55666a9f"
+  },
+  {
+    "path": "api/utils/jwt.php",
+    "bytes": 1942,
+    "sha256": "0c6f560b5109a7d9aef0102979f84619e38836fa00d24022d04aaa783a83c14a"
+  },
+  {
+    "path": "api/utils/opensearch_indexer.php",
+    "bytes": 17400,
+    "sha256": "06879726fce3a891f2830c4c246dbdab73592ed38981903d1254ae92cdb0ba92"
+  },
+  {
+    "path": "api/utils/password.php",
+    "bytes": 361,
+    "sha256": "84c99304d13209bc456a1380bdaca7d7abafa42aa1b965b15c882025e12fc06e"
+  },
+  {
+    "path": "api/utils/process_search_job.php",
+    "bytes": 2426,
+    "sha256": "83c24b4c827b0912c06f721c9d76d08a4bc578caa90ee3e2c2c912a1590e4b8d"
+  },
+  {
+    "path": "api/utils/test_search.php",
+    "bytes": 8252,
+    "sha256": "bd0a1231c84ccc59b8a3138ab705512f2f766a77da4e706c81711e95bd24ff19"
+  },
+  {
+    "path": "composer.json",
+    "bytes": 280,
+    "sha256": "b3b8b4882e8b612ae12f1a792474dea9e35a3362e23d15c9feef08cb46f05ff7"
+  },
+  {
+    "path": "composer.lock",
+    "bytes": 28825,
+    "sha256": "0b880a1e10e3c8c86a2051dcc19f1ee4ee26aea17e7cb621abeee1b126ec4501"
+  },
+  {
+    "path": "dashboard.html",
+    "bytes": 58538,
+    "sha256": "20e033129bfcab9bcbc28b24d7c73345b60a7575602be686d9211418e4a2b17a"
+  },
+  {
+    "path": "database.sql",
+    "bytes": 6891,
+    "sha256": "cb0761a39ad07c1060084a3b7b15b807b0395f277e4bd372b3cd52ff4c7e90ae"
+  },
+  {
+    "path": "database_search_jobs.sql",
+    "bytes": 1579,
+    "sha256": "e0f602814b6b2b6a580ab101a8ffe5a8ab223cd5eb745f48365a80997d320de3"
+  },
+  {
+    "path": "database_support_tickets.sql",
+    "bytes": 2850,
+    "sha256": "d61ceed43ba00a490f441c0438a57789c8c631ffaddc0739ed905a78866f630e"
+  },
+  {
+    "path": "docs/api.ar.md",
+    "bytes": 2319,
+    "sha256": "1dc895fc5a40c6fcbb074e1249c0b37427e00a8002efc719e34869048bd57bc1"
+  },
+  {
+    "path": "docs/api.md",
+    "bytes": 1831,
+    "sha256": "9ad5d31244a5e8e0aa3dcec0b10b4833049aa5d1a2fad3c1d7fbcf5668993169"
+  },
+  {
+    "path": "docs/architecture.ar.md",
+    "bytes": 1901,
+    "sha256": "7e413b921f01721b474a10792705469253d0818629c249c691726aaca5700f9a"
+  },
+  {
+    "path": "docs/architecture.md",
+    "bytes": 2083,
+    "sha256": "c5199a24b329866916c44ffdb6e4ab4cc89df1ac497b67a40017ed28cce8c2c8"
+  },
+  {
+    "path": "docs/architecture.svg",
+    "bytes": 2587,
+    "sha256": "147aef06c84e44bc73b09cfbee2c0f38766340b92ffe47ca08b9ddfbed2c5232"
+  },
+  {
+    "path": "docs/asset-manifest.json",
+    "bytes": 610,
+    "sha256": "250e4f59ffd9fb7e8fe5447734796c832abf5aaec0595b19e9756a4b3f46f92f"
+  },
+  {
+    "path": "docs/case-study.ar.md",
+    "bytes": 2725,
+    "sha256": "412cd8aa702fcdeeb00ff5556cebe8bffadf3192f3f5b2bcbfdd1679ceb6044a"
+  },
+  {
+    "path": "docs/case-study.md",
+    "bytes": 2325,
+    "sha256": "0177fbf93b7ba1533a69e07cf671a6205036398f61f2135dc26791c667f64b58"
+  },
+  {
+    "path": "docs/demo.ar.md",
+    "bytes": 2369,
+    "sha256": "0cf526d819e27902eb7537134a75a4882e52224555e38572c5bd2f5dc97c53cd"
+  },
+  {
+    "path": "docs/demo.md",
+    "bytes": 1288,
+    "sha256": "ecce4b7cbb021a6697b7c2d68be958935b2edcb2cfe590749a0ffea890ef067e"
+  },
+  {
+    "path": "docs/deployment.ar.md",
+    "bytes": 2288,
+    "sha256": "5646a3595c3d3b555235140e63150d0cd98700de78e3baf513af6d0fefcfe972"
+  },
+  {
+    "path": "docs/deployment.md",
+    "bytes": 1671,
+    "sha256": "ef69047e90ab0fedf9e87a22f7f95874ac37f783e0b27540b19270e1169b16db"
+  },
+  {
+    "path": "docs/images/account-interface.jpg",
+    "bytes": 47478,
+    "sha256": "7937df027e3addcb11c54364eec888601130afa9b9c61b399450bbd9070cc276"
+  },
+  {
+    "path": "docs/setup.ar.md",
+    "bytes": 4113,
+    "sha256": "b64eb6d33942c9a767f5dd98a94bedbc345b28d3f5df394629e4ed91bed30a64"
+  },
+  {
+    "path": "docs/setup.md",
+    "bytes": 4037,
+    "sha256": "2e8fd4b1395f4fe019b3934338cc075fb98ae06c37b9b88df1fce6e8593185f4"
+  },
+  {
+    "path": "docs/verification.ar.md",
+    "bytes": 1818,
+    "sha256": "1e692927edd8d8e9a12a90834dad81ae1886670dae352309af00290211f9eb96"
+  },
+  {
+    "path": "docs/verification.md",
+    "bytes": 1612,
+    "sha256": "d028add7f3e4f7b9dbe4286ef7a28919ccd08d1d2f2cc6e21a1282a8072804d7"
+  },
+  {
+    "path": "env.example",
+    "bytes": 314,
+    "sha256": "a0f0b58dbce1e0e656e13c9ac93d84b31e1d2efd01d7b24d5501e700e246384d"
+  },
+  {
+    "path": "favicon.ico",
+    "bytes": 258,
+    "sha256": "a1f888e1f1a689aff1608cb520e22c165824bb4cefc61bb74fd1260876c3e82a"
+  },
+  {
+    "path": "fixtures/generated.jsonl",
+    "bytes": 6050,
+    "sha256": "90f4d26f1a0e6637a52b3d419301b0e120d91685748bc01e860b7c7bbfa271c2"
+  },
+  {
+    "path": "index.html",
+    "bytes": 27250,
+    "sha256": "992f200a6fde51570ccf0d259fec54996d710853ffaffb3ccaa9476b001a5307"
+  },
+  {
+    "path": "js/api.js",
+    "bytes": 18440,
+    "sha256": "11ecf7a3392ae61d8d6b69c5f5a906cfd29899c91f193cb932e1d8347e5ee6f6"
+  },
+  {
+    "path": "js/utils.js",
+    "bytes": 26462,
+    "sha256": "d8d1cb411b7d89da44b6df5e93f14edde6dd671e9329a5dafdaecdae78c53cda"
+  },
+  {
+    "path": "pricing.html",
+    "bytes": 59354,
+    "sha256": "f5b3269e37a5ddcb84b2dd9a7a0327a6dc872b1bb9cef7003aaecf4ad44baf1a"
+  },
+  {
+    "path": "profile.html",
+    "bytes": 29034,
+    "sha256": "785018af843955e57ae2a50f8fe9488a2fd22ac12bb24373c465139adacd2fe9"
+  },
+  {
+    "path": "register.html",
+    "bytes": 26742,
+    "sha256": "e2f36e160ab0df144a8902236e6a4969f6d9305c73dd4c76b3cb0737da09398f"
+  },
+  {
+    "path": "router.php",
+    "bytes": 666,
+    "sha256": "9c5c8882953fc2099cdec56a69efdb289d40d54c8fc3a55c7bf173de56ef6e13"
+  },
+  {
+    "path": "signin.html",
+    "bytes": 14268,
+    "sha256": "720b67c6262c3c7cb9e713824426339b7bd0c9ca01c1e0a77bde3c0af5927857"
+  },
+  {
+    "path": "styles.css",
+    "bytes": 57392,
+    "sha256": "6cb12644ee08bfba94a3390a511a16dffc01091b30c0a36e295d664c3be2814c"
+  },
+  {
+    "path": "support.html",
+    "bytes": 41356,
+    "sha256": "43a16db105bfcfce874fc2ce1f1a0465900b63e075f72c6d85d702eb3a8ef40a"
+  },
+  {
+    "path": "tools/bootstrap.php",
+    "bytes": 1155,
+    "sha256": "cb6b8a371d8d0b3d5e48e40c410f67f11e5fe922745b0c7fc76d33b60cc36289"
+  },
+  {
+    "path": "tools/check-opensearch.php",
+    "bytes": 994,
+    "sha256": "68b4833dc5a2751018fe3a8b0fc615b63b79edb6e3b8aaada452e3917584faa7"
+  },
+  {
+    "path": "tools/ingest-demo.php",
+    "bytes": 911,
+    "sha256": "3343c07b62888ab54f7ccf2bca1eebd028eaf9ca83d7693694a3058bbbfbea8f"
+  }
+]

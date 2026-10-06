@@ -94,3 +94,33 @@ Open an issue describing a reproducible problem, expected behavior and component
 ## License and attribution
 
 Source code is MIT licensed. Third-party dependencies and assets retain their own terms; see [attribution](THIRD_PARTY_NOTICES.md).
+
+## Verification and deeper reading
+
+PHP syntax, compatible Composer installation and fresh MariaDB synthetic bootstrap passed. Source review repaired query parameter binding, moved job ownership validation before processing, and added index/cursor values to Redis cache keys. OpenSearch ingestion/pagination/cache checks are provided but have not executed successfully in the current environment.
+
+No indexed performance figures are published until the supplied OpenSearch checks and generated-corpus benchmark actually run. Redis and OpenSearch failure behavior, pagination and indexed/file result consistency remain release limitations. Only authorized synthetic records may be used.
+
+- [Case study](docs/case-study.md)
+- [Verification](docs/verification.md)
+- [Architecture diagram](docs/architecture.svg)
+- [Portfolio case study](https://mohamed-abderrehmane-portfolio.wry-dog-0796.chatgpt.site/projects/misterx-search/)
+
+<!-- release-presentation -->
+
+## Actual application interface
+
+![MisterX — interface with synthetic demonstration data](docs/images/account-interface.jpg)
+
+Captured from the local application with synthetic records. This does not establish production usage or Android device verification.
+
+## Verification and deeper reading
+
+PHP syntax, compatible Composer installation and fresh MariaDB synthetic bootstrap passed. Source review repaired query parameter binding, moved job ownership validation before processing, and added index/cursor values to Redis cache keys. OpenSearch ingestion/pagination/cache checks are provided but have not executed successfully in the current environment.
+
+No indexed performance figures are published until the supplied OpenSearch checks and generated-corpus benchmark actually run. Redis and OpenSearch failure behavior, pagination and indexed/file result consistency remain release limitations. Only authorized synthetic records may be used.
+
+- [Case study](docs/case-study.md)
+- [Verification](docs/verification.md)
+- [Architecture diagram](docs/architecture.svg)
+- [Portfolio case study](https://mohamed-abderrehmane-portfolio.wry-dog-0796.chatgpt.site/projects/misterx-search/)

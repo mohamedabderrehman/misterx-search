@@ -1,16 +1,28 @@
 # Current release verification
 
-Historical status: Search engineering showcase. Public examples use generated, authorized records only; no original corpus or private search results are included.
+Recorded on 2026-10-06 using disposable local data. Historical deployment is a separate owner-provided fact.
 
-Current acceptance checks are in progress. No CI badge or passing integration claim is made yet.
+## Passed locally
 
-## Checks required
+PHP syntax, compatible Composer installation and fresh MariaDB synthetic bootstrap passed. Source review repaired query parameter binding, moved job ownership validation before processing, and added index/cursor values to Redis cache keys. OpenSearch ingestion/pagination/cache checks are provided but have not executed successfully in the current environment.
 
-- [ ] PHP syntax and Composer setup
-- [ ] Pagination, cache behavior and unavailable index service
-- [ ] Job ownership and limits
-- [ ] Measured warm/cold-cache benchmark only after running the documented procedure
+## Checks and commands
 
-## External dependencies and limits
+```sh
+composer install
+php tools/bootstrap.php
+php tools/ingest-demo.php
+php tools/check-opensearch.php
+php -S 127.0.0.1:8087 router.php
+python tools/check-syntax.py
+```
 
-No speed, terabyte-scale, document-count or legal-compliance claims are made. Integration checks need disposable OpenSearch/MySQL services. Publish no credential collections or private datasets.
+## CI status
+
+The configured GitHub Actions workflows are registered, but the initial runs ended with startup_failure before any jobs or check annotations were created. Local results above are independent of CI. No passing CI badge is shown; the service supplied no further diagnostic message through the available API.
+
+## Remaining platform and coverage limits
+
+No indexed performance figures are published until the supplied OpenSearch checks and generated-corpus benchmark actually run. Redis and OpenSearch failure behavior, pagination and indexed/file result consistency remain release limitations. Only authorized synthetic records may be used.
+
+PHP checks used PHP 8.4.26; Node builds used Node 24.19; Python checks used Python 3.12.10 where applicable. This record does not claim production hardening, paid provider verification or tests on every platform.

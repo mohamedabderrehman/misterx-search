@@ -1,30 +1,45 @@
-# الإعداد
+# الإعداد الكامل
 
-ثبّت PHP 8.1 وComposer وMySQL وOpenSearch. نفذ `composer install` واستورد مخططات الحسابات والوظائف والدعم بالترتيب المذكور بعد فحص الاعتماديات. اضبط قاعدة البيانات ومفتاح JWT والفهرس portfolio_records ومسار مجموعة مولدة فقط. Redis اختياري. افحص خيارات المفهرس قبل الإدخال ولا تستخدم مسارات إنتاج تاريخية.
+استخدم PHP 8.1 أو أحدث مع mysqli وامتداد Redis الاختياري. صدّر متغيرات env.example إلى PHP: قاعدة مؤقتة DB_* وJWT_SECRET جديد وDEMO_MODE=1 وDEMO_PASSWORD. شغّل OpenSearch مستقلاً واضبط المضيف والمنفذ والبروتوكول والفهرس portfolio_records. Redis للتخزين المؤقت الاختياري. اجعل LEAKED_DATA_PATH لمسار العينات المولدة المصرح بها فقط؛ الاسم القديم لا يجيز بيانات خاصة. تستخدم الفهرسة fixtures/generated.jsonl.
 
-## التفاصيل والأوامر
+## الأوامر
 
-Install PHP 8.1+, Composer, MySQL and OpenSearch. Run `composer install`, import `database.sql`, `database_search_jobs.sql` and `database_support_tickets.sql` in that order after reviewing their schema dependencies. Export database variables, a new JWT secret, `OPENSEARCH_HOST`, `OPENSEARCH_PORT`, `OPENSEARCH_INDEX=portfolio_records` and `LEAKED_DATA_PATH` pointing only to the generated corpus. Configure optional Redis separately. Inspect indexer options before invoking ingestion; do not use historical production paths.
+```sh
+composer install
+php tools/bootstrap.php
+php tools/ingest-demo.php
+php tools/check-opensearch.php
+php -S 127.0.0.1:8087 router.php
+python tools/check-syntax.py
+```
 
-## متغيرات تقرأها الشيفرة
+## جرد الإعداد
 
-| Variable | Source consumer | Configuration rule |
+| المتغير | موضع الاستخدام | قاعدة الإعداد |
 |---|---|---|
-| `CORS_ORIGIN` | `api/config.php` | Use the local example/source default; adapt to your disposable environment. |
-| `DB_HOST` | `api/config.php` | Use the local example/source default; adapt to your disposable environment. |
-| `DB_NAME` | `api/config.php` | Use the local example/source default; adapt to your disposable environment. |
-| `DB_PASS` | `api/config.php` | Supply privately when enabling its integration; no secret default. |
-| `DB_USER` | `api/config.php` | Use the local example/source default; adapt to your disposable environment. |
-| `DEBUG_MODE` | `api/config.php` | Use the local example/source default; adapt to your disposable environment. |
-| `JWT_SECRET` | `api/config.php` | Supply privately when enabling its integration; no secret default. |
-| `LEAKED_DATA_PATH` | `api/config.php` | Use the local example/source default; adapt to your disposable environment. |
-| `OPENSEARCH_HOST` | `api/config.php` | Use the local example/source default; adapt to your disposable environment. |
-| `OPENSEARCH_INDEX` | `api/config.php` | Use the local example/source default; adapt to your disposable environment. |
-| `OPENSEARCH_PORT` | `api/config.php` | Use the local example/source default; adapt to your disposable environment. |
-| `RECAPTCHA_SECRET_KEY` | `api/config.php` | Supply privately when enabling its integration; no secret default. |
-| `RECAPTCHA_SITE_KEY` | `api/config.php` | Use the local example/source default; adapt to your disposable environment. |
-| `UNLIMITED_USER_EMAILS` | `api/search/index.php` | Use the local example/source default; adapt to your disposable environment. |
+| `CORS_ORIGIN` | `api/config.php` | استخدم المثال المحلي أو افتراضي الشيفرة واضبطه للبيئة المؤقتة. |
+| `DB_HOST` | `api/config.php` | استخدم المثال المحلي أو افتراضي الشيفرة واضبطه للبيئة المؤقتة. |
+| `DB_NAME` | `api/config.php` | استخدم المثال المحلي أو افتراضي الشيفرة واضبطه للبيئة المؤقتة. |
+| `DB_PASS` | `api/config.php` | قدم القيمة بصورة خاصة عند تفعيل التكامل، دون سر افتراضي. |
+| `DB_USER` | `api/config.php` | استخدم المثال المحلي أو افتراضي الشيفرة واضبطه للبيئة المؤقتة. |
+| `DEBUG_MODE` | `api/config.php` | استخدم المثال المحلي أو افتراضي الشيفرة واضبطه للبيئة المؤقتة. |
+| `JWT_SECRET` | `api/config.php` | قدم القيمة بصورة خاصة عند تفعيل التكامل، دون سر افتراضي. |
+| `LEAKED_DATA_PATH` | `api/config.php` | استخدم المثال المحلي أو افتراضي الشيفرة واضبطه للبيئة المؤقتة. |
+| `OPENSEARCH_HOST` | `api/config.php` | استخدم المثال المحلي أو افتراضي الشيفرة واضبطه للبيئة المؤقتة. |
+| `OPENSEARCH_INDEX` | `api/config.php` | استخدم المثال المحلي أو افتراضي الشيفرة واضبطه للبيئة المؤقتة. |
+| `OPENSEARCH_PORT` | `api/config.php` | استخدم المثال المحلي أو افتراضي الشيفرة واضبطه للبيئة المؤقتة. |
+| `RECAPTCHA_SECRET_KEY` | `api/config.php` | قدم القيمة بصورة خاصة عند تفعيل التكامل، دون سر افتراضي. |
+| `RECAPTCHA_SITE_KEY` | `api/config.php` | استخدم المثال المحلي أو افتراضي الشيفرة واضبطه للبيئة المؤقتة. |
+| `UNLIMITED_USER_EMAILS` | `api/search/index.php` | استخدم المثال المحلي أو افتراضي الشيفرة واضبطه للبيئة المؤقتة. |
 
-لا تُحمَّل ملفات الأمثلة تلقائياً. تستخدم وحدات dotenv الملف حيث تكون مهيأة، ويستخدم PHP بيئة العملية أو الاستضافة. افصل المزودين عن العرض وأنشئ أسراراً جديدة واحفظها خارج المستودع.
+ليست كل متغيرات الجرد إلزامية. تحدد الفقرة الأولى قيم التشغيل الأساسية، وتلزم قيم المزود للتكامل الحي المفعل فقط. تتجاوز DEMO_API_URL هدف الفحص المحلي عند دعمه. لا توجه أوامر التعبئة والاستعادة والفحص لقاعدة إنتاج. لا تُحمّل أمثلة البيئة نفسها تلقائياً؛ جهز بيئة العملية أو dotenv حيث يستخدمه المكون.
 
-## أوامر المكونات
+## المكونات
+
+| المكون | المسؤولية |
+|---|---|
+| `api/search/` | مسارات البحث المفهرس والوظائف |
+| `api/utils/` | عميل وفهرسة OpenSearch وعمال الملفات والوظائف |
+| `api/admin/` | واجهة الإدارة |
+| `database*.sql` | مخططات الحسابات والدعم والوظائف |
+| `js/` | عميل API وأدوات الواجهة |

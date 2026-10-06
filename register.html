@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Get Started - New Era Intelligence (NEI)</title>
+    <meta name="description" content="Create your New Era Intelligence (NEI) account to start accessing advanced threat intelligence and security research tools.">
+    <link rel="icon" type="image/png" href="favicon.ico">
+    <link rel="stylesheet" href="styles.css">
+    <script src="js/api.js"></script>
+    <script src="js/utils.js"></script>
+    <!-- Google reCAPTCHA v2 Checkbox -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="/Home" class="logo">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-QwdP_ZH4WdRjsWWXrqeSprFbeOQra9qV8A&s" alt="New Era Intelligence (NEI) Logo" class="logo-image">
+                    <span class="logo-text">New Era Intelligence <span class="logo-x">(NEI)</span></span>
+                </a>
+                <nav class="nav">
+                    <a href="#" class="nav-link">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 1L1 4.5V8C1 11.866 4.134 15 8 15C11.866 15 15 11.866 15 8V4.5L8 1Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                            <path d="M8 5L5 6.5V8C5 9.10457 5.89543 10 7 10H9C10.1046 10 11 9.10457 11 8V6.5L8 5Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                        </svg>
+                        Telegram Bot
+                    </a>
+                    <a href="/Pricing" class="nav-link">Pricing</a>
+                    <a href="/Login" class="btn btn-secondary">Sign In</a>
+                    <a href="register.html" class="btn btn-primary">Get Started</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Register Section -->
+    <section class="signin-section">
+        <div class="container">
+            <div class="signin-container">
+                <div class="signin-card">
+                    <div class="signin-header">
+                        <h1 class="signin-title">Get Started</h1>
+                        <p class="signin-subtitle">Create your New Era Intelligence (NEI) account</p>
+                    </div>
+                    
+                    <form class="signin-form" id="registerForm">
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email</label>
+                            <input 
+                                type="email" 
+                                id="email" 
+                                name="email" 
+                                class="form-input" 
+                                placeholder="Enter your email"
+                                required
+                                autocomplete="email"
+                            >
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="username" class="form-label">Username</label>
+                            <input 
+                                type="text" 
+                                id="username" 
+                                name="username" 
+                                class="form-input" 
+                                placeholder="Choose a username"
+                                required
+                                autocomplete="username"
+                            >
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="password" class="form-label">Password</label>
+                            <div class="password-input-wrapper">
+                                <input 
+                                    type="password" 
+                                    id="password" 
+                                    name="password" 
+                                    class="form-input" 
+                                    placeholder="Create a password"
+                                    required
+                                    autocomplete="new-password"
+                                >
+                                <button type="button" class="password-toggle" id="passwordToggle" aria-label="Toggle password visibility">
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="eye-icon">
+                                        <path d="M10 4C6 4 3.27 6.11 2 9C3.27 11.89 6 14 10 14C14 14 16.73 11.89 18 9C16.73 6.11 14 4 10 4Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                                        <circle cx="10" cy="9" r="2.5" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                                    </svg>
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="eye-off-icon" style="display: none;">
+                                        <path d="M2 2L18 18M8.88 8.88A3 3 0 0 0 10 12C11.1046 12 12 11.1046 12 10M14.12 14.12C13.38 14.63 12.54 15 11.64 15.19M6.5 4.71C4.07 5.91 2.42 7.67 1.42 9C2.42 10.33 4.07 12.09 6.5 13.29M13.5 15.29C15.93 14.09 17.58 12.33 18.58 11C17.58 9.67 15.93 7.91 13.5 6.71" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="confirmPassword" class="form-label">Confirm Password</label>
+                            <div class="password-input-wrapper">
+                                <input 
+                                    type="password" 
+                                    id="confirmPassword" 
+                                    name="confirmPassword" 
+                                    class="form-input" 
+                                    placeholder="Confirm your password"
+                                    required
+                                    autocomplete="new-password"
+                                >
+                                <button type="button" class="password-toggle" id="confirmPasswordToggle" aria-label="Toggle password visibility">
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="eye-icon">
+                                        <path d="M10 4C6 4 3.27 6.11 2 9C3.27 11.89 6 14 10 14C14 14 16.73 11.89 18 9C16.73 6.11 14 4 10 4Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                                        <circle cx="10" cy="9" r="2.5" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                                    </svg>
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="eye-off-icon" style="display: none;">
+                                        <path d="M2 2L18 18M8.88 8.88A3 3 0 0 0 10 12C11.1046 12 12 11.1046 12 10M14.12 14.12C13.38 14.63 12.54 15 11.64 15.19M6.5 4.71C4.07 5.91 2.42 7.67 1.42 9C2.42 10.33 4.07 12.09 6.5 13.29M13.5 15.29C15.93 14.09 17.58 12.33 18.58 11C17.58 9.67 15.93 7.91 13.5 6.71" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="terms" name="terms" class="checkbox-input" required>
+                                <span class="checkbox-text">
+                                    I agree to the 
+                                    <a href="#" class="link-inline">Terms of Service</a> 
+                                    and 
+                                    <a href="#" class="link-inline">Privacy Policy</a>
+                                </span>
+                            </label>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="g-recaptcha" data-sitekey="6LepK0YsAAAAAMglSQrzvXx2eCDuiVFQaQdPMhTe"></div>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-block btn-large">
+                            Create Account
+                        </button>
+                    </form>
+                    
+                    <div class="signin-footer">
+                        <p class="signin-footer-text">
+                            Already have an account? 
+                            <a href="/Login" class="signin-footer-link">Sign in</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Password toggle functionality
+        const passwordToggle = document.getElementById('passwordToggle');
+        const passwordInput = document.getElementById('password');
+        const passwordEyeIcon = passwordToggle.querySelector('.eye-icon');
+        const passwordEyeOffIcon = passwordToggle.querySelector('.eye-off-icon');
+
+        passwordToggle.addEventListener('click', () => {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            
+            if (type === 'text') {
+                passwordEyeIcon.style.display = 'none';
+                passwordEyeOffIcon.style.display = 'block';
+            } else {
+                passwordEyeIcon.style.display = 'block';
+                passwordEyeOffIcon.style.display = 'none';
+            }
+        });
+
+        // Confirm password toggle functionality
+        const confirmPasswordToggle = document.getElementById('confirmPasswordToggle');
+        const confirmPasswordInput = document.getElementById('confirmPassword');
+        const confirmEyeIcon = confirmPasswordToggle.querySelector('.eye-icon');
+        const confirmEyeOffIcon = confirmPasswordToggle.querySelector('.eye-off-icon');
+
+        confirmPasswordToggle.addEventListener('click', () => {
+            const type = confirmPasswordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            confirmPasswordInput.setAttribute('type', type);
+            
+            if (type === 'text') {
+                confirmEyeIcon.style.display = 'none';
+                confirmEyeOffIcon.style.display = 'block';
+            } else {
+                confirmEyeIcon.style.display = 'block';
+                confirmEyeOffIcon.style.display = 'none';
+            }
+        });
+
+        // Password validation and strength indicator
+        const registerForm = document.getElementById('registerForm');
+        const passwordField = document.getElementById('password');
+        const confirmPasswordField = document.getElementById('confirmPassword');
+        const emailField = document.getElementById('email');
+
+        // Create password strength indicator
+        const passwordStrengthDiv = document.createElement('div');
+        passwordStrengthDiv.className = 'password-strength';
+        passwordStrengthDiv.innerHTML = '<div class="password-strength-bar"></div>';
+        passwordField.parentElement.appendChild(passwordStrengthDiv);
+
+        // Create password requirements display - place it after the form-group
+        const requirementsDiv = document.createElement('div');
+        requirementsDiv.className = 'password-requirements';
+        requirementsDiv.style.display = 'none'; // Hidden by default, show when user starts typing
+        requirementsDiv.innerHTML = `
+            <div class="password-requirements-title">Password must contain:</div>
+            <div class="password-requirements-list">
+                <div class="password-requirement invalid" id="req-length">
+                    <svg class="req-icon" width="14" height="14" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle class="req-circle" cx="10" cy="10" r="9" stroke="currentColor" stroke-width="2" fill="none"/>
+                        <path class="req-check" d="M6 10L9 13L14 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;"/>
+                    </svg>
+                    <span>At least 12 characters</span>
+                </div>
+                <div class="password-requirement invalid" id="req-upper">
+                    <svg class="req-icon" width="14" height="14" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle class="req-circle" cx="10" cy="10" r="9" stroke="currentColor" stroke-width="2" fill="none"/>
+                        <path class="req-check" d="M6 10L9 13L14 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;"/>
+                    </svg>
+                    <span>One uppercase letter</span>
+                </div>
+                <div class="password-requirement invalid" id="req-lower">
+                    <svg class="req-icon" width="14" height="14" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle class="req-circle" cx="10" cy="10" r="9" stroke="currentColor" stroke-width="2" fill="none"/>
+                        <path class="req-check" d="M6 10L9 13L14 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;"/>
+                    </svg>
+                    <span>One lowercase letter</span>
+                </div>
+                <div class="password-requirement invalid" id="req-number">
+                    <svg class="req-icon" width="14" height="14" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle class="req-circle" cx="10" cy="10" r="9" stroke="currentColor" stroke-width="2" fill="none"/>
+                        <path class="req-check" d="M6 10L9 13L14 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;"/>
+                    </svg>
+                    <span>One number</span>
+                </div>
+                <div class="password-requirement invalid" id="req-special">
+                    <svg class="req-icon" width="14" height="14" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle class="req-circle" cx="10" cy="10" r="9" stroke="currentColor" stroke-width="2" fill="none"/>
+                        <path class="req-check" d="M6 10L9 13L14 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;"/>
+                    </svg>
+                    <span>One special character</span>
+                </div>
+            </div>
+        `;
+        // Insert after the password form-group
+        passwordField.closest('.form-group').insertAdjacentElement('afterend', requirementsDiv);
+
+        // Email validation
+        emailField.addEventListener('blur', function() {
+            const email = InputSanitizer.sanitize(this.value.trim());
+            if (email && !InputSanitizer.validateEmail(email)) {
+                this.classList.add('invalid');
+                Toast.warning('Please enter a valid email address');
+            } else {
+                this.classList.remove('invalid');
+            }
+        });
+
+        // Password strength checker
+        passwordField.addEventListener('input', function() {
+            const password = this.value;
+            const validation = InputSanitizer.validatePassword(password);
+            const bar = passwordStrengthDiv.querySelector('.password-strength-bar');
+            
+            // Show/hide requirements based on whether user has started typing
+            if (password.length > 0) {
+                requirementsDiv.style.display = 'block';
+            } else {
+                requirementsDiv.style.display = 'none';
+            }
+            
+            // Update requirements - fix the logic (errors object contains true for valid, false for invalid)
+            const reqLength = document.getElementById('req-length');
+            const reqUpper = document.getElementById('req-upper');
+            const reqLower = document.getElementById('req-lower');
+            const reqNumber = document.getElementById('req-number');
+            const reqSpecial = document.getElementById('req-special');
+            
+            const updateRequirement = (element, isValid) => {
+                element.className = `password-requirement ${isValid ? 'valid' : 'invalid'}`;
+                const icon = element.querySelector('.req-icon');
+                const circle = icon.querySelector('.req-circle');
+                const check = icon.querySelector('.req-check');
+                if (isValid) {
+                    circle.style.display = 'none';
+                    check.style.display = 'block';
+                } else {
+                    circle.style.display = 'block';
+                    check.style.display = 'none';
+                }
+            };
+            
+            updateRequirement(reqLength, validation.errors.minLength);
+            updateRequirement(reqUpper, validation.errors.hasUpper);
+            updateRequirement(reqLower, validation.errors.hasLower);
+            updateRequirement(reqNumber, validation.errors.hasNumber);
+            updateRequirement(reqSpecial, validation.errors.hasSpecial);
+            
+            // Update strength bar
+            bar.className = 'password-strength-bar';
+            const validCount = Object.values(validation.errors).filter(v => v).length;
+            if (validCount <= 2) {
+                bar.classList.add('password-strength-weak');
+            } else if (validCount <= 4) {
+                bar.classList.add('password-strength-medium');
+            } else if (validation.valid) {
+                bar.classList.add('password-strength-strong');
+            }
+            
+            validatePasswordMatch();
+        });
+        
+        // Hide requirements when password field loses focus and is valid
+        passwordField.addEventListener('blur', function() {
+            const password = this.value;
+            const validation = InputSanitizer.validatePassword(password);
+            if (validation.valid) {
+                requirementsDiv.style.display = 'none';
+            }
+        });
+        
+        // Show requirements when password field gets focus
+        passwordField.addEventListener('focus', function() {
+            if (this.value.length > 0) {
+                requirementsDiv.style.display = 'block';
+            }
+        });
+
+        function validatePasswordMatch() {
+            if (confirmPasswordField.value && passwordField.value !== confirmPasswordField.value) {
+                confirmPasswordField.setCustomValidity('Passwords do not match');
+                confirmPasswordField.classList.add('invalid');
+            } else {
+                confirmPasswordField.setCustomValidity('');
+                confirmPasswordField.classList.remove('invalid');
+            }
+        }
+
+        confirmPasswordField.addEventListener('input', validatePasswordMatch);
+
+        // Form submission
+        registerForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // Sanitize inputs
+            const email = InputSanitizer.sanitize(emailField.value.trim());
+            const username = InputSanitizer.sanitize(document.getElementById('username').value.trim());
+            const password = passwordField.value;
+            
+            // Validate email
+            if (!InputSanitizer.validateEmail(email)) {
+                Toast.error('Please enter a valid email address');
+                emailField.focus();
+                return;
+            }
+            
+            // Validate password
+            const passwordValidation = InputSanitizer.validatePassword(password);
+            if (!passwordValidation.valid) {
+                Toast.error('Password does not meet requirements. Please check the requirements below.');
+                passwordField.focus();
+                return;
+            }
+            
+            validatePasswordMatch();
+            
+            if (!registerForm.checkValidity()) {
+                Toast.warning('Please fill in all required fields correctly');
+                return;
+            }
+            
+            const submitButton = e.target.querySelector('button[type="submit"]');
+            const originalText = submitButton.textContent;
+            submitButton.disabled = true;
+            submitButton.textContent = 'Creating account...';
+            
+            // Show loading spinner
+            const spinner = LoadingSpinner.show(registerForm);
+            
+            try {
+                // Get reCAPTCHA token (v2 Checkbox)
+                let recaptchaToken = '';
+                try {
+                    if (typeof grecaptcha !== 'undefined') {
+                        recaptchaToken = grecaptcha.getResponse();
+                        if (!recaptchaToken) {
+                            Toast.error('Please complete the reCAPTCHA verification');
+                            LoadingSpinner.hide(registerForm);
+                            submitButton.disabled = false;
+                            submitButton.textContent = originalText;
+                            return;
+                        }
+                    } else {
+                        Toast.error('reCAPTCHA failed to load. Please refresh the page and try again.');
+                        LoadingSpinner.hide(registerForm);
+                        submitButton.disabled = false;
+                        submitButton.textContent = originalText;
+                        return;
+                    }
+                } catch (recaptchaError) {
+                    Logger.error('reCAPTCHA error:', recaptchaError);
+                    Toast.error('reCAPTCHA verification failed. Please try again.');
+                    LoadingSpinner.hide(registerForm);
+                    submitButton.disabled = false;
+                    submitButton.textContent = originalText;
+                    return;
+                }
+                
+                const response = await API.auth.register(email, username, password, recaptchaToken);
+                
+                if (response.success) {
+                    // Set token and verify it's saved
+                    if (response.data && response.data.token) {
+                        localStorage.setItem('authToken', response.data.token);
+                        
+                        // Double-check token is saved
+                        await new Promise(resolve => setTimeout(resolve, 100));
+                        const token = localStorage.getItem('authToken');
+                        Logger.log('Token saved after registration:', !!token);
+                        Logger.log('Token value (first 30 chars):', token ? token.substring(0, 30) + '...' : 'null');
+                        
+                        if (!token || token !== response.data.token) {
+                            LoadingSpinner.hide(registerForm);
+                            Toast.error('Failed to save authentication token. Please try logging in.');
+                            if (typeof grecaptcha !== 'undefined') {
+                                grecaptcha.reset();
+                            }
+                            submitButton.disabled = false;
+                            submitButton.textContent = originalText;
+                            return;
+                        }
+                        
+                        Toast.success('Account created successfully! Redirecting...');
+                        
+                        // Wait longer to ensure everything is saved
+                        await new Promise(resolve => setTimeout(resolve, 1500));
+                        
+                        // Redirect to dashboard
+                        window.location.href = 'dashboard.html';
+                    } else {
+                        LoadingSpinner.hide(registerForm);
+                        Toast.warning('Registration successful but no token received. Please login.');
+                        if (typeof grecaptcha !== 'undefined') {
+                            grecaptcha.reset();
+                        }
+                        setTimeout(() => {
+                            window.location.href = 'signin.html';
+                        }, 2000);
+                    }
+                } else {
+                    LoadingSpinner.hide(registerForm);
+                    Toast.error(response.message || 'Registration failed. Please try again.');
+                    // Reset reCAPTCHA on error
+                    if (typeof grecaptcha !== 'undefined') {
+                        grecaptcha.reset();
+                    }
+                    submitButton.disabled = false;
+                    submitButton.textContent = originalText;
+                }
+            } catch (error) {
+                LoadingSpinner.hide(registerForm);
+                ErrorHandler.handle(error, 'Registration');
+                // Reset reCAPTCHA on error
+                if (typeof grecaptcha !== 'undefined') {
+                    grecaptcha.reset();
+                }
+                submitButton.disabled = false;
+                submitButton.textContent = originalText;
+            }
+        });
+    </script>
+</body>
+</html>
+

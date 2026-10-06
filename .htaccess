@@ -1,0 +1,70 @@
+# Enable Rewrite Engine
+RewriteEngine On
+RewriteRule ^(?:data|tools|docs|fixtures|vendor)/ - [F,L]
+<FilesMatch "\.(sql|env|sqlite|md)$">
+Require all denied
+</FilesMatch>
+RewriteBase /
+
+# Prevent directory listing
+Options -Indexes
+
+# Redirect .html extensions to clean URLs
+RewriteCond %{THE_REQUEST} /([^.]+)\.html [NC]
+RewriteRule ^ /%1 [NC,L,R=301]
+
+# Handle clean URLs - map to actual HTML files
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Map clean URLs to HTML files
+RewriteRule ^Home/?$ index.html [L]
+RewriteRule ^home/?$ index.html [L]
+RewriteRule ^/?$ index.html [L]
+
+RewriteRule ^Login/?$ signin.html [L]
+RewriteRule ^login/?$ signin.html [L]
+
+RewriteRule ^Register/?$ register.html [L]
+RewriteRule ^register/?$ register.html [L]
+RewriteRule ^GetStarted/?$ register.html [L]
+RewriteRule ^get-started/?$ register.html [L]
+
+RewriteRule ^Dashboard/?$ dashboard.html [L]
+RewriteRule ^dashboard/?$ dashboard.html [L]
+
+RewriteRule ^Pricing/?$ pricing.html [L]
+RewriteRule ^pricing/?$ pricing.html [L]
+
+RewriteRule ^Profile/?$ profile.html [L]
+RewriteRule ^profile/?$ profile.html [L]
+
+RewriteRule ^Support/?$ support.html [L]
+RewriteRule ^support/?$ support.html [L]
+
+RewriteRule ^Admin/?$ admin.html [L]
+RewriteRule ^admin/?$ admin.html [L]
+RewriteRule ^Admin/Login/?$ admin-login.html [L]
+RewriteRule ^admin/login/?$ admin-login.html [L]
+
+# API routes - don't rewrite
+RewriteCond %{REQUEST_URI} ^/api/
+RewriteRule ^ - [L]
+
+# Static files - don't rewrite
+RewriteCond %{REQUEST_URI} \.(css|js|jpg|jpeg|png|gif|ico|svg|woff|woff2|ttf|eot)$ [NC]
+RewriteRule ^ - [L]
+
+# Security Headers
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+</IfModule>
+
+# Prevent access to sensitive files
+<FilesMatch "\.(htaccess|htpasswd|ini|log|sh|sql)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Sign In - New Era Intelligence (NEI)</title>
+    <meta name="description" content="Sign in to your New Era Intelligence (NEI) account to access advanced threat intelligence and security research tools.">
+    <link rel="icon" type="image/png" href="favicon.ico">
+    <link rel="stylesheet" href="styles.css">
+    <script src="js/api.js"></script>
+    <script src="js/utils.js"></script>
+    <!-- Google reCAPTCHA v2 Checkbox -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="/Home" class="logo">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-QwdP_ZH4WdRjsWWXrqeSprFbeOQra9qV8A&s" alt="New Era Intelligence (NEI) Logo" class="logo-image">
+                    <span class="logo-text">New Era Intelligence <span class="logo-x">(NEI)</span></span>
+                </a>
+                <nav class="nav">
+                    <a href="#" class="nav-link">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 1L1 4.5V8C1 11.866 4.134 15 8 15C11.866 15 15 11.866 15 8V4.5L8 1Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                            <path d="M8 5L5 6.5V8C5 9.10457 5.89543 10 7 10H9C10.1046 10 11 9.10457 11 8V6.5L8 5Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                        </svg>
+                        Telegram Bot
+                    </a>
+                    <a href="/Pricing" class="nav-link">Pricing</a>
+                    <a href="signin.html" class="btn btn-secondary">Sign In</a>
+                    <a href="/Register" class="btn btn-primary">Get Started</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sign In Section -->
+    <section class="signin-section">
+        <div class="container">
+            <div class="signin-container">
+                <div class="signin-card">
+                    <div class="signin-header">
+                        <h1 class="signin-title">Sign In</h1>
+                        <p class="signin-subtitle">Welcome back to New Era Intelligence (NEI)</p>
+                    </div>
+                    
+                    <form class="signin-form" id="signinForm">
+                        <div class="form-group">
+                            <label for="emailOrUsername" class="form-label">Email or Username</label>
+                            <input 
+                                type="text" 
+                                id="emailOrUsername" 
+                                name="emailOrUsername" 
+                                class="form-input" 
+                                placeholder="Enter your email or username"
+                                required
+                                autocomplete="username"
+                            >
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="password" class="form-label">Password</label>
+                            <div class="password-input-wrapper">
+                                <input 
+                                    type="password" 
+                                    id="password" 
+                                    name="password" 
+                                    class="form-input" 
+                                    placeholder="Enter your password"
+                                    required
+                                    autocomplete="current-password"
+                                >
+                                <button type="button" class="password-toggle" id="passwordToggle" aria-label="Toggle password visibility">
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="eye-icon">
+                                        <path d="M10 4C6 4 3.27 6.11 2 9C3.27 11.89 6 14 10 14C14 14 16.73 11.89 18 9C16.73 6.11 14 4 10 4Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                                        <circle cx="10" cy="9" r="2.5" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                                    </svg>
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="eye-off-icon" style="display: none;">
+                                        <path d="M2 2L18 18M8.88 8.88A3 3 0 0 0 10 12C11.1046 12 12 11.1046 12 10M14.12 14.12C13.38 14.63 12.54 15 11.64 15.19M6.5 4.71C4.07 5.91 2.42 7.67 1.42 9C2.42 10.33 4.07 12.09 6.5 13.29M13.5 15.29C15.93 14.09 17.58 12.33 18.58 11C17.58 9.67 15.93 7.91 13.5 6.71" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="form-options">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="rememberMe" name="rememberMe" class="checkbox-input">
+                                <span class="checkbox-text">Remember me</span>
+                            </label>
+                            <a href="#" class="forgot-password">Forgot password?</a>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="g-recaptcha" data-sitekey="6LepK0YsAAAAAMglSQrzvXx2eCDuiVFQaQdPMhTe"></div>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-block btn-large">
+                            Sign In
+                        </button>
+                    </form>
+                    
+                    <div class="signin-footer">
+                        <p class="signin-footer-text">
+                            Don't have an account? 
+                            <a href="/Register" class="signin-footer-link">Sign up</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Password toggle functionality
+        const passwordToggle = document.getElementById('passwordToggle');
+        const passwordInput = document.getElementById('password');
+        const eyeIcon = passwordToggle.querySelector('.eye-icon');
+        const eyeOffIcon = passwordToggle.querySelector('.eye-off-icon');
+
+        passwordToggle.addEventListener('click', () => {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            
+            if (type === 'text') {
+                eyeIcon.style.display = 'none';
+                eyeOffIcon.style.display = 'block';
+            } else {
+                eyeIcon.style.display = 'block';
+                eyeOffIcon.style.display = 'none';
+            }
+        });
+
+        // Form submission
+        document.getElementById('signinForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // Sanitize inputs
+            const emailOrUsername = InputSanitizer.sanitize(document.getElementById('emailOrUsername').value.trim());
+            const password = document.getElementById('password').value;
+            const rememberMe = document.getElementById('rememberMe').checked;
+            
+            if (!emailOrUsername || !password) {
+                Toast.error('Please fill in all required fields');
+                return;
+            }
+            
+            const submitButton = e.target.querySelector('button[type="submit"]');
+            const form = e.target;
+            const originalText = submitButton.textContent;
+            
+            submitButton.disabled = true;
+            submitButton.textContent = 'Signing in...';
+            
+            // Show loading spinner
+            const spinner = LoadingSpinner.show(form);
+            
+            try {
+                // Get reCAPTCHA token (v2 Checkbox)
+                let recaptchaToken = '';
+                try {
+                    if (typeof grecaptcha !== 'undefined') {
+                        recaptchaToken = grecaptcha.getResponse();
+                        if (!recaptchaToken) {
+                            Toast.error('Please complete the reCAPTCHA verification');
+                            LoadingSpinner.hide(form);
+                            submitButton.disabled = false;
+                            submitButton.textContent = originalText;
+                            return;
+                        }
+                    } else {
+                        Toast.error('reCAPTCHA failed to load. Please refresh the page and try again.');
+                        LoadingSpinner.hide(form);
+                        submitButton.disabled = false;
+                        submitButton.textContent = originalText;
+                        return;
+                    }
+                } catch (recaptchaError) {
+                    Logger.error('reCAPTCHA error:', recaptchaError);
+                    Toast.error('reCAPTCHA verification failed. Please try again.');
+                    LoadingSpinner.hide(form);
+                    submitButton.disabled = false;
+                    submitButton.textContent = originalText;
+                    return;
+                }
+                
+                const response = await API.auth.login(emailOrUsername, password, rememberMe, recaptchaToken);
+                
+                if (response.success) {
+                    // API.auth.login() automatically saves the token, but let's verify
+                    await new Promise(resolve => setTimeout(resolve, 100));
+                    const token = localStorage.getItem('authToken');
+                    Logger.log('Token saved after login:', !!token);
+                    Logger.log('Token value (first 30 chars):', token ? token.substring(0, 30) + '...' : 'null');
+                    
+                    if (!token) {
+                        LoadingSpinner.hide(form);
+                        Toast.error('Failed to save authentication token. Please try again.');
+                        if (typeof grecaptcha !== 'undefined') {
+                            grecaptcha.reset();
+                        }
+                        submitButton.disabled = false;
+                        submitButton.textContent = originalText;
+                        return;
+                    }
+                    
+                    Toast.success('Login successful! Redirecting...');
+                    
+                    // Wait longer to ensure token is fully saved and persisted
+                    await new Promise(resolve => setTimeout(resolve, 1500));
+                    
+                    // Verify token is still there before redirect
+                    const finalTokenCheck = localStorage.getItem('authToken');
+                    if (!finalTokenCheck) {
+                        LoadingSpinner.hide(form);
+                        Toast.error('Authentication token was lost. Please try logging in again.');
+                        if (typeof grecaptcha !== 'undefined') {
+                            grecaptcha.reset();
+                        }
+                        submitButton.disabled = false;
+                        submitButton.textContent = originalText;
+                        return;
+                    }
+                    
+                    // Redirect to dashboard
+                    window.location.href = 'dashboard.html';
+                } else {
+                    LoadingSpinner.hide(form);
+                    Toast.error(response.message || 'Login failed. Please check your credentials.');
+                    // Reset reCAPTCHA on error
+                    if (typeof grecaptcha !== 'undefined') {
+                        grecaptcha.reset();
+                    }
+                    submitButton.disabled = false;
+                    submitButton.textContent = originalText;
+                }
+            } catch (error) {
+                LoadingSpinner.hide(form);
+                ErrorHandler.handle(error, 'Sign In');
+                // Reset reCAPTCHA on error
+                if (typeof grecaptcha !== 'undefined') {
+                    grecaptcha.reset();
+                }
+                submitButton.disabled = false;
+                submitButton.textContent = originalText;
+            }
+        });
+    </script>
+</body>
+</html>
+

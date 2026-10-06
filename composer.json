@@ -1,0 +1,10 @@
+{
+  "name": "mohamedabderrehman/misterx-search",
+  "description": "Authorized synthetic corpus search demonstration",
+  "license": "MIT",
+  "config": {"platform": {"php": "8.1.0"}},
+  "require": {
+    "php": "^8.1",
+    "opensearch-project/opensearch-php": "^2.0"
+  }
+}

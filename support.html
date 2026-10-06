@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Support - New Era Intelligence (NEI)</title>
+    <meta name="description" content="Get help and support from New Era Intelligence (NEI). Contact us via email or Telegram, or open a support ticket.">
+    <link rel="icon" type="image/png" href="favicon.ico">
+    <link rel="stylesheet" href="styles.css">
+    <script src="js/api.js"></script>
+    <script src="js/utils.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="/Home" class="logo">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-QwdP_ZH4WdRjsWWXrqeSprFbeOQra9qV8A&s" alt="New Era Intelligence (NEI) Logo" class="logo-image">
+                    <span class="logo-text">New Era Intelligence <span class="logo-x">(NEI)</span></span>
+                </a>
+                <nav class="nav" id="mainNav">
+                    <a href="#" class="nav-link">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 1L1 4.5V8C1 11.866 4.134 15 8 15C11.866 15 15 11.866 15 8V4.5L8 1Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                            <path d="M8 5L5 6.5V8C5 9.10457 5.89543 10 7 10H9C10.1046 10 11 9.10457 11 8V6.5L8 5Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                        </svg>
+                        Telegram Bot
+                    </a>
+                    <a href="/Pricing" class="nav-link">Pricing</a>
+                    <a href="/Support" class="nav-link">Support</a>
+                    <!-- Guest buttons -->
+                    <a href="/Login" class="btn btn-secondary guest-only">Sign In</a>
+                    <a href="/Register" class="btn btn-primary guest-only">Get Started</a>
+                    <!-- User buttons -->
+                    <a href="/Dashboard" class="nav-link user-only" style="display:none;">Dashboard</a>
+                    <a href="/Profile" class="nav-link user-only" style="display:none;">Profile</a>
+                    <button class="btn btn-outline user-only" style="display:none;" onclick="API.auth.logout()">Logout</button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Support Section -->
+    <section class="support-section">
+        <div class="container">
+            <div class="support-header">
+                <h1 class="support-title">Support Center</h1>
+                <p class="support-subtitle">We're here to help you. Choose how you'd like to contact us.</p>
+            </div>
+
+            <div class="support-content">
+                <!-- Contact Info Cards -->
+                <div class="support-contact-cards">
+                    <div class="support-card">
+                        <div class="support-card-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M22 6L12 13L2 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h3 class="support-card-title">Email Support</h3>
+                        <p class="support-card-description">Send us an email and we'll get back to you as soon as possible.</p>
+                        <a href="#" id="supportEmail" class="support-card-link">
+                            <span id="supportEmailValue">support@misterx.com</span>
+                            <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
+                                <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </div>
+
+                    <div class="support-card">
+                        <div class="support-card-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M21 11.5C21.0034 12.8199 20.6951 14.1219 20.1 15.3C19.3944 16.7118 18.3098 17.8992 16.9674 18.7293C15.6251 19.5594 14.0782 19.9994 12.5 20C11.1801 20.0035 9.87812 19.6951 8.7 19.1L3 21L4.9 15.3C4.30493 14.1219 3.99656 12.8199 4 11.5C4.00061 9.92179 4.44061 8.37488 5.27072 7.03258C6.10083 5.69028 7.28825 4.6056 8.7 3.90003C9.87812 3.30496 11.1801 2.99659 12.5 3.00003H13C15.0843 3.11502 17.053 3.99479 18.5291 5.47089C20.0052 6.94699 20.885 8.91568 21 11V11.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h3 class="support-card-title">Telegram Support</h3>
+                        <p class="support-card-description">Join our Telegram channel for instant support and updates.</p>
+                        <a href="#" id="supportTelegram" target="_blank" class="support-card-link">
+                            <span id="supportTelegramValue">@New Era Intelligence (NEI)Support</span>
+                            <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
+                                <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Ticket Creation Form -->
+                <div class="support-ticket-section">
+                    <div class="support-ticket-card">
+                        <div class="support-ticket-header">
+                            <h2 class="support-ticket-title">Open a Support Ticket</h2>
+                            <p class="support-ticket-subtitle">Fill out the form below and our team will respond as soon as possible.</p>
+                        </div>
+
+                        <form class="support-ticket-form" id="ticketForm">
+                            <div class="form-group">
+                                <label for="ticketSubject" class="form-label">Subject *</label>
+                                <input 
+                                    type="text" 
+                                    id="ticketSubject" 
+                                    name="subject" 
+                                    class="form-input" 
+                                    placeholder="Brief description of your issue"
+                                    required
+                                    maxlength="255"
+                                >
+                            </div>
+
+                            <div class="form-group">
+                                <label for="ticketMessage" class="form-label">Message *</label>
+                                <textarea 
+                                    id="ticketMessage" 
+                                    name="message" 
+                                    class="form-input form-textarea" 
+                                    rows="6"
+                                    placeholder="Please provide as much detail as possible about your issue..."
+                                    required
+                                    maxlength="5000"
+                                ></textarea>
+                                <div class="form-hint">
+                                    <span id="charCount">0</span> / 5000 characters
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="ticketPriority" class="form-label">Priority</label>
+                                <select id="ticketPriority" name="priority" class="form-input">
+                                    <option value="low">Low - General question</option>
+                                    <option value="medium" selected>Medium - Standard support request</option>
+                                    <option value="high">High - Urgent issue</option>
+                                    <option value="urgent">Urgent - Critical problem</option>
+                                </select>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-block btn-large" id="submitTicketBtn">
+                                Submit Ticket
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- My Tickets Section (for logged-in users) -->
+                    <div class="support-tickets-list" id="myTicketsSection" style="display: none;">
+                        <div class="support-ticket-card">
+                            <div class="support-ticket-header">
+                                <h2 class="support-ticket-title">My Tickets</h2>
+                                <button class="btn btn-secondary btn-small" onclick="loadMyTickets()">Refresh</button>
+                            </div>
+                            <div id="ticketsList" class="tickets-list">
+                                <div class="empty-state">
+                                    <svg class="empty-state-icon" width="64" height="64" viewBox="0 0 64 64" fill="none">
+                                        <circle cx="32" cy="32" r="24" stroke="currentColor" stroke-width="2" fill="none" opacity="0.3"/>
+                                        <path d="M32 20V32L40 40" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.3"/>
+                                    </svg>
+                                    <h3 class="empty-state-title">No Tickets Yet</h3>
+                                    <p class="empty-state-description">You haven't created any support tickets yet.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .support-section {
+            padding: 80px 0;
+            background: var(--bg-dark);
+            min-height: calc(100vh - 200px);
+        }
+
+        .support-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .support-title {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--text-light);
+            margin-bottom: 16px;
+        }
+
+        .support-subtitle {
+            font-size: 18px;
+            color: var(--text-gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .support-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .support-contact-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-bottom: 48px;
+        }
+
+        .support-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-dark);
+            border-radius: 16px;
+            padding: 32px;
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .support-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .support-card-icon {
+            color: var(--primary-red);
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .support-card-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--text-light);
+            margin-bottom: 12px;
+        }
+
+        .support-card-description {
+            font-size: 14px;
+            color: var(--text-gray);
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+
+        .support-card-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary-red);
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .support-card-link:hover {
+            color: var(--red-dark);
+        }
+
+        .support-ticket-section {
+            margin-top: 48px;
+        }
+
+        .support-ticket-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-dark);
+            border-radius: 16px;
+            padding: 32px;
+        }
+
+        .support-ticket-header {
+            margin-bottom: 32px;
+        }
+
+        .support-ticket-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-light);
+            margin-bottom: 8px;
+        }
+
+        .support-ticket-subtitle {
+            font-size: 14px;
+            color: var(--text-gray);
+        }
+
+        .support-ticket-form .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-hint {
+            font-size: 12px;
+            color: var(--text-gray);
+            margin-top: 8px;
+            text-align: right;
+        }
+
+        .tickets-list {
+            margin-top: 24px;
+        }
+
+        .ticket-item {
+            background: var(--bg-dark);
+            border: 1px solid var(--border-dark);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+            transition: border-color 0.2s;
+        }
+
+        .ticket-item:hover {
+            border-color: var(--primary-red);
+        }
+
+        .ticket-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .ticket-subject {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-light);
+            margin-bottom: 8px;
+        }
+
+        .ticket-status {
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .ticket-status.open {
+            background: rgba(59, 130, 246, 0.2);
+            color: #3b82f6;
+        }
+
+        .ticket-status.in_progress {
+            background: rgba(245, 158, 11, 0.2);
+            color: #f59e0b;
+        }
+
+        .ticket-status.resolved {
+            background: rgba(16, 185, 129, 0.2);
+            color: #10b981;
+        }
+
+        .ticket-status.closed {
+            background: rgba(107, 114, 128, 0.2);
+            color: #6b7280;
+        }
+
+        .ticket-meta {
+            display: flex;
+            gap: 16px;
+            font-size: 13px;
+            color: var(--text-gray);
+            margin-bottom: 12px;
+        }
+
+        .ticket-message-preview {
+            font-size: 14px;
+            color: var(--text-gray);
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        .ticket-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .support-title {
+                font-size: 36px;
+            }
+
+            .support-contact-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .ticket-header {
+                flex-direction: column;
+                gap: 12px;
+            }
+        }
+    </style>
+
+    <script>
+        // Load support contact info
+        async function loadSupportInfo() {
+            try {
+                // Check if API is loaded
+                if (typeof API === 'undefined' || !API.support) {
+                    console.error('API.support is not available. Please refresh the page.');
+                    // Set default values
+                    document.getElementById('supportEmailValue').textContent = 'support@misterx.com';
+                    document.getElementById('supportEmail').href = 'mailto:support@misterx.com';
+                    document.getElementById('supportTelegramValue').textContent = '@New Era Intelligence (NEI)Support';
+                    document.getElementById('supportTelegram').href = 'https://t.me/New Era Intelligence (NEI)Support';
+                    return;
+                }
+                
+                const response = await API.support.getContactInfo();
+                if (response.success) {
+                    const email = response.data.email || 'support@misterx.com';
+                    const telegram = response.data.telegram || '@New Era Intelligence (NEI)Support';
+                    
+                    document.getElementById('supportEmailValue').textContent = email;
+                    document.getElementById('supportEmail').href = `mailto:${email}`;
+                    
+                    document.getElementById('supportTelegramValue').textContent = telegram;
+                    const telegramUrl = telegram.startsWith('@') 
+                        ? `https://t.me/${telegram.substring(1)}` 
+                        : telegram.startsWith('http') 
+                            ? telegram 
+                            : `https://t.me/${telegram}`;
+                    document.getElementById('supportTelegram').href = telegramUrl;
+                }
+            } catch (error) {
+                console.error('Error loading support info:', error);
+                // Set default values on error
+                document.getElementById('supportEmailValue').textContent = 'support@misterx.com';
+                document.getElementById('supportEmail').href = 'mailto:support@misterx.com';
+                document.getElementById('supportTelegramValue').textContent = '@New Era Intelligence (NEI)Support';
+                document.getElementById('supportTelegram').href = 'https://t.me/New Era Intelligence (NEI)Support';
+            }
+        }
+
+        // Character count for message textarea
+        document.getElementById('ticketMessage').addEventListener('input', function() {
+            const count = this.value.length;
+            document.getElementById('charCount').textContent = count;
+            
+            if (count > 5000) {
+                this.value = this.value.substring(0, 5000);
+                document.getElementById('charCount').textContent = 5000;
+            }
+        });
+
+        // Ticket form submission
+        document.getElementById('ticketForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // Check if API is loaded
+            if (typeof API === 'undefined' || !API.support || !API.getAuthToken) {
+                alert('API is not loaded. Please refresh the page and try again.');
+                return;
+            }
+            
+            const token = API.getAuthToken();
+            if (!token) {
+                Toast.warning('Please login to create a support ticket');
+                setTimeout(() => {
+                    window.location.href = '/Login';
+                }, 1500);
+                return;
+            }
+
+            const subject = InputSanitizer.sanitize(document.getElementById('ticketSubject').value.trim());
+            const message = InputSanitizer.sanitize(document.getElementById('ticketMessage').value.trim());
+            const priority = document.getElementById('ticketPriority').value;
+
+            if (!subject || !message) {
+                Toast.error('Please fill in all required fields');
+                return;
+            }
+
+            const submitBtn = document.getElementById('submitTicketBtn');
+            const originalText = submitBtn.textContent;
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting...';
+
+            try {
+                const response = await API.support.createTicket(subject, message, priority);
+                
+                if (response.success) {
+                    Toast.success('Ticket created successfully! We will respond as soon as possible.');
+                    document.getElementById('ticketForm').reset();
+                    document.getElementById('charCount').textContent = '0';
+                    
+                    // Load tickets if user is logged in
+                    if (token) {
+                        await loadMyTickets();
+                    }
+                } else {
+                    Toast.error(response.message || 'Failed to create ticket. Please try again.');
+                }
+            } catch (error) {
+                console.error('Create Ticket Error:', error);
+                Toast.error('Failed to create ticket. Please try again.');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalText;
+            }
+        });
+
+        // Load my tickets
+        async function loadMyTickets() {
+            // Check if API is loaded
+            if (typeof API === 'undefined' || !API.getAuthToken || !API.support) {
+                document.getElementById('myTicketsSection').style.display = 'none';
+                return;
+            }
+            
+            const token = API.getAuthToken();
+            if (!token) {
+                document.getElementById('myTicketsSection').style.display = 'none';
+                return;
+            }
+
+            document.getElementById('myTicketsSection').style.display = 'block';
+            const ticketsList = document.getElementById('ticketsList');
+            
+            try {
+                const response = await API.support.getMyTickets();
+                
+                if (response.success && response.data.tickets && response.data.tickets.length > 0) {
+                    ticketsList.innerHTML = '';
+                    response.data.tickets.forEach(ticket => {
+                        const ticketItem = createTicketItem(ticket);
+                        ticketsList.appendChild(ticketItem);
+                    });
+                } else {
+                    ticketsList.innerHTML = `
+                        <div class="empty-state">
+                            <svg class="empty-state-icon" width="64" height="64" viewBox="0 0 64 64" fill="none">
+                                <circle cx="32" cy="32" r="24" stroke="currentColor" stroke-width="2" fill="none" opacity="0.3"/>
+                                <path d="M32 20V32L40 40" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.3"/>
+                            </svg>
+                            <h3 class="empty-state-title">No Tickets Yet</h3>
+                            <p class="empty-state-description">You haven't created any support tickets yet.</p>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                console.error('Load Tickets Error:', error);
+                Toast.error('Failed to load tickets. Please try again.');
+                ticketsList.innerHTML = `
+                    <div class="empty-state">
+                        <h3 class="empty-state-title">Error Loading Tickets</h3>
+                        <p class="empty-state-description">Please try again later.</p>
+                    </div>
+                `;
+            }
+        }
+
+        function createTicketItem(ticket) {
+            const item = document.createElement('div');
+            item.className = 'ticket-item';
+            
+            const statusClass = ticket.status.replace('_', '-');
+            const createdDate = new Date(ticket.created_at).toLocaleDateString();
+            const messagePreview = ticket.message.length > 150 
+                ? ticket.message.substring(0, 150) + '...' 
+                : ticket.message;
+
+            item.innerHTML = `
+                <div class="ticket-header">
+                    <div>
+                        <div class="ticket-subject">${InputSanitizer.sanitize(ticket.subject)}</div>
+                        <div class="ticket-meta">
+                            <span>Priority: ${ticket.priority}</span>
+                            <span>Created: ${createdDate}</span>
+                        </div>
+                    </div>
+                    <span class="ticket-status ${statusClass}">${ticket.status.replace('_', ' ')}</span>
+                </div>
+                <div class="ticket-message-preview">${InputSanitizer.sanitize(messagePreview)}</div>
+                <div class="ticket-actions">
+                    <button class="btn btn-secondary btn-small" onclick="viewTicket(${ticket.id})">View Details</button>
+                </div>
+            `;
+            
+            return item;
+        }
+
+        async function viewTicket(ticketId) {
+            if (typeof API === 'undefined' || !API.support) {
+                Toast.error('API is not loaded. Please refresh the page.');
+                return;
+            }
+            
+            try {
+                const response = await API.support.getTicket(ticketId);
+                
+                if (response.success) {
+                    const ticket = response.data.ticket;
+                    const replies = response.data.replies || [];
+                    
+                    // Create modal to show ticket details and replies
+                    const modal = document.createElement('div');
+                    modal.className = 'modal';
+                    modal.style.display = 'flex';
+                    modal.id = 'ticketDetailModal';
+                    
+                    const statusClass = ticket.status.replace('_', '-');
+                    const priorityColors = {
+                        low: '#6b7280',
+                        medium: '#3b82f6',
+                        high: '#f59e0b',
+                        urgent: '#dc2626'
+                    };
+                    
+                    modal.innerHTML = `
+                        <div class="modal-content" style="max-width: 800px; max-height: 90vh; overflow-y: auto;">
+                            <div class="modal-header">
+                                <h2>Ticket #${ticket.id}: ${InputSanitizer.sanitize(ticket.subject)}</h2>
+                                <button class="modal-close" onclick="closeTicketModal()" style="background: none; border: none; color: var(--text-light); font-size: 32px; cursor: pointer; line-height: 1; padding: 0; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;">&times;</button>
+                            </div>
+                            <div class="modal-body" style="padding: 24px;">
+                                <div style="margin-bottom: 24px; padding: 16px; background: var(--bg-dark); border-radius: 8px; border-left: 4px solid var(--primary-red);">
+                                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
+                                        <div>
+                                            <div style="font-size: 18px; font-weight: 600; color: var(--text-light); margin-bottom: 8px;">
+                                                ${InputSanitizer.sanitize(ticket.subject)}
+                                            </div>
+                                            <div style="font-size: 13px; color: var(--text-gray); margin-bottom: 12px;">
+                                                <span>Priority: <strong style="color: ${priorityColors[ticket.priority]}">${ticket.priority.toUpperCase()}</strong></span>
+                                                <span style="margin-left: 16px;">Status: <span class="ticket-status ${statusClass}" style="padding: 2px 8px; border-radius: 6px; font-size: 11px; font-weight: 600; text-transform: uppercase;">${ticket.status.replace('_', ' ')}</span></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="color: var(--text-light); white-space: pre-wrap; line-height: 1.6; margin-bottom: 12px;">
+                                        ${InputSanitizer.sanitize(ticket.message)}
+                                    </div>
+                                    <div style="font-size: 12px; color: var(--text-gray); border-top: 1px solid var(--border-dark); padding-top: 12px;">
+                                        Created: ${new Date(ticket.created_at).toLocaleString()} | Last Updated: ${new Date(ticket.updated_at).toLocaleString()}
+                                    </div>
+                                </div>
+                                
+                                <div style="margin-bottom: 24px;">
+                                    <h3 style="margin-bottom: 16px; color: var(--text-light); font-size: 18px;">Replies (${replies.length})</h3>
+                                    <div id="ticketRepliesList" style="max-height: 400px; overflow-y: auto;">
+                                        ${replies.length > 0 ? replies.map(reply => `
+                                            <div style="margin-bottom: 16px; padding: 16px; background: var(--bg-dark); border-radius: 8px; border-left: 3px solid ${reply.is_admin == 1 || reply.is_admin === true ? 'var(--primary-red)' : '#3b82f6'};">
+                                                <div style="margin-bottom: 8px; color: var(--text-light); white-space: pre-wrap; line-height: 1.6;">
+                                                    ${InputSanitizer.sanitize(reply.message)}
+                                                </div>
+                                                <div style="font-size: 12px; color: var(--text-gray);">
+                                                    ${reply.is_admin == 1 || reply.is_admin === true ? '<strong style="color: var(--primary-red);">Admin</strong>' : InputSanitizer.sanitize(reply.username || 'User')} | ${new Date(reply.created_at).toLocaleString()}
+                                                </div>
+                                            </div>
+                                        `).join('') : '<p style="color: var(--text-gray); padding: 20px; text-align: center;">No replies yet.</p>'}
+                                    </div>
+                                </div>
+                                
+                                <form onsubmit="submitTicketReply(event, ${ticketId}); return false;">
+                                    <div class="form-group">
+                                        <label for="ticketReplyMessage" style="display: block; font-size: 14px; font-weight: 600; color: var(--text-light); margin-bottom: 8px;">Add Reply</label>
+                                        <textarea id="ticketReplyMessage" class="form-input" rows="4" placeholder="Type your reply here..." required style="width: 100%; padding: 12px 16px; background: var(--bg-dark); border: 1px solid var(--border-dark); border-radius: 8px; color: var(--text-light); font-size: 14px; box-sizing: border-box; resize: vertical;"></textarea>
+                                    </div>
+                                    <div style="display: flex; gap: 12px; justify-content: flex-end; margin-top: 16px;">
+                                        <button type="button" class="btn btn-secondary" onclick="closeTicketModal()">Close</button>
+                                        <button type="submit" class="btn btn-primary">Send Reply</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    `;
+                    
+                    document.body.appendChild(modal);
+                    
+                    // Add styles for modal if not already present
+                    if (!document.getElementById('ticketModalStyles')) {
+                        const style = document.createElement('style');
+                        style.id = 'ticketModalStyles';
+                        style.textContent = `
+                            .modal {
+                                position: fixed;
+                                top: 0;
+                                left: 0;
+                                width: 100%;
+                                height: 100%;
+                                background: rgba(0, 0, 0, 0.8);
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                z-index: 1000;
+                            }
+                            .modal-content {
+                                background: var(--bg-card);
+                                border: 1px solid var(--border-dark);
+                                border-radius: 16px;
+                                max-width: 800px;
+                                width: 90%;
+                                max-height: 90vh;
+                                overflow-y: auto;
+                            }
+                            .modal-header {
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: center;
+                                padding: 20px 24px;
+                                border-bottom: 1px solid var(--border-dark);
+                            }
+                            .modal-header h2 {
+                                font-size: 24px;
+                                font-weight: 700;
+                                color: var(--text-light);
+                                margin: 0;
+                            }
+                            .modal-body {
+                                padding: 24px;
+                            }
+                        `;
+                        document.head.appendChild(style);
+                    }
+                } else {
+                    Toast.error(response.message || 'Failed to load ticket details');
+                }
+            } catch (error) {
+                console.error('Error loading ticket:', error);
+                Toast.error('Failed to load ticket details. Please try again.');
+            }
+        }
+        
+        function closeTicketModal() {
+            const modal = document.getElementById('ticketDetailModal');
+            if (modal) {
+                modal.remove();
+            }
+        }
+        
+        async function submitTicketReply(event, ticketId) {
+            event.preventDefault();
+            
+            if (typeof API === 'undefined' || !API.support) {
+                Toast.error('API is not loaded. Please refresh the page.');
+                return;
+            }
+            
+            const messageInput = document.getElementById('ticketReplyMessage');
+            const message = messageInput.value.trim();
+            
+            if (!message) {
+                Toast.error('Please enter a reply message');
+                return;
+            }
+            
+            const submitBtn = event.target.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+            
+            try {
+                const response = await API.support.replyToTicket(ticketId, message);
+                
+                if (response.success && response.data && response.data.replies) {
+                    Toast.success('Reply sent successfully!');
+                    
+                    // Update the modal content with new reply data from response
+                    const repliesList = document.getElementById('ticketRepliesList');
+                    if (repliesList) {
+                        const replies = response.data.replies || [];
+                        
+                        repliesList.innerHTML = replies.length > 0 ? replies.map(reply => {
+                            const isAdmin = reply.is_admin == 1 || reply.is_admin === true || reply.is_admin === 1;
+                            return `
+                                <div style="margin-bottom: 16px; padding: 16px; background: var(--bg-dark); border-radius: 8px; border-left: 3px solid ${isAdmin ? 'var(--primary-red)' : '#3b82f6'};">
+                                    <div style="margin-bottom: 8px; color: var(--text-light); white-space: pre-wrap; line-height: 1.6;">
+                                        ${InputSanitizer.sanitize(reply.message)}
+                                    </div>
+                                    <div style="font-size: 12px; color: var(--text-gray);">
+                                        ${isAdmin ? '<strong style="color: var(--primary-red);">Admin</strong>' : InputSanitizer.sanitize(reply.username || 'User')} | ${new Date(reply.created_at).toLocaleString()}
+                                    </div>
+                                </div>
+                            `;
+                        }).join('') : '<p style="color: var(--text-gray); padding: 20px; text-align: center;">No replies yet.</p>';
+                        
+                        // Update replies count in header
+                        const repliesHeader = repliesList.previousElementSibling;
+                        if (repliesHeader && repliesHeader.tagName === 'H3') {
+                            repliesHeader.textContent = `Replies (${replies.length})`;
+                        }
+                        
+                        // Scroll to bottom to show new reply
+                        repliesList.scrollTop = repliesList.scrollHeight;
+                    }
+                    
+                    // Clear the reply input
+                    messageInput.value = '';
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalText;
+                    
+                    // Reload tickets list to update status
+                    await loadMyTickets();
+                } else if (response.success) {
+                    // If response doesn't have data, reload ticket
+                    Toast.success('Reply sent successfully!');
+                    closeTicketModal();
+                    await loadMyTickets();
+                    setTimeout(() => {
+                        viewTicket(ticketId);
+                    }, 300);
+                } else {
+                    Toast.error(response.message || 'Failed to send reply');
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalText;
+                }
+            } catch (error) {
+                console.error('Error sending reply:', error);
+                Toast.error('Failed to send reply. Please try again.');
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalText;
+            }
+        }
+
+        // Check if user is logged in on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            // Wait a bit to ensure API is loaded
+            setTimeout(() => {
+                loadSupportInfo();
+                
+                if (typeof API !== 'undefined' && API.getAuthToken) {
+                    const token = API.getAuthToken();
+                    const guestElements = document.querySelectorAll('.guest-only');
+                    const userElements = document.querySelectorAll('.user-only');
+                    
+                    if (token) {
+                        guestElements.forEach(el => el.style.display = 'none');
+                        userElements.forEach(el => el.style.display = '');
+                        loadMyTickets();
+                    } else {
+                        guestElements.forEach(el => el.style.display = '');
+                        userElements.forEach(el => el.style.display = 'none');
+                    }
+                } else {
+                    console.error('API is not loaded. Please refresh the page.');
+                }
+            }, 100);
+        });
+    </script>
+</body>
+</html>
+
+

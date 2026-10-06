@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    
+    <!-- SEO Meta Tags -->
+    <title>New Era Intelligence (NEI) - Advanced Threat Intelligence & Security Research Platform</title>
+    <meta name="description" content="Protect your organization from data breaches with real-time monitoring, comprehensive threat intelligence, and access to 20B+ leaked passwords. Advanced security research platform.">
+    <meta name="keywords" content="threat intelligence, data breach monitoring, password leak search, security research, dark web monitoring, cyber security">
+    <meta name="author" content="New Era Intelligence (NEI)">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://misterx.com/">
+    <meta property="og:title" content="New Era Intelligence (NEI) - Advanced Threat Intelligence & Security Research Platform">
+    <meta property="og:description" content="Protect your organization from data breaches with real-time monitoring and comprehensive threat intelligence.">
+    <meta property="og:image" content="https://misterx.com/images/og-image.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://misterx.com/">
+    <meta property="twitter:title" content="New Era Intelligence (NEI) - Advanced Threat Intelligence & Security Research Platform">
+    <meta property="twitter:description" content="Protect your organization from data breaches with real-time monitoring and comprehensive threat intelligence.">
+    <meta property="twitter:image" content="https://misterx.com/images/twitter-image.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.ico">
+    
+    <link rel="stylesheet" href="styles.css">
+    <script src="js/api.js"></script>
+    <script src="js/utils.js"></script>
+    
+    <!-- Load site settings early to prevent flash -->
+    <script>
+        // Load settings synchronously before page render
+        (function() {
+            if (typeof fetch !== 'undefined') {
+                fetch('/api/settings/public.php')
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.success && data.data) {
+                            const { site_name, site_description, site_logo } = data.data;
+                            
+                            // Update title immediately
+                            if (site_name && document.title) {
+                                document.title = document.title.replace(/New Era Intelligence (NEI)/g, site_name);
+                            }
+                            
+                            // Store in window for later use
+                            window.__siteSettings = { site_name, site_description, site_logo };
+                            
+                            // Apply immediately to visible elements
+                            if (site_name) {
+                                // Update logo texts
+                                document.querySelectorAll('.logo-text').forEach(el => {
+                                    if (el.innerHTML.includes('logo-x') || el.innerHTML.includes('X</span>')) {
+                                        const xMatch = el.innerHTML.match(/<span[^>]*class="[^"]*logo-x[^"]*"[^>]*>X<\/span>/);
+                                        if (xMatch) {
+                                            const nameWithoutX = site_name.replace(/X$/i, '').trim();
+                                            el.innerHTML = `${nameWithoutX}${xMatch[0]}`;
+                                        }
+                                    } else {
+                                        el.textContent = site_name;
+                                    }
+                                });
+                            }
+                            
+                            if (site_logo) {
+                                document.querySelectorAll('.logo-image, .logo-img').forEach(img => {
+                                    img.src = site_logo;
+                                });
+                            }
+                        }
+                    })
+                    .catch(() => {
+                        // Silently fail - will be handled by SiteSettings.load() later
+                    });
+            }
+        })();
+    </script>
+    
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "New Era Intelligence (NEI)",
+        "applicationCategory": "SecurityApplication",
+        "description": "Advanced Threat Intelligence & Security Research Platform",
+        "operatingSystem": "Web",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "2000"
+        }
+    }
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="/Home" class="logo" aria-label="New Era Intelligence (NEI) Home">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-QwdP_ZH4WdRjsWWXrqeSprFbeOQra9qV8A&s" alt="New Era Intelligence (NEI) Logo" class="logo-image" loading="lazy" width="40" height="40">
+                    <span class="logo-text">New Era Intelligence <span class="logo-x">(NEI)</span></span>
+                </a>
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <nav class="nav" id="mainNav" role="navigation" aria-label="Main navigation">
+                    <a href="#" class="nav-link" aria-label="Telegram Bot">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M8 1L1 4.5V8C1 11.866 4.134 15 8 15C11.866 15 15 11.866 15 8V4.5L8 1Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                            <path d="M8 5L5 6.5V8C5 9.10457 5.89543 10 7 10H9C10.1046 10 11 9.10457 11 8V6.5L8 5Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                        </svg>
+                        Telegram Bot
+                    </a>
+                    <a href="/Pricing" class="nav-link">Pricing</a>
+                    <!-- Guest buttons (shown when not logged in) -->
+                    <a href="/Login" class="btn btn-secondary guest-only">Sign In</a>
+                    <a href="/Register" class="btn btn-primary guest-only">Get Started</a>
+                    <!-- User buttons (shown when logged in) -->
+                    <a href="/Dashboard" class="nav-link user-only" style="display:none;">Dashboard</a>
+                    <a href="/Profile" class="nav-link user-only" style="display:none;">Profile</a>
+                    <button class="btn btn-outline user-only" style="display:none;" onclick="API.auth.logout()" aria-label="Logout">Logout</button>
+                </nav>
+                <nav class="mobile-nav" id="mobileNav" role="navigation" aria-label="Mobile navigation">
+                    <a href="#" class="nav-link" aria-label="Telegram Bot">Telegram Bot</a>
+                    <a href="/Pricing" class="nav-link">Pricing</a>
+                    <a href="/Login" class="btn btn-secondary guest-only">Sign In</a>
+                    <a href="/Register" class="btn btn-primary guest-only">Get Started</a>
+                    <a href="/Dashboard" class="nav-link user-only" style="display:none;">Dashboard</a>
+                    <a href="/Profile" class="nav-link user-only" style="display:none;">Profile</a>
+                    <button class="btn btn-outline user-only" style="display:none;" onclick="API.auth.logout()">Logout</button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <button class="badge">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8 1L1 4.5V8C1 11.866 4.134 15 8 15C11.866 15 15 11.866 15 8V4.5L8 1Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                    </svg>
+                    Advanced Security Research Platform
+                </button>
+                <h1 class="hero-title">
+                    <span class="title-red">New Era Intelligence</span> <span class="title-black">(NEI)</span>
+                </h1>
+                <h2 class="hero-subtitle">Advanced Threat Intelligence & Security Research Platform</h2>
+                <p class="hero-description">
+                    Protect your organization from data breaches with real-time monitoring, comprehensive threat intelligence, and access to 20B+ leaked passwords. Stay ahead of cyber threats.
+                </p>
+                <div class="hero-cta">
+                    <a href="/Register" class="btn btn-primary btn-large" aria-label="Get Started Free">
+                        Get Started Free
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                    <a href="/Login" class="btn btn-outline btn-large" aria-label="Sign In">Sign In</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="statistics">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">500K+</div>
+                    <div class="stat-label">Searches Daily</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">20B+</div>
+                    <div class="stat-label">Leaked Passwords</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">2000+</div>
+                    <div class="stat-label">Customers</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">1-10M</div>
+                    <div class="stat-label">New Leaks Daily</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Services Section -->
+    <section class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Services</h2>
+                <p class="section-subtitle">Comprehensive security monitoring solutions</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon red">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="12" y="20" width="24" height="20" rx="2" stroke="currentColor" stroke-width="2" fill="none"/>
+                            <path d="M18 20V16C18 12.6863 20.6863 10 24 10C27.3137 10 30 12.6863 30 16V20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            <circle cx="24" cy="28" r="2" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">Leaked Password Search</h3>
+                    <ul class="service-features">
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="#DC2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Real-time monitoring of data breaches
+                        </li>
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="#DC2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Comprehensive database of 20B+ passwords
+                        </li>
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="#DC2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Secure protocols and encrypted searches
+                        </li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon red">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="24" cy="24" r="10" stroke="currentColor" stroke-width="2" fill="none"/>
+                            <path d="M24 14V24L30 30" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            <circle cx="12" cy="12" r="2" fill="currentColor"/>
+                            <circle cx="36" cy="12" r="2" fill="currentColor"/>
+                            <circle cx="12" cy="36" r="2" fill="currentColor"/>
+                            <circle cx="36" cy="36" r="2" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">Company Data Leaks</h3>
+                    <ul class="service-features">
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="#DC2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Corporate data breach monitoring
+                        </li>
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="#DC2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Employee credential tracking
+                        </li>
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="#DC2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Dark web surveillance and alerts
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Platform Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Platform Features</h2>
+                <p class="section-subtitle">Everything you need for comprehensive security research</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon red">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M24 8L28 20L40 24L28 28L24 40L20 28L8 24L20 20L24 8Z" stroke="currentColor" stroke-width="2" fill="none"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Lightning Fast</h3>
+                    <p class="feature-description">Multi-threaded searches deliver results in seconds.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon red">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="24" cy="24" r="10" stroke="currentColor" stroke-width="2" fill="none"/>
+                            <circle cx="12" cy="12" r="2" fill="currentColor"/>
+                            <circle cx="36" cy="12" r="2" fill="currentColor"/>
+                            <circle cx="12" cy="36" r="2" fill="currentColor"/>
+                            <circle cx="36" cy="36" r="2" fill="currentColor"/>
+                            <line x1="12" y1="12" x2="20" y2="20" stroke="currentColor" stroke-width="1.5"/>
+                            <line x1="36" y1="12" x2="28" y2="20" stroke="currentColor" stroke-width="1.5"/>
+                            <line x1="12" y1="36" x2="20" y2="28" stroke="currentColor" stroke-width="1.5"/>
+                            <line x1="36" y1="36" x2="28" y2="28" stroke="currentColor" stroke-width="1.5"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Dark Web Monitoring</h3>
+                    <p class="feature-description">Continuous surveillance of underground markets.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon red">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M24 4L8 10V22C8 30.8366 15.1634 38 24 38C32.8366 38 40 30.8366 40 22V10L24 4Z" stroke="currentColor" stroke-width="2" fill="none"/>
+                            <path d="M24 16L18 18V22C18 24.2091 19.7909 26 22 26H26C28.2091 26 30 24.2091 30 22V18L24 16Z" stroke="currentColor" stroke-width="2" fill="none"/>
+                            <path d="M24 22V26" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">24/7 Stealers Monitoring</h3>
+                    <p class="feature-description">Real-time detection of credential theft.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon red">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="12" y="20" width="24" height="20" rx="2" stroke="currentColor" stroke-width="2" fill="none"/>
+                            <path d="M18 20V16C18 12.6863 20.6863 10 24 10C27.3137 10 30 12.6863 30 16V20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Secure & Private</h3>
+                    <p class="feature-description">End-to-end encryption for all searches.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon red">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="8" y="32" width="8" height="8" rx="1" fill="currentColor"/>
+                            <rect x="20" y="24" width="8" height="16" rx="1" fill="currentColor"/>
+                            <rect x="32" y="16" width="8" height="24" rx="1" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Comprehensive Data</h3>
+                    <p class="feature-description">Access to billions of breach records.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon red">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="24" cy="24" r="16" stroke="currentColor" stroke-width="2" fill="none"/>
+                            <path d="M24 8V24L32 32" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Real-time Updates</h3>
+                    <p class="feature-description">New breaches added as they're discovered.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">Ready to Secure Your Digital Assets?</h2>
+                <p class="cta-subtitle">Join thousands of security professionals using New Era Intelligence (NEI) to protect their organizations.</p>
+                <div class="cta-buttons">
+                    <a href="/Register" class="btn btn-light" aria-label="Start Free Trial">
+                        Start Free Trial
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                    <a href="/Pricing" class="btn btn-red" aria-label="View Pricing">View Pricing</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="footer-logo">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-QwdP_ZH4WdRjsWWXrqeSprFbeOQra9qV8A&s" alt="New Era Intelligence (NEI) Logo" class="logo-image" loading="lazy" width="40" height="40">
+                    </div>
+                    <p class="footer-description">Advanced threat intelligence and security research platform</p>
+                </div>
+                <div class="footer-column">
+                    <h4 class="footer-heading">Product</h4>
+                    <ul class="footer-links">
+                        <li><a href="/Pricing">Pricing</a></li>
+                        <li><a href="/Dashboard">Dashboard</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4 class="footer-heading">Support</h4>
+                    <ul class="footer-links">
+                        <li><a href="#" aria-label="Help Center">Help Center</a></li>
+                        <li><a href="#" aria-label="Documentation">Documentation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4 class="footer-heading">Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="#" aria-label="Privacy Policy">Privacy Policy</a></li>
+                        <li><a href="#" aria-label="Terms of Service">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 New Era Intelligence (NEI). All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Check if user is logged in and update navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            const token = API.getAuthToken();
+            const guestElements = document.querySelectorAll('.guest-only');
+            const userElements = document.querySelectorAll('.user-only');
+            const mainNav = document.getElementById('mainNav');
+            const mobileNav = document.getElementById('mobileNav');
+            
+            if (token) {
+                // User is logged in - show user buttons, hide guest buttons
+                guestElements.forEach(el => el.style.display = 'none');
+                userElements.forEach(el => el.style.display = '');
+            } else {
+                // User is not logged in - show guest buttons, hide user buttons
+                guestElements.forEach(el => el.style.display = '');
+                userElements.forEach(el => el.style.display = 'none');
+            }
+
+            // Mobile menu toggle
+            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+            if (mobileMenuToggle) {
+                mobileMenuToggle.addEventListener('click', function() {
+                    const isExpanded = this.getAttribute('aria-expanded') === 'true';
+                    this.classList.toggle('active');
+                    mobileNav.classList.toggle('active');
+                    this.setAttribute('aria-expanded', !isExpanded);
+                });
+
+                // Close mobile menu when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!mobileMenuToggle.contains(e.target) && !mobileNav.contains(e.target)) {
+                        mobileMenuToggle.classList.remove('active');
+                        mobileNav.classList.remove('active');
+                        mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
+

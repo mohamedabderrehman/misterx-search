@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Profile Settings - New Era Intelligence (NEI)</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="js/api.js"></script>
+    <script src="js/utils.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="/Home" class="logo">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-QwdP_ZH4WdRjsWWXrqeSprFbeOQra9qV8A&s" alt="New Era Intelligence (NEI) Logo" class="logo-image">
+                    <span class="logo-text">New Era Intelligence <span class="logo-x">(NEI)</span></span>
+                </a>
+                <nav class="nav">
+                    <a href="#" class="nav-link">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 1L1 4.5V8C1 11.866 4.134 15 8 15C11.866 15 15 11.866 15 8V4.5L8 1Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                            <path d="M8 5L5 6.5V8C5 9.10457 5.89543 10 7 10H9C10.1046 10 11 9.10457 11 8V6.5L8 5Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                        </svg>
+                        Telegram Bot
+                    </a>
+                    <a href="/Dashboard" class="nav-link">Dashboard</a>
+                    <a href="#" class="nav-link">Support</a>
+                    <button class="btn btn-secondary" onclick="API.auth.logout()">Logout</button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Profile Section -->
+    <section class="profile-section">
+        <div class="container">
+            <div class="profile-header">
+                <h1 class="profile-title">Profile Settings</h1>
+                <p class="profile-subtitle">Manage your account settings and preferences</p>
+            </div>
+
+            <!-- User Summary Card -->
+            <div class="user-summary-card">
+                <div class="user-avatar" style="position: relative;">
+                    <img id="profilePictureImg" src="" alt="Profile Picture" style="width: 64px; height: 64px; border-radius: 50%; object-fit: cover; display: none; border: 2px solid var(--primary-red);">
+                    <svg id="profilePicturePlaceholder" width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="32" cy="32" r="32" fill="var(--primary-red)" opacity="0.2"/>
+                        <circle cx="32" cy="24" r="10" fill="var(--primary-red)"/>
+                        <path d="M16 52C16 44 24 40 32 40C40 40 48 44 48 52" fill="var(--primary-red)"/>
+                    </svg>
+                    <button class="avatar-upload-btn" id="avatarUploadBtn" aria-label="Upload profile picture" title="Change profile picture">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M8 4V12M4 8H12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                    <input type="file" id="avatarUploadInput" accept="image/*" style="display: none;">
+                </div>
+                <div class="user-info">
+                    <div class="user-name">mamounyak</div>
+                    <div class="user-email">itwillbepowerfulidea@gmail.com</div>
+                </div>
+                <div class="user-status">
+                    <div class="status-badge">Free</div>
+                    <div class="user-role">Role: normal</div>
+                </div>
+            </div>
+
+            <!-- Tabs -->
+            <div class="profile-tabs">
+                <button class="profile-tab-button tab-active" data-tab="account">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="10" cy="7" r="3" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                        <path d="M4 18C4 15 7 13 10 13C13 13 16 15 16 18" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                    </svg>
+                    Account
+                </button>
+                <button class="profile-tab-button" data-tab="password">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="5" y="9" width="10" height="8" rx="1" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                        <path d="M7 9V6C7 4.34315 8.34315 3 10 3C11.6569 3 13 4.34315 13 6V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    Password
+                </button>
+            </div>
+
+            <!-- Account Tab Content -->
+            <div class="profile-tab-content active" id="accountTab">
+                <div class="profile-card">
+                    <div class="card-header">
+                        <h2 class="card-title">Account Information</h2>
+                        <p class="card-subtitle">Update your account details</p>
+                    </div>
+                    
+                    <form class="profile-form" id="accountForm">
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email</label>
+                            <input 
+                                type="email" 
+                                id="email" 
+                                name="email" 
+                                class="form-input" 
+                                value="itwillbepowerfulidea@gmail.com"
+                                required
+                                autocomplete="email"
+                            >
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="username" class="form-label">Username</label>
+                            <input 
+                                type="text" 
+                                id="username" 
+                                name="username" 
+                                class="form-input" 
+                                value="mamounyak"
+                                required
+                                autocomplete="username"
+                            >
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="role" class="form-label">Role</label>
+                            <input 
+                                type="text" 
+                                id="role" 
+                                name="role" 
+                                class="form-input form-input-readonly" 
+                                value="normal"
+                                readonly
+                            >
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="premiumStatus" class="form-label">Premium Status</label>
+                            <input 
+                                type="text" 
+                                id="premiumStatus" 
+                                name="premiumStatus" 
+                                class="form-input form-input-readonly" 
+                                value="Not Active"
+                                readonly
+                            >
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-large">
+                            Save Changes
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Password Tab Content -->
+            <div class="profile-tab-content" id="passwordTab">
+                <div class="profile-card">
+                    <div class="card-header">
+                        <h2 class="card-title">Change Password</h2>
+                        <p class="card-subtitle">Update your password to keep your account secure</p>
+                    </div>
+                    
+                    <form class="profile-form" id="passwordForm">
+                        <div class="form-group">
+                            <label for="currentPassword" class="form-label">Current Password</label>
+                            <div class="password-input-wrapper">
+                                <input 
+                                    type="password" 
+                                    id="currentPassword" 
+                                    name="currentPassword" 
+                                    class="form-input" 
+                                    placeholder="Enter your current password"
+                                    required
+                                    autocomplete="current-password"
+                                >
+                                <button type="button" class="password-toggle" id="currentPasswordToggle" aria-label="Toggle password visibility">
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="eye-icon">
+                                        <path d="M10 4C6 4 3.27 6.11 2 9C3.27 11.89 6 14 10 14C14 14 16.73 11.89 18 9C16.73 6.11 14 4 10 4Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                                        <circle cx="10" cy="9" r="2.5" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                                    </svg>
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="eye-off-icon" style="display: none;">
+                                        <path d="M2 2L18 18M8.88 8.88A3 3 0 0 0 10 12C11.1046 12 12 11.1046 12 10M14.12 14.12C13.38 14.63 12.54 15 11.64 15.19M6.5 4.71C4.07 5.91 2.42 7.67 1.42 9C2.42 10.33 4.07 12.09 6.5 13.29M13.5 15.29C15.93 14.09 17.58 12.33 18.58 11C17.58 9.67 15.93 7.91 13.5 6.71" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="newPassword" class="form-label">New Password</label>
+                            <div class="password-input-wrapper">
+                                <input 
+                                    type="password" 
+                                    id="newPassword" 
+                                    name="newPassword" 
+                                    class="form-input" 
+                                    placeholder="Enter your new password"
+                                    required
+                                    autocomplete="new-password"
+                                >
+                                <button type="button" class="password-toggle" id="newPasswordToggle" aria-label="Toggle password visibility">
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="eye-icon">
+                                        <path d="M10 4C6 4 3.27 6.11 2 9C3.27 11.89 6 14 10 14C14 14 16.73 11.89 18 9C16.73 6.11 14 4 10 4Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                                        <circle cx="10" cy="9" r="2.5" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                                    </svg>
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="eye-off-icon" style="display: none;">
+                                        <path d="M2 2L18 18M8.88 8.88A3 3 0 0 0 10 12C11.1046 12 12 11.1046 12 10M14.12 14.12C13.38 14.63 12.54 15 11.64 15.19M6.5 4.71C4.07 5.91 2.42 7.67 1.42 9C2.42 10.33 4.07 12.09 6.5 13.29M13.5 15.29C15.93 14.09 17.58 12.33 18.58 11C17.58 9.67 15.93 7.91 13.5 6.71" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="confirmNewPassword" class="form-label">Confirm New Password</label>
+                            <div class="password-input-wrapper">
+                                <input 
+                                    type="password" 
+                                    id="confirmNewPassword" 
+                                    name="confirmNewPassword" 
+                                    class="form-input" 
+                                    placeholder="Confirm your new password"
+                                    required
+                                    autocomplete="new-password"
+                                >
+                                <button type="button" class="password-toggle" id="confirmNewPasswordToggle" aria-label="Toggle password visibility">
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="eye-icon">
+                                        <path d="M10 4C6 4 3.27 6.11 2 9C3.27 11.89 6 14 10 14C14 14 16.73 11.89 18 9C16.73 6.11 14 4 10 4Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                                        <circle cx="10" cy="9" r="2.5" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                                    </svg>
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="eye-off-icon" style="display: none;">
+                                        <path d="M2 2L18 18M8.88 8.88A3 3 0 0 0 10 12C11.1046 12 12 11.1046 12 10M14.12 14.12C13.38 14.63 12.54 15 11.64 15.19M6.5 4.71C4.07 5.91 2.42 7.67 1.42 9C2.42 10.33 4.07 12.09 6.5 13.29M13.5 15.29C15.93 14.09 17.58 12.33 18.58 11C17.58 9.67 15.93 7.91 13.5 6.71" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-large">
+                            Update Password
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Tab switching functionality
+        const profileTabButtons = document.querySelectorAll('.profile-tab-button');
+        const profileTabContents = document.querySelectorAll('.profile-tab-content');
+
+        profileTabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const targetTab = button.getAttribute('data-tab');
+                
+                // Remove active class from all buttons and contents
+                profileTabButtons.forEach(btn => btn.classList.remove('tab-active'));
+                profileTabContents.forEach(content => content.classList.remove('active'));
+                
+                // Add active class to clicked button and corresponding content
+                button.classList.add('tab-active');
+                document.getElementById(targetTab + 'Tab').classList.add('active');
+            });
+        });
+
+        // Password toggle functionality for all password fields
+        function setupPasswordToggle(toggleId, inputId) {
+            const toggle = document.getElementById(toggleId);
+            const input = document.getElementById(inputId);
+            const eyeIcon = toggle.querySelector('.eye-icon');
+            const eyeOffIcon = toggle.querySelector('.eye-off-icon');
+
+            toggle.addEventListener('click', () => {
+                const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+                input.setAttribute('type', type);
+                
+                if (type === 'text') {
+                    eyeIcon.style.display = 'none';
+                    eyeOffIcon.style.display = 'block';
+                } else {
+                    eyeIcon.style.display = 'block';
+                    eyeOffIcon.style.display = 'none';
+                }
+            });
+        }
+
+        setupPasswordToggle('currentPasswordToggle', 'currentPassword');
+        setupPasswordToggle('newPasswordToggle', 'newPassword');
+        setupPasswordToggle('confirmNewPasswordToggle', 'confirmNewPassword');
+
+        // Profile Picture Upload
+        const avatarUploadBtn = document.getElementById('avatarUploadBtn');
+        const avatarUploadInput = document.getElementById('avatarUploadInput');
+        const profilePictureImg = document.getElementById('profilePictureImg');
+        const profilePicturePlaceholder = document.getElementById('profilePicturePlaceholder');
+
+        avatarUploadBtn.addEventListener('click', () => {
+            avatarUploadInput.click();
+        });
+
+        avatarUploadInput.addEventListener('change', async (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            // Validate file type
+            if (!file.type.startsWith('image/')) {
+                Toast.error('Please select an image file');
+                return;
+            }
+
+            // Validate file size (max 2MB)
+            if (file.size > 2 * 1024 * 1024) {
+                Toast.error('Image size must be less than 2MB');
+                return;
+            }
+
+            // Show preview
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                profilePictureImg.src = e.target.result;
+                profilePictureImg.style.display = 'block';
+                profilePicturePlaceholder.style.display = 'none';
+            };
+            reader.readAsDataURL(file);
+
+            // Upload file
+            const formData = new FormData();
+            formData.append('profile_picture', file);
+
+            try {
+                Toast.info('Uploading profile picture...');
+                
+                const token = API.getAuthToken();
+                const apiBaseUrl = window.location.origin + '/misterx/api';
+                const response = await fetch(`${apiBaseUrl}/user/upload-profile-picture.php`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: formData
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    Toast.success('Profile picture updated successfully!');
+                    if (result.data.profile_picture_url) {
+                        profilePictureImg.src = result.data.profile_picture_url;
+                    }
+                } else {
+                    Toast.error(result.message || 'Failed to upload profile picture');
+                    // Revert preview on error
+                    if (!profilePictureImg.src || profilePictureImg.src.startsWith('data:')) {
+                        profilePictureImg.style.display = 'none';
+                        profilePicturePlaceholder.style.display = 'block';
+                    }
+                }
+            } catch (error) {
+                ErrorHandler.handle(error, 'Profile Picture Upload');
+                // Revert preview on error
+                if (profilePictureImg.src.startsWith('data:')) {
+                    profilePictureImg.style.display = 'none';
+                    profilePicturePlaceholder.style.display = 'block';
+                }
+            } finally {
+                avatarUploadInput.value = '';
+            }
+        });
+
+        // Password match validation
+        const passwordForm = document.getElementById('passwordForm');
+        const newPasswordField = document.getElementById('newPassword');
+        const confirmPasswordField = document.getElementById('confirmNewPassword');
+
+        function validatePasswordMatch() {
+            if (confirmPasswordField.value && newPasswordField.value !== confirmPasswordField.value) {
+                confirmPasswordField.setCustomValidity('Passwords do not match');
+            } else {
+                confirmPasswordField.setCustomValidity('');
+            }
+        }
+
+        newPasswordField.addEventListener('input', validatePasswordMatch);
+        confirmPasswordField.addEventListener('input', validatePasswordMatch);
+
+        // Load user data on page load
+        window.addEventListener('DOMContentLoaded', async () => {
+            if (!API.getAuthToken()) {
+                window.location.href = '/Login';
+                return;
+            }
+            
+            try {
+                const response = await API.user.getProfile();
+                if (response.success) {
+                    const user = response.data.user;
+                    document.getElementById('email').value = user.email;
+                    document.getElementById('username').value = user.username;
+                    document.querySelector('.user-name').textContent = user.username;
+                    document.querySelector('.user-email').textContent = user.email;
+                    
+                    // Update profile picture
+                    if (user.profile_picture) {
+                        const img = document.getElementById('profilePictureImg');
+                        const placeholder = document.getElementById('profilePicturePlaceholder');
+                        img.src = user.profile_picture;
+                        img.style.display = 'block';
+                        placeholder.style.display = 'none';
+                    }
+                    
+                    // Update subscription status badge
+                    const statusBadge = document.querySelector('.status-badge');
+                    const subscriptionType = user.subscription_type || 'free';
+                    
+                    if (subscriptionType === 'vip') {
+                        statusBadge.textContent = 'VIP User';
+                        statusBadge.style.background = 'var(--primary-red)';
+                        statusBadge.style.color = 'white';
+                    } else if (subscriptionType === 'api') {
+                        statusBadge.textContent = 'API User';
+                        statusBadge.style.background = 'var(--primary-red)';
+                        statusBadge.style.color = 'white';
+                    } else {
+                        statusBadge.textContent = 'Free';
+                        statusBadge.style.background = '';
+                        statusBadge.style.color = '';
+                    }
+                    
+                    const premiumStatus = subscriptionType === 'free' ? 'Not Active' : 'Active';
+                    document.getElementById('premiumStatus').value = premiumStatus;
+                }
+            } catch (error) {
+                Logger.error('Error loading profile:', error);
+                if (error.message.includes('token') || error.message.includes('401')) {
+                    API.auth.logout();
+                } else {
+                    ErrorHandler.handle(error, 'Load Profile');
+                }
+            }
+        });
+
+        // Register keyboard shortcuts
+        KeyboardNavigation.register('1', () => {
+            document.querySelector('.profile-tab-button[data-tab="account"]')?.click();
+        }, 'Switch to Account tab');
+
+        KeyboardNavigation.register('2', () => {
+            document.querySelector('.profile-tab-button[data-tab="password"]')?.click();
+        }, 'Switch to Password tab');
+
+        // Account form submission
+        document.getElementById('accountForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // Sanitize inputs
+            const email = InputSanitizer.sanitize(document.getElementById('email').value.trim());
+            const username = InputSanitizer.sanitize(document.getElementById('username').value.trim());
+            
+            // Validate email
+            if (!InputSanitizer.validateEmail(email)) {
+                Toast.error('Please enter a valid email address');
+                return;
+            }
+            
+            // Validate username
+            if (username.length < 3 || username.length > 30) {
+                Toast.error('Username must be between 3 and 30 characters');
+                return;
+            }
+            
+            const submitButton = e.target.querySelector('button[type="submit"]');
+            const form = e.target;
+            const originalText = submitButton.textContent;
+            submitButton.disabled = true;
+            submitButton.textContent = 'Saving...';
+            
+            // Show loading spinner
+            const spinner = LoadingSpinner.show(form);
+            
+            try {
+                const response = await API.user.updateProfile(email, username);
+                
+                LoadingSpinner.hide(form);
+                
+                if (response.success) {
+                    Toast.success('Profile updated successfully!');
+                    document.querySelector('.user-name').textContent = username;
+                    document.querySelector('.user-email').textContent = email;
+                } else {
+                    Toast.error(response.message || 'Update failed');
+                }
+            } catch (error) {
+                LoadingSpinner.hide(form);
+                ErrorHandler.handle(error, 'Update Profile');
+            } finally {
+                submitButton.disabled = false;
+                submitButton.textContent = originalText;
+            }
+        });
+
+        // Password form submission
+        passwordForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            validatePasswordMatch();
+            
+            if (!passwordForm.checkValidity()) {
+                Toast.warning('Please fill in all fields correctly');
+                return;
+            }
+            
+            const currentPassword = document.getElementById('currentPassword').value;
+            const newPassword = document.getElementById('newPassword').value;
+            const confirmNewPassword = document.getElementById('confirmNewPassword').value;
+            
+            // Validate password strength
+            const passwordValidation = InputSanitizer.validatePassword(newPassword);
+            if (!passwordValidation.valid) {
+                Toast.error('Password does not meet requirements. Please check the requirements below.');
+                return;
+            }
+            
+            const submitButton = e.target.querySelector('button[type="submit"]');
+            const form = e.target;
+            const originalText = submitButton.textContent;
+            submitButton.disabled = true;
+            submitButton.textContent = 'Updating...';
+            
+            // Show loading spinner
+            const spinner = LoadingSpinner.show(form);
+            
+            try {
+                const response = await API.user.changePassword(currentPassword, newPassword, confirmNewPassword);
+                
+                LoadingSpinner.hide(form);
+                
+                if (response.success) {
+                    Toast.success('Password changed successfully!');
+                    passwordForm.reset();
+                } else {
+                    Toast.error(response.message || 'Password change failed');
+                }
+            } catch (error) {
+                LoadingSpinner.hide(form);
+                ErrorHandler.handle(error, 'Change Password');
+            } finally {
+                submitButton.disabled = false;
+                submitButton.textContent = originalText;
+            }
+        });
+    </script>
+</body>
+</html>
+

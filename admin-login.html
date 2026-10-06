@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Admin Login - New Era Intelligence (NEI)</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <style>
+        .admin-login-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-dark);
+            padding: 20px;
+        }
+
+        .admin-login-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-dark);
+            border-radius: 16px;
+            padding: 40px;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .admin-login-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .admin-login-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .admin-login-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-light);
+            margin: 0;
+        }
+
+        .admin-login-subtitle {
+            font-size: 14px;
+            color: var(--text-gray);
+            margin-top: 8px;
+        }
+
+        .admin-login-form .form-group {
+            margin-bottom: 20px;
+        }
+
+        .admin-login-form .form-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-light);
+            margin-bottom: 8px;
+        }
+
+        .admin-login-form .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            background: var(--bg-dark);
+            border: 1px solid var(--border-dark);
+            border-radius: 8px;
+            color: var(--text-light);
+            font-size: 14px;
+            box-sizing: border-box;
+            transition: border-color 0.2s;
+        }
+
+        .admin-login-form .form-input:focus {
+            outline: none;
+            border-color: var(--primary-red);
+        }
+
+        .recaptcha-container {
+            margin: 24px 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .admin-login-submit {
+            width: 100%;
+            padding: 14px;
+            background: var(--primary-red);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-top: 8px;
+        }
+
+        .admin-login-submit:hover:not(:disabled) {
+            background: var(--red-dark);
+        }
+
+        .admin-login-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .admin-login-footer {
+            text-align: center;
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border-dark);
+        }
+
+        .admin-login-footer a {
+            color: var(--primary-red);
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .admin-login-footer a:hover {
+            text-decoration: underline;
+        }
+
+        .admin-security-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px;
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 8px;
+            margin-bottom: 24px;
+            font-size: 13px;
+            color: var(--text-light);
+        }
+
+        .admin-security-badge svg {
+            width: 20px;
+            height: 20px;
+            color: var(--primary-red);
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-login-container">
+        <div class="admin-login-card">
+            <div class="admin-login-header">
+                <div class="admin-login-logo">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-QwdP_ZH4WdRjsWWXrqeSprFbeOQra9qV8A&s" alt="New Era Intelligence (NEI) Logo" style="width: 48px; height: 48px; border-radius: 8px;">
+                    <span class="logo-text" style="font-size: 24px;">New Era Intelligence <span class="logo-x">(NEI)</span></span>
+                </div>
+                <h1 class="admin-login-title">Admin Login</h1>
+                <p class="admin-login-subtitle">Secure access to admin panel</p>
+            </div>
+
+            <div class="admin-security-badge">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L4 6V12C4 16.4183 7.58172 20 12 20C16.4183 20 20 16.4183 20 12V6L12 2Z" stroke="currentColor" stroke-width="2"/>
+                    <path d="M9 12L11 14L15 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>Restricted Access - Admin Only</span>
+            </div>
+
+            <form class="admin-login-form" id="adminLoginForm">
+                <div class="form-group">
+                    <label for="adminUsername" class="form-label">Username</label>
+                    <input 
+                        type="text" 
+                        id="adminUsername" 
+                        name="username" 
+                        class="form-input" 
+                        placeholder="Enter admin username"
+                        required
+                        autocomplete="username"
+                        autofocus
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="adminPassword" class="form-label">Password</label>
+                    <input 
+                        type="password" 
+                        id="adminPassword" 
+                        name="password" 
+                        class="form-input" 
+                        placeholder="Enter admin password"
+                        required
+                        autocomplete="current-password"
+                    >
+                </div>
+
+                <div class="recaptcha-container">
+                    <div class="g-recaptcha" data-sitekey="6LepK0YsAAAAAMglSQrzvXx2eCDuiVFQaQdPMhTe"></div>
+                </div>
+
+                <button type="submit" class="admin-login-submit" id="adminLoginSubmit">
+                    <span id="submitText">Login to Admin Panel</span>
+                    <span id="submitSpinner" class="spinner" style="display: none;"></span>
+                </button>
+            </form>
+
+            <div class="admin-login-footer">
+                <a href="/Home">← Back to Home</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/utils.js"></script>
+    <script>
+        document.getElementById('adminLoginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const username = InputSanitizer.sanitize(document.getElementById('adminUsername').value.trim());
+            const password = document.getElementById('adminPassword').value;
+            const recaptchaResponse = grecaptcha.getResponse();
+            
+            if (!username || !password) {
+                Toast.error('Please enter both username and password');
+                return;
+            }
+
+            if (!recaptchaResponse) {
+                Toast.error('Please complete the reCAPTCHA verification');
+                return;
+            }
+
+            const submitButton = document.getElementById('adminLoginSubmit');
+            const submitText = document.getElementById('submitText');
+            const submitSpinner = document.getElementById('submitSpinner');
+            
+            submitButton.disabled = true;
+            submitText.textContent = 'Logging in...';
+            submitSpinner.style.display = 'inline-block';
+
+            try {
+                const apiBaseUrl = window.location.origin + '/misterx/api';
+                const response = await fetch(`${apiBaseUrl}/admin/login.php`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        username,
+                        password,
+                        recaptcha_token: recaptchaResponse
+                    })
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    // Store token
+                    if (result.data && result.data.token) {
+                        localStorage.setItem('authToken', result.data.token);
+                        Toast.success('Login successful! Redirecting...');
+                        
+                        // Redirect to admin panel after short delay
+                        setTimeout(() => {
+                            window.location.href = '/Admin';
+                        }, 500);
+                    } else {
+                        Toast.error('Login failed: No token received');
+                        grecaptcha.reset();
+                    }
+                } else {
+                    Toast.error(result.message || 'Login failed. Please check your credentials.');
+                    grecaptcha.reset();
+                }
+            } catch (error) {
+                ErrorHandler.handle(error, 'Admin Login');
+                grecaptcha.reset();
+            } finally {
+                submitButton.disabled = false;
+                submitText.textContent = 'Login to Admin Panel';
+                submitSpinner.style.display = 'none';
+            }
+        });
+
+        // Check if already logged in as admin
+        window.addEventListener('DOMContentLoaded', async () => {
+            const token = localStorage.getItem('authToken');
+            if (token) {
+                try {
+                    const apiBaseUrl = window.location.origin + '/misterx/api';
+                    const response = await fetch(`${apiBaseUrl}/auth/me.php`, {
+                        headers: {
+                            'Authorization': `Bearer ${token}`
+                        }
+                    });
+                    const result = await response.json();
+                    
+                    if (result.success && result.data.user && result.data.user.role === 'admin') {
+                        window.location.href = '/Admin';
+                    }
+                } catch (error) {
+                    // If check fails, stay on login page
+                    Logger.error('Error checking admin status:', error);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
+

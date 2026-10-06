@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Pricing - New Era Intelligence (NEI)</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="js/api.js"></script>
+    <script src="js/utils.js"></script>
+    
+    <!-- Load site settings early to prevent flash -->
+    <script>
+        // Load settings synchronously before page render
+        (function() {
+            if (typeof fetch !== 'undefined') {
+                fetch('/api/settings/public.php')
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.success && data.data) {
+                            const { site_name, site_description, site_logo } = data.data;
+                            
+                            // Update title immediately
+                            if (site_name && document.title) {
+                                document.title = document.title.replace(/New Era Intelligence (NEI)/g, site_name);
+                            }
+                            
+                            // Store in window for later use
+                            window.__siteSettings = { site_name, site_description, site_logo };
+                            
+                            // Apply immediately to visible elements
+                            if (site_name) {
+                                // Update logo texts
+                                document.querySelectorAll('.logo-text').forEach(el => {
+                                    if (el.innerHTML.includes('logo-x') || el.innerHTML.includes('X</span>')) {
+                                        const xMatch = el.innerHTML.match(/<span[^>]*class="[^"]*logo-x[^"]*"[^>]*>X<\/span>/);
+                                        if (xMatch) {
+                                            const nameWithoutX = site_name.replace(/X$/i, '').trim();
+                                            el.innerHTML = `${nameWithoutX}${xMatch[0]}`;
+                                        }
+                                    } else {
+                                        el.textContent = site_name;
+                                    }
+                                });
+                            }
+                            
+                            if (site_logo) {
+                                document.querySelectorAll('.logo-image, .logo-img').forEach(img => {
+                                    img.src = site_logo;
+                                });
+                            }
+                        }
+                    })
+                    .catch(() => {
+                        // Silently fail - will be handled by SiteSettings.load() later
+                    });
+            }
+        })();
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="/Home" class="logo">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-QwdP_ZH4WdRjsWWXrqeSprFbeOQra9qV8A&s" alt="New Era Intelligence (NEI) Logo" class="logo-image">
+                    <span class="logo-text">New Era Intelligence <span class="logo-x">(NEI)</span></span>
+                </a>
+                <nav class="nav" id="mainNav">
+                    <a href="#" class="nav-link">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 1L1 4.5V8C1 11.866 4.134 15 8 15C11.866 15 15 11.866 15 8V4.5L8 1Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                            <path d="M8 5L5 6.5V8C5 9.10457 5.89543 10 7 10H9C10.1046 10 11 9.10457 11 8V6.5L8 5Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                        </svg>
+                        Telegram Bot
+                    </a>
+                    <a href="/Pricing" class="nav-link">Pricing</a>
+                    <!-- Guest buttons -->
+                    <a href="/Login" class="btn btn-secondary guest-only">Sign In</a>
+                    <a href="/Register" class="btn btn-primary guest-only">Get Started</a>
+                    <!-- User buttons -->
+                    <a href="/Dashboard" class="nav-link user-only" style="display:none;">Dashboard</a>
+                    <a href="/Profile" class="nav-link user-only" style="display:none;">Profile</a>
+                    <button class="btn btn-outline user-only" style="display:none;" onclick="API.auth.logout()">Logout</button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Pricing Section -->
+    <section class="pricing-section">
+        <div class="container">
+            <!-- Initial View -->
+            <div id="initialView" class="pricing-view">
+                <div class="pricing-header">
+                    <h1 class="pricing-title">Choose Your Plan</h1>
+                    <p class="pricing-subtitle">Select the perfect plan for your security research needs</p>
+                </div>
+
+                <div class="pricing-grid">
+                <!-- Free Plan -->
+                <div class="pricing-card">
+                    <div class="pricing-card-header">
+                        <h3 class="pricing-card-title">Free</h3>
+                        <p class="pricing-card-description">Get started with basic features</p>
+                    </div>
+                    <div class="pricing-card-price">
+                        <span class="price-amount">$0</span>
+                        <span class="price-period">/forever</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li class="pricing-feature">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            500 lines per search
+                        </li>
+                        <li class="pricing-feature">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            3 searches/day
+                        </li>
+                        <li class="pricing-feature">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Basic search
+                        </li>
+                        <li class="pricing-feature">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Web access
+                        </li>
+                    </ul>
+                    <button class="btn btn-secondary btn-block pricing-btn" disabled>Current Plan</button>
+                </div>
+
+                <!-- VIP Plan -->
+                <div class="pricing-card pricing-card-featured">
+                    <div class="pricing-badge">Most Popular</div>
+                    <div class="pricing-card-header">
+                        <h3 class="pricing-card-title">VIP</h3>
+                        <p class="pricing-card-description">For power users and professionals</p>
+                    </div>
+                    <div class="pricing-card-price">
+                        <span class="price-amount">$50</span>
+                        <span class="price-period">/month</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li class="pricing-feature">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Unlimited results
+                        </li>
+                        <li class="pricing-feature">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Unlimited searches
+                        </li>
+                        <li class="pricing-feature">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Advanced filters
+                        </li>
+                        <li class="pricing-feature">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Multi-threaded (4x faster)
+                        </li>
+                        <li class="pricing-feature">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Time range selection
+                        </li>
+                        <li class="pricing-feature">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Credential extraction
+                        </li>
+                        <li class="pricing-feature">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Priority support
+                        </li>
+                        <li class="pricing-feature">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Export results
+                        </li>
+                    </ul>
+                    <button class="btn btn-primary btn-block pricing-btn" data-plan="vip">Select VIP</button>
+                </div>
+
+                <!-- API Plan -->
+                <div class="pricing-card">
+                    <div class="pricing-card-header">
+                        <h3 class="pricing-card-title">API</h3>
+                        <p class="pricing-card-description">Full API access for developers</p>
+                    </div>
+                    <div class="pricing-card-price">
+                        <span class="price-amount">$99</span>
+                        <span class="price-period">/month</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li class="pricing-feature">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            All VIP features
+                        </li>
+                        <li class="pricing-feature">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Full API access
+                        </li>
+                        <li class="pricing-feature">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            API key management
+                        </li>
+                        <li class="pricing-feature">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            1000 req/hour
+                        </li>
+                        <li class="pricing-feature">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Webhooks
+                        </li>
+                        <li class="pricing-feature">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Technical docs
+                        </li>
+                    </ul>
+                    <button class="btn btn-primary btn-block pricing-btn" data-plan="api">Select API</button>
+                </div>
+                </div>
+            </div>
+
+            <!-- Plan Selection View -->
+            <div id="selectionView" class="pricing-view" style="display: none;">
+                <!-- Plan Comparison -->
+                <div class="pricing-grid-compact">
+                    <!-- Free Plan -->
+                    <div class="pricing-card-compact">
+                        <div class="pricing-card-header">
+                            <h3 class="pricing-card-title">Free</h3>
+                            <p class="pricing-card-description">Get started with basic features</p>
+                        </div>
+                        <ul class="pricing-features-compact">
+                            <li class="pricing-feature">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                Basic search
+                            </li>
+                            <li class="pricing-feature">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                Web access
+                            </li>
+                        </ul>
+                        <button class="btn btn-secondary btn-block pricing-btn" disabled>Current Plan</button>
+                    </div>
+
+                    <!-- VIP Plan -->
+                    <div class="pricing-card-compact" id="vipCard">
+                        <div class="pricing-card-header">
+                            <h3 class="pricing-card-title">VIP</h3>
+                            <p class="pricing-card-description">For power users and professionals</p>
+                        </div>
+                        <ul class="pricing-features-compact">
+                            <li class="pricing-feature">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                Unlimited searches
+                            </li>
+                            <li class="pricing-feature">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                Advanced filters
+                            </li>
+                            <li class="pricing-feature">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                Multi-threaded (4x faster)
+                            </li>
+                            <li class="pricing-feature">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                Time range selection
+                            </li>
+                            <li class="pricing-feature">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                Credential extraction
+                            </li>
+                            <li class="pricing-feature">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                Priority support
+                            </li>
+                            <li class="pricing-feature">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                Export results
+                            </li>
+                        </ul>
+                        <button class="btn btn-primary btn-block pricing-btn" id="selectVipBtn" style="display: none;">Select VIP</button>
+                    </div>
+
+                    <!-- API Plan -->
+                    <div class="pricing-card-compact" id="apiCard">
+                        <div class="pricing-card-header">
+                            <h3 class="pricing-card-title">API</h3>
+                            <p class="pricing-card-description">Full API access for developers</p>
+                        </div>
+                        <ul class="pricing-features-compact">
+                            <li class="pricing-feature">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                All VIP features
+                            </li>
+                            <li class="pricing-feature">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                Full API access
+                            </li>
+                            <li class="pricing-feature">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                API key management
+                            </li>
+                            <li class="pricing-feature">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                1000 req/hour
+                            </li>
+                            <li class="pricing-feature">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                Webhooks
+                            </li>
+                            <li class="pricing-feature">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                Technical docs
+                            </li>
+                        </ul>
+                        <button class="btn btn-primary btn-block pricing-btn" id="selectApiBtn" style="display: none;">Select API</button>
+                    </div>
+                </div>
+
+                <!-- Duration Selection -->
+                <div class="duration-section">
+                    <div class="duration-header">
+                        <h2 class="duration-title">Choose Duration</h2>
+                        <p class="duration-subtitle">Select your subscription period to see pricing</p>
+                    </div>
+                    <div class="duration-grid" id="durationGrid">
+                        <!-- Duration options will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Cryptocurrency Selection -->
+                <div class="crypto-section" id="cryptoSection" style="display: none;">
+                    <div class="crypto-header">
+                        <h2 class="crypto-title">Select Cryptocurrency</h2>
+                        <p class="crypto-subtitle">Choose your preferred cryptocurrency</p>
+                    </div>
+                    <div class="crypto-grid" id="cryptoGrid">
+                        <!-- Crypto options will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Order Summary -->
+                <div class="order-summary" id="orderSummary" style="display: none;">
+                    <div class="order-header">
+                        <h2 class="order-title">Order Summary</h2>
+                    </div>
+                    <div class="order-details">
+                        <div class="order-row">
+                            <span>Plan:</span>
+                            <span id="orderPlan">-</span>
+                        </div>
+                        <div class="order-row">
+                            <span>Total:</span>
+                            <span id="orderTotal">$0.00</span>
+                        </div>
+                    </div>
+                    <div class="coupon-section">
+                        <h3 class="coupon-title">Have a Coupon Code?</h3>
+                        <p class="coupon-subtitle">Enter your coupon code to get a discount</p>
+                        <div class="coupon-input-group">
+                            <input type="text" id="couponCode" class="coupon-input" placeholder="Enter coupon code">
+                            <button class="btn btn-primary" onclick="applyCoupon()">Apply</button>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary btn-block btn-large" id="proceedPaymentBtn" onclick="proceedToPayment()">
+                        Proceed with Payment
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Modal -->
+    <div class="payment-modal" id="paymentModal" style="display: none;">
+        <div class="payment-modal-content">
+            <div class="payment-modal-header">
+                <div class="payment-header-left">
+                    <svg class="secure-icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 2L4 6V12C4 16.4183 7.58172 20 12 20C16.4183 20 20 16.4183 20 12V6L12 2Z" stroke="#10B981" stroke-width="2" fill="none"/>
+                        <path d="M9 12L11 14L15 10" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <h2>Secure Payment</h2>
+                </div>
+                <button class="payment-modal-close" onclick="closePaymentModal()">&times;</button>
+            </div>
+            
+            <!-- Timer Section -->
+            <div class="payment-timer-section">
+                <div class="timer-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                        <path d="M12 6V12L16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <div class="timer-content">
+                    <span class="timer-label">Time remaining to complete payment:</span>
+                    <span class="timer-value" id="paymentTimer">59:59</span>
+                </div>
+                <div class="timer-warning">Payment expires if not completed in time</div>
+            </div>
+
+            <div class="payment-modal-body">
+                <!-- Security Badge -->
+                <div class="security-badge">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 2L4 6V12C4 16.4183 7.58172 20 12 20C16.4183 20 20 16.4183 20 12V6L12 2Z" stroke="currentColor" stroke-width="2" fill="none"/>
+                        <path d="M9 12L11 14L15 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>SSL Encrypted Transaction</span>
+                </div>
+
+                <p class="payment-instruction">Send the equivalent of <strong id="paymentAmountUSD">$0.00 USD</strong> in <span id="paymentCrypto">USDT</span> to the address below</p>
+                
+                <div class="payment-amount-container">
+                    <div class="payment-amount-large" id="paymentAmountLarge">0.00</div>
+                    <span class="payment-currency" id="paymentCurrencyLabel">USDT</span>
+                </div>
+                <div class="payment-usd-equivalent">
+                    <span class="payment-usd-label">Equivalent to:</span>
+                    <span class="payment-usd-amount" id="paymentUSDEquivalent">$0.00 USD</span>
+                </div>
+
+                <div class="payment-warning">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 9V13M12 17H12.01M12 3L2 21H22L12 3Z" stroke="#FBBF24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Send only <strong id="cryptoWarning">USDT</strong> to this address. Sending any other cryptocurrency may result in permanent loss.</span>
+                </div>
+
+                <div class="payment-address-section">
+                    <label>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                            <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="2"/>
+                            <path d="M3 10H21" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                        Payment Address:
+                    </label>
+                    <div class="payment-address-input-group">
+                        <input type="text" id="paymentAddress" readonly class="payment-address-input">
+                        <button class="btn-copy" onclick="copyPaymentAddress()" title="Copy Address">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                <path d="M5.5 3.5H3.5C2.67 3.5 2 4.17 2 5v7.5C2 13.33 2.67 14 3.5 14H11c.83 0 1.5-.67 1.5-1.5V10.5" stroke="currentColor" stroke-width="1.5"/>
+                                <rect x="5" y="2" width="8.5" height="8.5" rx="1" stroke="currentColor" stroke-width="1.5"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <span class="address-copied-msg" id="copiedMsg" style="display: none;">Address copied!</span>
+                </div>
+
+                <!-- QR Code Section (Optional) -->
+                <div class="payment-qr-section" id="paymentQrSection" style="display: none; margin: 24px 0; text-align: center;">
+                    <label style="display: block; margin-bottom: 12px; font-weight: 600; color: var(--text-light);">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="vertical-align: middle; margin-right: 8px;">
+                            <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/>
+                            <rect x="7" y="7" width="3" height="3" fill="currentColor"/>
+                            <rect x="14" y="7" width="3" height="3" fill="currentColor"/>
+                            <rect x="7" y="14" width="3" height="3" fill="currentColor"/>
+                            <rect x="14" y="14" width="3" height="3" fill="currentColor"/>
+                        </svg>
+                        Scan QR Code to Pay:
+                    </label>
+                    <div style="display: inline-block; padding: 16px; background: white; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
+                        <img id="paymentQrCode" src="" alt="QR Code" style="max-width: 250px; height: auto; display: block;">
+                    </div>
+                    <p style="margin-top: 12px; font-size: 12px; color: var(--text-gray);">Scan with your crypto wallet app to make payment</p>
+                </div>
+
+                <div class="payment-transaction-section">
+                    <label>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                            <path d="M9 5H7C5.89543 5 5 5.89543 5 7V19C5 20.1046 5.89543 21 7 21H17C18.1046 21 19 20.1046 19 19V7C19 5.89543 18.1046 5 17 5H15" stroke="currentColor" stroke-width="2"/>
+                            <rect x="9" y="3" width="6" height="4" rx="1" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                        Transaction txid:
+                    </label>
+                    <input type="text" id="transactionHash" class="payment-input" placeholder="Paste your transaction hash here">
+                    <span class="input-hint">Enter the transaction txid after sending payment for faster verification</span>
+                </div>
+
+                <button class="btn btn-primary btn-block btn-large btn-secure" onclick="submitPayment()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 2L4 6V12C4 16.4183 7.58172 20 12 20C16.4183 20 20 16.4183 20 12V6L12 2Z" stroke="currentColor" stroke-width="2" fill="none"/>
+                        <path d="M9 12L11 14L15 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    I Have Sent The Payment
+                </button>
+
+                <div class="payment-footer-security">
+                    <div class="security-item">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                            <path d="M12 2L4 6V12C4 16.4183 7.58172 20 12 20C16.4183 20 20 16.4183 20 12V6L12 2Z" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                        <span>Secure</span>
+                    </div>
+                    <div class="security-item">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                            <rect x="3" y="11" width="18" height="10" rx="2" stroke="currentColor" stroke-width="2"/>
+                            <circle cx="12" cy="16" r="1" fill="currentColor"/>
+                            <path d="M7 11V7C7 4.23858 9.23858 2 12 2C14.7614 2 17 4.23858 17 7V11" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                        <span>Encrypted</span>
+                    </div>
+                    <div class="security-item">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                            <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                        <span>Verified</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Thank You Modal -->
+    <div class="thank-you-modal" id="thankYouModal" style="display: none;">
+        <div class="thank-you-content">
+            <div class="thank-you-icon">✓</div>
+            <h2>Thank You!</h2>
+            <p>Your request is under review. We will notify you once it's processed.</p>
+            <button class="btn btn-primary" onclick="closeThankYouModal()">OK</button>
+        </div>
+    </div>
+
+    <script>
+        // Pricing data (fallback)
+        const pricingData = {
+            vip: [
+                { duration: '1_week', label: '1 Week', price: '$25', savings: null },
+                { duration: '1_month', label: '1 Month', price: '$50', savings: null },
+                { duration: '3_months', label: '3 Months', price: '$99', savings: '34%' },
+                { duration: '6_months', label: '6 Months', price: '$220', savings: '27%' },
+                { duration: '12_months', label: '12 Months', price: '$390', savings: '35%' }
+            ],
+            api: [
+                { duration: '1_month', label: '1 Month', price: '$99', savings: null },
+                { duration: '6_months', label: '6 Months', price: '$499', savings: '16%' },
+                { duration: '12_months', label: '12 Months', price: '$799', savings: '33%' }
+            ]
+        };
+
+        // Check login status and update navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            const token = API.getAuthToken();
+            const guestElements = document.querySelectorAll('.guest-only');
+            const userElements = document.querySelectorAll('.user-only');
+            
+            if (token) {
+                guestElements.forEach(el => el.style.display = 'none');
+                userElements.forEach(el => el.style.display = '');
+            } else {
+                guestElements.forEach(el => el.style.display = '');
+                userElements.forEach(el => el.style.display = 'none');
+            }
+        });
+
+        // Plan selection buttons
+        const selectButtons = document.querySelectorAll('[data-plan]');
+        const initialView = document.getElementById('initialView');
+        const selectionView = document.getElementById('selectionView');
+        const durationGrid = document.getElementById('durationGrid');
+        const vipCard = document.getElementById('vipCard');
+        const apiCard = document.getElementById('apiCard');
+        const selectVipBtn = document.getElementById('selectVipBtn');
+        const selectApiBtn = document.getElementById('selectApiBtn');
+
+        selectButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const plan = button.getAttribute('data-plan');
+                showPlanSelection(plan);
+            });
+        });
+
+        function showPlanSelection(plan) {
+            // Hide initial view, show selection view
+            initialView.style.display = 'none';
+            selectionView.style.display = 'block';
+
+            // Reset card highlights
+            vipCard.classList.remove('pricing-card-selected');
+            apiCard.classList.remove('pricing-card-selected');
+            selectVipBtn.style.display = 'none';
+            selectApiBtn.style.display = 'none';
+
+            // Highlight selected plan
+            if (plan === 'vip') {
+                vipCard.classList.add('pricing-card-selected');
+                selectVipBtn.style.display = 'block';
+                renderDurationOptions('vip');
+            } else if (plan === 'api') {
+                apiCard.classList.add('pricing-card-selected');
+                selectApiBtn.style.display = 'block';
+                renderDurationOptions('api');
+            }
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        async function renderDurationOptions(plan) {
+            try {
+                // Load plans from API
+                const response = await API.subscription.getPlans();
+                if (response.success) {
+                    const plans = response.data.plans[plan];
+                    durationGrid.innerHTML = '';
+
+                    plans.forEach(option => {
+                        const card = document.createElement('div');
+                        card.className = 'duration-card';
+                        
+                        let savingsHtml = '';
+                        if (option.savings) {
+                            savingsHtml = `<div class="duration-savings">Save ${option.savings}%</div>`;
+                        }
+
+                        card.innerHTML = `
+                            <div class="duration-card-header">
+                                <h3 class="duration-card-title">${option.label}</h3>
+                                ${savingsHtml}
+                            </div>
+                            <div class="duration-card-price">$${option.price}</div>
+                            <button class="btn btn-primary btn-block duration-btn" onclick="handleSubscribe('${plan}', '${option.duration}')">Select ${option.label}</button>
+                        `;
+
+                        durationGrid.appendChild(card);
+                    });
+                } else {
+                    // Fallback to local data
+                    const options = pricingData[plan];
+                    durationGrid.innerHTML = '';
+
+                    options.forEach(option => {
+                        const card = document.createElement('div');
+                        card.className = 'duration-card';
+                        
+                        let savingsHtml = '';
+                        if (option.savings) {
+                            savingsHtml = `<div class="duration-savings">Save ${option.savings}</div>`;
+                        }
+
+                        card.innerHTML = `
+                            <div class="duration-card-header">
+                                <h3 class="duration-card-title">${option.duration}</h3>
+                                ${savingsHtml}
+                            </div>
+                            <div class="duration-card-price">${option.price}</div>
+                            <button class="btn btn-primary btn-block duration-btn" onclick="handleSubscribe('${plan}', '${option.duration.replace(' ', '_').toLowerCase()}')">Select ${option.duration}</button>
+                        `;
+
+                        durationGrid.appendChild(card);
+                    });
+                }
+            } catch (error) {
+                console.error('Error loading plans:', error);
+                // Fallback to local data
+                const options = pricingData[plan];
+                durationGrid.innerHTML = '';
+
+                options.forEach(option => {
+                    const card = document.createElement('div');
+                    card.className = 'duration-card';
+                    
+                    let savingsHtml = '';
+                    if (option.savings) {
+                        savingsHtml = `<div class="duration-savings">Save ${option.savings}</div>`;
+                    }
+
+                    card.innerHTML = `
+                        <div class="duration-card-header">
+                            <h3 class="duration-card-title">${option.label || option.duration}</h3>
+                            ${savingsHtml}
+                        </div>
+                        <div class="duration-card-price">${option.price}</div>
+                        <button class="btn btn-primary btn-block duration-btn" onclick="handleSubscribe('${plan}', '${option.duration}')">Select ${option.label || option.duration}</button>
+                    `;
+
+                    durationGrid.appendChild(card);
+                });
+            }
+        }
+
+        let selectedPlan = null;
+        let selectedDuration = null;
+        let selectedCrypto = null;
+        let selectedWallet = null; // Store full wallet object including QR code
+        let currentPaymentData = null;
+
+        // Handle subscription - show crypto selection
+        async function handleSubscribe(planType, duration) {
+            if (!API.getAuthToken()) {
+                alert('Please login first');
+                window.location.href = '/Login';
+                return;
+            }
+
+            selectedPlan = planType;
+            selectedDuration = duration;
+
+            // Hide duration section, show crypto section
+            document.querySelector('.duration-section').style.display = 'none';
+            document.getElementById('cryptoSection').style.display = 'block';
+            document.getElementById('orderSummary').style.display = 'block';
+
+            // Load cryptocurrencies
+            await loadCryptocurrencies();
+
+            // Update order summary
+            updateOrderSummary();
+
+            // Scroll to crypto section
+            document.getElementById('cryptoSection').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Load cryptocurrencies
+        async function loadCryptocurrencies() {
+            try {
+                const response = await API.payment.getWallets();
+                if (response.success && response.data.wallets) {
+                    const cryptoGrid = document.getElementById('cryptoGrid');
+                    cryptoGrid.innerHTML = '';
+
+                    response.data.wallets.forEach(wallet => {
+                        const card = document.createElement('div');
+                        card.className = 'crypto-card';
+                        card.onclick = () => selectCryptocurrency(wallet);
+                        
+                        const logoHtml = wallet.logo_url 
+                            ? `<img src="${wallet.logo_url}" alt="${wallet.cryptocurrency}" class="crypto-logo">`
+                            : `<div class="crypto-icon">${wallet.symbol}</div>`;
+                        
+                        card.innerHTML = `
+                            ${logoHtml}
+                            <div class="crypto-name">${wallet.cryptocurrency}</div>
+                            ${wallet.network ? `<div class="crypto-network">${wallet.network}</div>` : ''}
+                        `;
+                        cryptoGrid.appendChild(card);
+                    });
+                }
+            } catch (error) {
+                console.error('Error loading cryptocurrencies:', error);
+            }
+        }
+
+        // Select cryptocurrency
+        function selectCryptocurrency(wallet) {
+            selectedCrypto = wallet.cryptocurrency;
+            selectedWallet = wallet; // Store full wallet object
+            
+            // Update UI
+            document.querySelectorAll('.crypto-card').forEach(card => {
+                card.classList.remove('crypto-card-selected');
+            });
+            event.currentTarget.classList.add('crypto-card-selected');
+
+            // Update order summary
+            updateOrderSummary();
+        }
+
+        // Update order summary
+        function updateOrderSummary() {
+            if (!selectedPlan || !selectedDuration) return;
+
+            const plans = {
+                vip: {
+                    '1_week': { label: 'VIP - 1 Week', price: 25 },
+                    '1_month': { label: 'VIP - 1 Month', price: 50 },
+                    '3_months': { label: 'VIP - 3 Months', price: 99 },
+                    '6_months': { label: 'VIP - 6 Months', price: 220 },
+                    '12_months': { label: 'VIP - 12 Months', price: 390 }
+                },
+                api: {
+                    '1_month': { label: 'API - 1 Month', price: 99 },
+                    '6_months': { label: 'API - 6 Months', price: 499 },
+                    '12_months': { label: 'API - 12 Months', price: 799 }
+                }
+            };
+
+            const planInfo = plans[selectedPlan][selectedDuration];
+            if (planInfo) {
+                document.getElementById('orderPlan').textContent = planInfo.label;
+                document.getElementById('orderTotal').textContent = `$${planInfo.price.toFixed(2)}`;
+            }
+        }
+
+        // Proceed to payment
+        async function proceedToPayment() {
+            if (!selectedCrypto) {
+                alert('Please select a cryptocurrency');
+                return;
+            }
+
+            console.log('Creating payment with:', {
+                plan: selectedPlan,
+                duration: selectedDuration,
+                crypto: selectedCrypto
+            });
+
+            try {
+                const response = await API.payment.create(selectedPlan, selectedDuration, selectedCrypto);
+                console.log('Payment response:', response);
+                
+                if (response.success) {
+                    currentPaymentData = response.data;
+                    showPaymentModal();
+                } else {
+                    console.error('Payment creation failed:', response);
+                    alert(response.message || 'Failed to create payment request');
+                }
+            } catch (error) {
+                console.error('Payment error:', error);
+                alert('Error: ' + (error.message || 'An error occurred. Please try again.'));
+            }
+        }
+
+        let paymentTimerInterval = null;
+        let paymentTimeRemaining = 3600; // 1 hour in seconds
+
+        // Show payment modal
+        async function showPaymentModal() {
+            if (!currentPaymentData) return;
+
+            const crypto = currentPaymentData.cryptocurrency.toUpperCase();
+            const amountUSD = currentPaymentData.amountUSD || currentPaymentData.amount || 0;
+            let amountToSend = currentPaymentData.amountToSend || 0;
+            
+            // Safety check: if amountToSend is 0 or equals amountUSD, recalculate
+            // This handles cases where exchange_rate might not be set correctly
+            if (!amountToSend || amountToSend === 0 || amountToSend === amountUSD) {
+                const exchangeRate = currentPaymentData.exchangeRate || 1;
+                if (exchangeRate > 0) {
+                    amountToSend = (amountUSD / exchangeRate) * 1.00024436; // Add small fee
+                } else {
+                    // If no exchange rate, show error
+                    console.error('Exchange rate not available for', crypto);
+                    Toast.error('Exchange rate not configured for this cryptocurrency. Please contact support.');
+                    return;
+                }
+            }
+            
+            // Update USD amount display
+            document.getElementById('paymentAmountUSD').textContent = `$${amountUSD.toFixed(2)} USD`;
+            document.getElementById('paymentUSDEquivalent').textContent = `$${amountUSD.toFixed(2)} USD`;
+            
+            // Update crypto amount display
+            // Format crypto amount based on value (more decimals for smaller amounts)
+            const cryptoAmount = parseFloat(amountToSend);
+            const cryptoDecimals = cryptoAmount < 0.01 ? 8 : cryptoAmount < 1 ? 6 : 4;
+            document.getElementById('paymentAmountLarge').textContent = cryptoAmount.toFixed(cryptoDecimals);
+            document.getElementById('paymentCrypto').textContent = crypto;
+            document.getElementById('paymentCurrencyLabel').textContent = crypto;
+            document.getElementById('cryptoWarning').textContent = crypto;
+            document.getElementById('paymentAddress').value = currentPaymentData.paymentAddress;
+
+            // Check if QR code exists for this wallet
+            const qrSection = document.getElementById('paymentQrSection');
+            const qrImage = document.getElementById('paymentQrCode');
+            
+            // Use selectedWallet if available, otherwise try to get from API
+            if (selectedWallet && selectedWallet.qr_code_url) {
+                qrImage.src = selectedWallet.qr_code_url;
+                qrImage.alt = `QR Code for ${crypto} Payment`;
+                qrSection.style.display = 'block';
+            } else {
+                // Try to get from API as fallback
+                try {
+                    const walletsResponse = await API.payment.getWallets();
+                    if (walletsResponse.success && walletsResponse.data.wallets) {
+                        const wallet = walletsResponse.data.wallets.find(w => 
+                            w.cryptocurrency.toLowerCase() === currentPaymentData.cryptocurrency.toLowerCase()
+                        );
+                        
+                        if (wallet && wallet.qr_code_url) {
+                            qrImage.src = wallet.qr_code_url;
+                            qrImage.alt = `QR Code for ${crypto} Payment`;
+                            qrSection.style.display = 'block';
+                        } else {
+                            qrSection.style.display = 'none';
+                        }
+                    } else {
+                        qrSection.style.display = 'none';
+                    }
+                } catch (error) {
+                    Logger.error('Error loading QR code:', error);
+                    qrSection.style.display = 'none';
+                }
+            }
+
+            // Start timer
+            paymentTimeRemaining = 3600; // Reset to 1 hour
+            startPaymentTimer();
+
+            document.getElementById('paymentModal').style.display = 'flex';
+        }
+
+        // Payment Timer
+        function startPaymentTimer() {
+            if (paymentTimerInterval) {
+                clearInterval(paymentTimerInterval);
+            }
+            
+            updateTimerDisplay();
+            
+            paymentTimerInterval = setInterval(() => {
+                paymentTimeRemaining--;
+                
+                if (paymentTimeRemaining <= 0) {
+                    clearInterval(paymentTimerInterval);
+                    alert('Payment time expired. Please start a new payment.');
+                    closePaymentModal();
+                    return;
+                }
+                
+                updateTimerDisplay();
+            }, 1000);
+        }
+
+        function updateTimerDisplay() {
+            const minutes = Math.floor(paymentTimeRemaining / 60);
+            const seconds = paymentTimeRemaining % 60;
+            const timerElement = document.getElementById('paymentTimer');
+            
+            timerElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            
+            // Change color when time is running low
+            if (paymentTimeRemaining <= 300) { // 5 minutes
+                timerElement.style.color = '#EF4444';
+                timerElement.style.animation = 'pulse 1s infinite';
+            } else if (paymentTimeRemaining <= 600) { // 10 minutes
+                timerElement.style.color = '#FBBF24';
+            } else {
+                timerElement.style.color = '#10B981';
+            }
+        }
+
+        // Copy payment address
+        function copyPaymentAddress() {
+            const addressInput = document.getElementById('paymentAddress');
+            addressInput.select();
+            document.execCommand('copy');
+            
+            // Show copied message
+            const copiedMsg = document.getElementById('copiedMsg');
+            copiedMsg.style.display = 'block';
+            setTimeout(() => {
+                copiedMsg.style.display = 'none';
+            }, 2000);
+        }
+
+        // Close payment modal
+        function closePaymentModal() {
+            if (paymentTimerInterval) {
+                clearInterval(paymentTimerInterval);
+            }
+            document.getElementById('paymentModal').style.display = 'none';
+        }
+
+        // Submit payment
+        async function submitPayment() {
+            const transactionHash = document.getElementById('transactionHash').value.trim();
+            
+            if (!transactionHash) {
+                alert('Please enter transaction hash');
+                return;
+            }
+
+            try {
+                const response = await API.payment.submit(currentPaymentData.paymentId, transactionHash);
+                
+                if (response.success) {
+                    closePaymentModal();
+                    showThankYouModal();
+                } else {
+                    alert(response.message || 'Failed to submit payment');
+                }
+            } catch (error) {
+                alert(error.message || 'An error occurred. Please try again.');
+            }
+        }
+
+        // Show thank you modal
+        function showThankYouModal() {
+            document.getElementById('thankYouModal').style.display = 'flex';
+        }
+
+        // Close thank you modal
+        function closeThankYouModal() {
+            document.getElementById('thankYouModal').style.display = 'none';
+            window.location.href = '/Dashboard';
+        }
+
+        // Apply coupon (placeholder)
+        function applyCoupon() {
+            const code = document.getElementById('couponCode').value.trim();
+            if (code) {
+                alert('Coupon code feature coming soon!');
+            }
+        }
+
+        // Back button functionality (if needed)
+        function goBack() {
+            selectionView.style.display = 'none';
+            initialView.style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
+
+

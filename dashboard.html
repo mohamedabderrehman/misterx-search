@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Dashboard - New Era Intelligence (NEI)</title>
+    <meta name="description" content="Access your New Era Intelligence (NEI) dashboard to search leaked credentials and manage your security research.">
+    <link rel="icon" type="image/png" href="favicon.ico">
+    <link rel="stylesheet" href="styles.css">
+    <script src="js/api.js"></script>
+    <script src="js/utils.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="/Home" class="logo">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-QwdP_ZH4WdRjsWWXrqeSprFbeOQra9qV8A&s" alt="New Era Intelligence (NEI) Logo" class="logo-image">
+                    <span class="logo-text">New Era Intelligence <span class="logo-x">(NEI)</span></span>
+                </a>
+                <nav class="nav">
+                    <a href="#" class="nav-link">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 1L1 4.5V8C1 11.866 4.134 15 8 15C11.866 15 15 11.866 15 8V4.5L8 1Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                            <path d="M8 5L5 6.5V8C5 9.10457 5.89543 10 7 10H9C10.1046 10 11 9.10457 11 8V6.5L8 5Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                        </svg>
+                        Telegram Bot
+                    </a>
+                    <a href="/Pricing" class="nav-link">Pricing</a>
+                    <a href="/Support" class="nav-link">Support</a>
+                    <a href="/Profile" class="nav-link">Profile</a>
+                    <button class="btn btn-secondary" onclick="API.auth.logout()">Logout</button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Dashboard Section -->
+    <section class="dashboard-section">
+        <div class="container">
+            <!-- Welcome Section -->
+            <div class="dashboard-welcome">
+                <div class="welcome-content">
+                    <h1 class="welcome-title">Welcome back, <span class="welcome-name">mamounyak</span>!</h1>
+                    <p class="welcome-subtitle">Ready to search for security threats?</p>
+                </div>
+                <div class="user-badge">
+                    <span class="badge-text">Free User</span>
+                </div>
+            </div>
+
+            <!-- Tabs -->
+            <div class="dashboard-tabs">
+                <button class="tab-button tab-active" data-tab="search">
+                    Search
+                </button>
+                <button class="tab-button" data-tab="history">
+                    History
+                </button>
+            </div>
+
+            <!-- Search Tab Content -->
+            <div class="tab-content active" id="searchTab">
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h2 class="card-title">Search Database</h2>
+                        <p class="card-subtitle">Search our comprehensive database of leaked credentials</p>
+                    </div>
+                    
+                    <form class="search-form" id="searchForm">
+                        <div class="form-group">
+                            <label for="searchQuery" class="form-label">Search Query</label>
+                            <div class="search-input-wrapper">
+                                <svg class="search-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="9" cy="9" r="6" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                                    <path d="M15 15L12.5 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                </svg>
+                                <input 
+                                    type="text" 
+                                    id="searchQuery" 
+                                    name="searchQuery" 
+                                    class="form-input search-input" 
+                                    placeholder="Enter email, username, domain..."
+                                    required
+                                    autocomplete="off"
+                                    aria-label="Search query input"
+                                >
+                            </div>
+                        </div>
+
+                        <div class="search-filters" style="display: flex; gap: 12px; margin-bottom: 20px; flex-wrap: wrap;">
+                            <div style="flex: 1; min-width: 200px;">
+                                <label for="searchType" class="form-label" style="margin-bottom: 8px;">Search Type</label>
+                                <select id="searchType" class="form-input" aria-label="Search type filter">
+                                    <option value="all">All (Email, Username, Domain)</option>
+                                    <option value="email">Email Only</option>
+                                    <option value="username">Username Only</option>
+                                    <option value="domain">Domain Only</option>
+                                    <option value="phone">Phone Number</option>
+                                </select>
+                            </div>
+                            <div style="flex: 1; min-width: 200px;">
+                                <label for="searchDateRange" class="form-label" style="margin-bottom: 8px;">Date Range</label>
+                                <select id="searchDateRange" class="form-input" aria-label="Date range filter">
+                                    <option value="all">All Time</option>
+                                    <option value="today">Today</option>
+                                    <option value="week">Last 7 Days</option>
+                                    <option value="month">Last 30 Days</option>
+                                    <option value="year">Last Year</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-bottom: 20px;">
+                            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                                <input 
+                                    type="checkbox" 
+                                    id="removeDuplicates" 
+                                    name="removeDuplicates"
+                                    style="width: 18px; height: 18px; cursor: pointer;"
+                                >
+                                <span style="font-size: 14px; color: #333;">Remove duplicate lines (ignores line numbers)</span>
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-block btn-large search-btn" aria-label="Start search">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <circle cx="9" cy="9" r="6" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                                <path d="M15 15L12.5 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            </svg>
+                            Start Search
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Search Results Section -->
+                <div id="searchResults" class="search-results" style="display: none;">
+                    <div class="results-card">
+                        <div class="results-header">
+                            <h2 class="results-title">Search Results Found!</h2>
+                            <p class="results-subtitle">Your search for "<span id="searchTermDisplay"></span>" returned results</p>
+                        </div>
+                        <div class="results-count-section">
+                            <div class="results-count-circle">
+                                <span class="results-count-number" id="resultsCount">243</span>
+                            </div>
+                            <p class="results-count-text"><span id="resultsCountText">243</span> Results Found</p>
+                            <!-- Progress indicator for streaming search (unlimited users) -->
+                            <div id="streamingProgress" style="display: none; margin-top: 12px; padding: 12px; background: var(--bg-secondary); border-radius: 8px;">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                                    <span style="color: var(--text-light); font-size: 14px;">Streaming results...</span>
+                                    <button id="stopStreamBtn" class="btn btn-small" style="padding: 4px 12px; font-size: 12px;">Stop</button>
+                                </div>
+                                <div style="font-size: 12px; color: var(--text-gray);">
+                                    <span id="streamingStatus">Fetching batch 1...</span>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="results-upgrade-message">Upgrade to Premium to download these results</p>
+                        <!-- Download and Load More Container -->
+                        <div id="downloadButtonContainer" style="display: none; margin-top: 24px;">
+                            <button id="downloadResultsBtn" class="btn btn-primary btn-large" style="width: 100%; margin-bottom: 16px;">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10 13V3M10 13L6 9M10 13L14 9M3 16H17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                Download Results (TXT)
+                            </button>
+                            <!-- Load More Button -->
+                            <div id="loadMoreContainer" style="text-align: center; display: none;">
+                                <button id="loadMoreBtn" class="btn btn-secondary btn-large" style="width: 100%;">
+                                    <span id="loadMoreText">Load More Results</span>
+                                    <span id="loadMoreSpinner" style="display: none; margin-left: 8px;">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="animation: spin 1s linear infinite;">
+                                            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" opacity="0.25"/>
+                                            <path d="M12 2C6.48 2 2 6.48 2 12" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+                                        </svg>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Premium Upgrade Section -->
+                    <div class="premium-upgrade-card">
+                        <div class="premium-header">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="crown-icon">
+                                <path d="M5 16L3 10L8 12L12 3L16 12L21 10L19 16H5Z" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                            </svg>
+                            <h2 class="premium-title">Unlock Full Access with Premium</h2>
+                        </div>
+                        <ul class="premium-benefits">
+                            <li class="premium-benefit">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                Download all <span id="premiumResultsCount">243</span> results
+                            </li>
+                            <li class="premium-benefit">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                Unlimited searches per day
+                            </li>
+                            <li class="premium-benefit">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                Advanced filtering options
+                            </li>
+                            <li class="premium-benefit">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                Priority support
+                            </li>
+                        </ul>
+                        <a href="/Pricing" class="btn btn-light btn-large premium-upgrade-btn">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="crown-icon">
+                                <path d="M5 16L3 10L8 12L12 3L16 12L21 10L19 16H5Z" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                            </svg>
+                            Upgrade to Premium Now
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- History Tab Content -->
+            <div class="tab-content" id="historyTab">
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h2 class="card-title">Search History</h2>
+                        <p class="card-subtitle">View your previous searches</p>
+                    </div>
+                    
+                    <div id="historyContainer">
+                        <div class="history-empty empty-state" id="historyEmpty">
+                            <svg class="empty-state-icon" width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="40" cy="40" r="30" stroke="currentColor" stroke-width="2" fill="none" opacity="0.3"/>
+                                <path d="M40 25V40L50 50" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.3"/>
+                            </svg>
+                            <h3 class="empty-state-title">No Search History</h3>
+                            <p class="empty-state-description">Start searching for leaked credentials to see your search history here.</p>
+                            <button class="btn btn-primary" onclick="document.querySelector('.tab-button[data-tab=&quot;search&quot;]').click()">Start Searching</button>
+                        </div>
+                        <div id="historyList" style="display: none;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Tab switching functionality
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const targetTab = button.getAttribute('data-tab');
+                
+                // Remove active class from all buttons and contents
+                tabButtons.forEach(btn => btn.classList.remove('tab-active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+                
+                // Add active class to clicked button and corresponding content
+                button.classList.add('tab-active');
+                document.getElementById(targetTab + 'Tab').classList.add('active');
+            });
+        });
+
+        // Register keyboard shortcuts
+        KeyboardNavigation.register('ctrl+k', () => {
+            document.getElementById('searchQuery')?.focus();
+        }, 'Focus search');
+
+        KeyboardNavigation.register('1', () => {
+            document.querySelector('.tab-button[data-tab="search"]')?.click();
+        }, 'Switch to Search tab');
+
+        KeyboardNavigation.register('2', () => {
+            document.querySelector('.tab-button[data-tab="history"]')?.click();
+        }, 'Switch to History tab');
+
+        // Enter to submit search when search input is focused
+        document.getElementById('searchQuery')?.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                document.getElementById('searchForm')?.dispatchEvent(new Event('submit'));
+            }
+        });
+
+        // Check authentication on page load
+        window.addEventListener('DOMContentLoaded', async () => {
+            // Show skeleton loader
+            const dashboardSection = document.querySelector('.dashboard-section');
+            if (dashboardSection) {
+                const skeleton = SkeletonLoader.create('card', 3);
+                dashboardSection.appendChild(skeleton);
+            }
+            
+            // Prevent immediate redirect - wait a bit longer to ensure token is saved
+            await new Promise(resolve => setTimeout(resolve, 500));
+            
+            // Try multiple times to get token (in case of timing issues)
+            let token = localStorage.getItem('authToken');
+            if (!token) {
+                // Try again after a short delay
+                await new Promise(resolve => setTimeout(resolve, 300));
+                token = localStorage.getItem('authToken');
+            }
+            
+            Logger.log('Dashboard loaded - Token exists:', !!token);
+            Logger.log('Token value check:', token ? 'Token found (length: ' + token.length + ')' : 'No token');
+            
+            if (!token) {
+                Logger.log('No token found after waiting, redirecting to signin');
+                Toast.warning('Please login to continue');
+                setTimeout(() => {
+                    window.location.href = '/Login';
+                }, 1000);
+                return;
+            }
+            
+            try {
+                Logger.log('Fetching user data with token...');
+                // Load user data
+                const userResponse = await API.auth.getCurrentUser();
+                Logger.log('User response received:', userResponse);
+                
+                if (userResponse && userResponse.success) {
+                    const user = userResponse.data.user;
+                    Logger.log('User loaded successfully:', user.username);
+                    
+                    if (document.querySelector('.welcome-name')) {
+                        document.querySelector('.welcome-name').textContent = InputSanitizer.sanitize(user.username);
+                    }
+                    
+                    // Update badge based on subscription
+                    if (document.querySelector('.badge-text')) {
+                        const badgeText = user.subscription_type === 'free' ? 'Free User' : 
+                                         user.subscription_type === 'vip' ? 'VIP User' : 'API User';
+                        document.querySelector('.badge-text').textContent = badgeText;
+                    }
+                    
+                    // Remove skeleton
+                    const skeleton = dashboardSection.querySelector('.skeleton-loader');
+                    if (skeleton) skeleton.remove();
+                    
+                    // Load search history
+                    loadSearchHistory();
+                } else {
+                    Logger.error('Failed to get user data - response not successful:', userResponse);
+                    // If response exists but not successful, check the message
+                    if (userResponse && userResponse.message) {
+                        throw new Error(userResponse.message);
+                    } else {
+                        throw new Error('Failed to load user data');
+                    }
+                }
+            } catch (error) {
+                // Remove skeleton on error
+                const skeleton = dashboardSection.querySelector('.skeleton-loader');
+                if (skeleton) skeleton.remove();
+                
+                Logger.log('Dashboard error caught:', error);
+                Logger.log('Error message:', error.message);
+                Logger.log('Error status:', error.status);
+                
+                const errorMsg = error.message || '';
+                const statusCode = error.status || 0;
+                
+                // Only redirect if it's explicitly an authentication error (401 or 403)
+                // Check both status code and error message
+                const isAuthError = statusCode === 401 || statusCode === 403 || 
+                                   errorMsg.includes('401') || errorMsg.includes('403') ||
+                                   errorMsg.includes('Unauthorized') || errorMsg.includes('Forbidden') ||
+                                   errorMsg.includes('No token provided') ||
+                                   errorMsg.includes('Invalid or expired token') ||
+                                   (errorMsg.includes('token') && (errorMsg.toLowerCase().includes('invalid') || 
+                                                                  errorMsg.toLowerCase().includes('expired') || 
+                                                                  errorMsg.toLowerCase().includes('missing')));
+                
+                if (isAuthError) {
+                    Logger.log('Authentication error detected (status: ' + statusCode + '), redirecting to login');
+                    Toast.error('Your session has expired. Please login again.');
+                    setTimeout(() => {
+                        API.removeAuthToken(); // Clear token before redirect
+                        window.location.href = '/Login';
+                    }, 2000);
+                } else {
+                    // For other errors (network, server errors, etc.), just show error but don't redirect
+                    Logger.log('Non-auth error (status: ' + statusCode + '), staying on page');
+                    ErrorHandler.handle(error, 'Dashboard Load');
+                    Toast.error('Failed to load dashboard data. Please refresh the page or try again later.');
+                }
+            }
+        });
+
+        // Load search history
+        async function loadSearchHistory() {
+            const historyContainer = document.getElementById('historyContainer');
+            const historyEmpty = document.getElementById('historyEmpty');
+            const historyList = document.getElementById('historyList');
+            
+            try {
+                // Show skeleton
+                const skeleton = SkeletonLoader.create('table', 5);
+                historyList.innerHTML = '';
+                historyList.appendChild(skeleton);
+                historyList.style.display = 'block';
+                historyEmpty.style.display = 'none';
+                
+                const response = await API.search.getHistory(10, 0);
+                
+                // Remove skeleton
+                skeleton.remove();
+                
+                if (response.success && response.data.history && response.data.history.length > 0) {
+                    historyEmpty.style.display = 'none';
+                    historyList.style.display = 'block';
+                    
+                    historyList.innerHTML = response.data.history.map(item => {
+                        const date = new Date(item.search_date).toLocaleString();
+                        const query = InputSanitizer.sanitize(item.search_query);
+                        return `
+                            <div class="history-item" style="padding: 16px; border-bottom: 1px solid var(--border-dark);">
+                                <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 8px;">
+                                    <div>
+                                        <strong style="color: var(--text-light);">${query}</strong>
+                                        <div style="font-size: 12px; color: var(--text-gray); margin-top: 4px;">
+                                            ${date} • ${item.results_count || 0} results
+                                        </div>
+                                    </div>
+                                    <span class="status-badge status-${item.plan_type_at_search || 'free'}" style="font-size: 11px;">
+                                        ${(item.plan_type_at_search || 'free').toUpperCase()}
+                                    </span>
+                                </div>
+                            </div>
+                        `;
+                    }).join('');
+                } else {
+                    historyEmpty.style.display = 'block';
+                    historyList.style.display = 'none';
+                }
+            } catch (error) {
+                // Remove skeleton if it exists
+                const skeleton = historyList.querySelector('.skeleton-loader');
+                if (skeleton) skeleton.remove();
+                Logger.error('Error loading history:', error);
+                historyEmpty.style.display = 'block';
+                historyList.style.display = 'none';
+            }
+        }
+
+        // Form submission - Direct OpenSearch (SUPER FAST - milliseconds!)
+        document.getElementById('searchForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // Sanitize input
+            const searchQuery = InputSanitizer.sanitize(document.getElementById('searchQuery').value.trim());
+            const searchType = document.getElementById('searchType')?.value || 'all';
+            const dateRange = document.getElementById('searchDateRange')?.value || 'all';
+            const removeDuplicates = document.getElementById('removeDuplicates')?.checked || false;
+            
+            if (!searchQuery) {
+                Toast.warning('Please enter a search query');
+                return;
+            }
+            
+            const searchResults = document.getElementById('searchResults');
+            const form = e.target;
+            const submitButton = form.querySelector('button[type="submit"]');
+            const originalText = submitButton.textContent;
+            
+            submitButton.disabled = true;
+            submitButton.textContent = 'Searching...';
+            
+            // Show loading spinner
+            const spinner = LoadingSpinner.show(form);
+            
+            try {
+                // Check user info first to see subscription type
+                let isUnlimitedUser = false;
+                let subscriptionType = 'free';
+                try {
+                    const userInfo = await API.user.getProfile();
+                    if (userInfo && userInfo.data) {
+                        subscriptionType = userInfo.data.subscription_type || 'free';
+                        if (userInfo.data.email) {
+                            const unlimitedEmails = ['ilovematoub@gmail.com'];
+                            isUnlimitedUser = unlimitedEmails.some(email => 
+                                email.toLowerCase() === userInfo.data.email.toLowerCase()
+                            );
+                        }
+                    }
+                } catch (e) {
+                    // If we can't check, fall back to regular search
+                    console.log('Could not check user status, using regular search');
+                }
+                
+                // Reset pagination state for new search
+                window.currentSearchAfter = null;
+                window.currentTotalLoaded = 0;
+                window.currentQuery = searchQuery;
+                window.currentRemoveDuplicates = removeDuplicates;
+                
+                // For unlimited users, use regular search with pagination (no streaming)
+                if (isUnlimitedUser) {
+                    // Use regular search (first page: 5k results)
+                    const searchResponse = await API.search.search(searchQuery, 'all', 'all', removeDuplicates);
+                    
+                    if (!searchResponse || !searchResponse.success) {
+                        throw new Error(searchResponse?.message || 'Search failed');
+                    }
+                    
+                    LoadingSpinner.hide(form);
+                    
+                    const results = searchResponse.data.results || [];
+                    const resultsCount = results.length;
+                    const totalLoadedNow = searchResponse.data.totalLoaded || resultsCount;
+                    const canDownload = searchResponse.data.canDownload || false;
+                    const searchId = searchResponse.data.searchId;
+                    const searchTime = searchResponse.data.searchTime || 0;
+                    const nextSearchAfter = searchResponse.data.next_search_after || null;
+                    const hasMore = searchResponse.data.has_more || false;
+                    
+                    // Store pagination state
+                    window.currentSearchAfter = nextSearchAfter;
+                    window.currentTotalLoaded = totalLoadedNow;
+                    
+                    // Show results section
+                    searchResults.style.display = 'block';
+                    document.getElementById('searchTermDisplay').textContent = searchQuery;
+                    
+                    // Display results
+                    const resultsListContainer = document.getElementById('resultsListContainer');
+                    const resultsList = document.getElementById('resultsList');
+                    resultsList.innerHTML = '';
+                    resultsListContainer.style.display = 'block';
+                    
+                    results.forEach(result => {
+                        const resultItem = document.createElement('div');
+                        resultItem.className = 'result-item';
+                        resultItem.style.cssText = 'padding: 12px; border-bottom: 1px solid var(--border-dark); font-family: monospace; font-size: 13px; word-break: break-all;';
+                        resultItem.textContent = result.content || '';
+                        resultsList.appendChild(resultItem);
+                    });
+                    
+                    // Update counts
+                    document.getElementById('resultsCount').textContent = totalLoadedNow.toLocaleString();
+                    document.getElementById('resultsCountText').textContent = totalLoadedNow.toLocaleString();
+                    document.getElementById('premiumResultsCount').textContent = totalLoadedNow.toLocaleString();
+                    
+                    // Show/hide upgrade message
+                    const upgradeMessage = document.querySelector('.results-upgrade-message');
+                    const premiumCard = document.querySelector('.premium-upgrade-card');
+                    const downloadBtnContainer = document.getElementById('downloadButtonContainer');
+                    
+                    if (canDownload) {
+                        if (upgradeMessage) upgradeMessage.style.display = 'none';
+                        if (premiumCard) premiumCard.style.display = 'none';
+                        if (downloadBtnContainer) downloadBtnContainer.style.display = 'block';
+                    }
+                    
+                    // Setup download button
+                    if (canDownload && searchId) {
+                        const downloadBtn = document.getElementById('downloadResultsBtn');
+                        if (downloadBtn) {
+                            downloadBtn.setAttribute('data-remove-duplicates', removeDuplicates ? 'true' : 'false');
+                            downloadBtn.onclick = async () => {
+                                try {
+                                    const token = API.getAuthToken();
+                                    const removeDuplicatesFlag = downloadBtn.getAttribute('data-remove-duplicates') === 'true';
+                                    const url = `${window.location.origin}/api/search/download.php?searchId=${searchId}&remove_duplicates=${removeDuplicatesFlag ? 'true' : 'false'}`;
+                                    
+                                    Toast.info('Preparing download...');
+                                    
+                                    const response = await fetch(url, {
+                                        headers: {
+                                            'Authorization': `Bearer ${token}`
+                                        }
+                                    });
+                                    
+                                    if (!response.ok) throw new Error('Download failed');
+                                    
+                                    const blob = await response.blob();
+                                    const downloadUrl = window.URL.createObjectURL(blob);
+                                    const link = document.createElement('a');
+                                    link.href = downloadUrl;
+                                    link.setAttribute('download', `search_results_${Date.now()}.txt`);
+                                    link.click();
+                                    window.URL.revokeObjectURL(downloadUrl);
+                                    
+                                    Toast.success('Download started!');
+                                } catch (error) {
+                                    ErrorHandler.handle(error, 'Download');
+                                }
+                            };
+                        }
+                    }
+                    
+                    // Setup Load More button (unlimited users can load unlimited)
+                    const loadMoreContainer = document.getElementById('loadMoreContainer');
+                    const loadMoreBtn = document.getElementById('loadMoreBtn');
+                    
+                    // Always show Load More if nextSearchAfter exists (for unlimited users)
+                    // hasMore is just a flag, but nextSearchAfter is the real indicator
+                    console.log('Unlimited user search response:', {
+                        nextSearchAfter: nextSearchAfter,
+                        hasMore: hasMore,
+                        resultsCount: resultsCount,
+                        totalLoadedNow: totalLoadedNow
+                    });
+                    
+                    // Accept both array and non-array values (some OpenSearch versions return different formats)
+                    if (nextSearchAfter !== null && (Array.isArray(nextSearchAfter) ? nextSearchAfter.length > 0 : true)) {
+                        if (loadMoreContainer) {
+                            loadMoreContainer.style.display = 'block';
+                            console.log('Load More button visible for Unlimited - nextSearchAfter:', nextSearchAfter);
+                        }
+                        
+                        if (loadMoreBtn) {
+                            loadMoreBtn.onclick = async () => {
+                                loadMoreBtn.disabled = true;
+                                document.getElementById('loadMoreText').textContent = 'Loading More Results...';
+                                document.getElementById('loadMoreSpinner').style.display = 'inline-block';
+                                
+                                try {
+                                    // Load more results (this will update searchId and totalLoaded)
+                                    const loadMoreResponse = await API.search.search(
+                                        window.currentQuery,
+                                        'all',
+                                        'all',
+                                        window.currentRemoveDuplicates,
+                                        window.currentSearchAfter,
+                                        window.currentTotalLoaded
+                                    );
+                                    
+                                    if (loadMoreResponse && loadMoreResponse.success) {
+                                        const newTotalLoaded = loadMoreResponse.data.totalLoaded || (window.currentTotalLoaded + (loadMoreResponse.data.results?.length || 0));
+                                        const newNextSearchAfter = loadMoreResponse.data.next_search_after || null;
+                                        const newHasMore = loadMoreResponse.data.has_more || false;
+                                        const newSearchId = loadMoreResponse.data.searchId || searchId; // Use new searchId if available
+                                        
+                                        // Update state
+                                        window.currentSearchAfter = newNextSearchAfter;
+                                        window.currentTotalLoaded = newTotalLoaded;
+                                        
+                                        // Update searchId for download (so download includes all loaded results)
+                                        // Keep the original searchId (first page) so download can get all loaded results from Redis
+                                        const downloadBtn = document.getElementById('downloadResultsBtn');
+                                        if (downloadBtn) {
+                                            // Keep original searchId - download.php will get all pagination tokens from Redis
+                                            const originalSearchId = downloadBtn.getAttribute('data-search-id') || searchId;
+                                            downloadBtn.setAttribute('data-search-id', originalSearchId);
+                                        }
+                                        
+                                        // Update counts
+                                        document.getElementById('resultsCount').textContent = newTotalLoaded.toLocaleString();
+                                        document.getElementById('resultsCountText').textContent = newTotalLoaded.toLocaleString();
+                                        document.getElementById('premiumResultsCount').textContent = newTotalLoaded.toLocaleString();
+                                        
+                                        // Show Load More if nextSearchAfter exists (for unlimited users, no limit)
+                                        if (newNextSearchAfter !== null) {
+                                            loadMoreContainer.style.display = 'block';
+                                            Toast.success(`Loaded more results! Total: ${newTotalLoaded.toLocaleString()}`);
+                                        } else {
+                                            loadMoreContainer.style.display = 'none';
+                                            Toast.info('All results loaded!');
+                                        }
+                                    }
+                                } catch (error) {
+                                    ErrorHandler.handle(error, 'Load More');
+                                } finally {
+                                    loadMoreBtn.disabled = false;
+                                    document.getElementById('loadMoreText').textContent = 'Load More Results';
+                                    document.getElementById('loadMoreSpinner').style.display = 'none';
+                                }
+                            };
+                        }
+                    } else {
+                        if (loadMoreContainer) {
+                            loadMoreContainer.style.display = 'none';
+                            console.log('Load More button hidden for Unlimited - nextSearchAfter is null or invalid:', nextSearchAfter);
+                        }
+                    }
+                    
+                    Toast.success(`Search completed! Found ${resultsCount} results in ${(searchTime / 1000).toFixed(2)}s`);
+                    
+                    setTimeout(() => {
+                        searchResults.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 100);
+                    
+                    loadSearchHistory();
+                    submitButton.disabled = false;
+                    submitButton.textContent = originalText;
+                    
+                    return; // Exit early for unlimited users
+                }
+                
+                // Regular search for non-unlimited users (or first page for unlimited)
+                // Check if this is a Load More request
+                const isLoadMore = window.currentSearchAfter !== null && window.currentSearchAfter !== undefined;
+                const totalLoaded = isLoadMore ? (window.currentTotalLoaded || 0) : 0;
+                
+                const searchResponse = await API.search.search(
+                    searchQuery, 
+                    'all', 
+                    'all', 
+                    removeDuplicates,
+                    isLoadMore ? window.currentSearchAfter : null,
+                    totalLoaded
+                );
+                
+                if (!searchResponse || !searchResponse.success) {
+                    throw new Error(searchResponse?.message || 'Search failed');
+                }
+                
+                LoadingSpinner.hide(form);
+                
+                const results = searchResponse.data.results || [];
+                const resultsCount = results.length;
+                const totalLoadedNow = searchResponse.data.totalLoaded || resultsCount;
+                const canDownload = searchResponse.data.canDownload || false;
+                const searchId = searchResponse.data.searchId;
+                const searchTime = searchResponse.data.searchTime || 0;
+                const nextSearchAfter = searchResponse.data.next_search_after || null;
+                const hasMore = searchResponse.data.has_more || false;
+                
+                // Store pagination state
+                window.currentSearchAfter = nextSearchAfter;
+                window.currentTotalLoaded = totalLoadedNow;
+                
+                // Update search term display
+                document.getElementById('searchTermDisplay').textContent = searchQuery;
+                
+                // Don't display results in UI - only show download button
+                // Update counts only
+                document.getElementById('resultsCount').textContent = totalLoadedNow.toLocaleString();
+                document.getElementById('resultsCountText').textContent = totalLoadedNow.toLocaleString();
+                document.getElementById('premiumResultsCount').textContent = totalLoadedNow.toLocaleString();
+                
+                // Show/hide upgrade message based on subscription
+                const upgradeMessage = document.querySelector('.results-upgrade-message');
+                const premiumCard = document.querySelector('.premium-upgrade-card');
+                const downloadBtnContainer = document.getElementById('downloadButtonContainer');
+                
+                if (canDownload) {
+                    if (upgradeMessage) upgradeMessage.style.display = 'none';
+                    if (premiumCard) premiumCard.style.display = 'none';
+                    if (downloadBtnContainer) downloadBtnContainer.style.display = 'block';
+                } else {
+                    if (upgradeMessage) upgradeMessage.style.display = 'block';
+                    if (premiumCard) premiumCard.style.display = 'block';
+                    if (downloadBtnContainer) downloadBtnContainer.style.display = 'none';
+                }
+                
+                // Store searchId and removeDuplicates for download
+                if (canDownload && searchId) {
+                    const downloadBtn = document.getElementById('downloadResultsBtn');
+                    if (downloadBtn) {
+                        // Store removeDuplicates flag in button data attribute for download
+                        downloadBtn.setAttribute('data-remove-duplicates', removeDuplicates ? 'true' : 'false');
+                        
+                        downloadBtn.onclick = async () => {
+                            try {
+                                const token = API.getAuthToken();
+                                const removeDuplicatesFlag = downloadBtn.getAttribute('data-remove-duplicates') === 'true';
+                                const url = `${window.location.origin}/api/search/download.php?searchId=${searchId}&remove_duplicates=${removeDuplicatesFlag ? 'true' : 'false'}`;
+                                
+                                Toast.info('Preparing download...');
+                                
+                                const response = await fetch(url, {
+                                    headers: {
+                                        'Authorization': `Bearer ${token}`
+                                    }
+                                });
+                                
+                                if (!response.ok) throw new Error('Download failed');
+                                
+                                const blob = await response.blob();
+                                const downloadUrl = window.URL.createObjectURL(blob);
+                                const link = document.createElement('a');
+                                link.href = downloadUrl;
+                                link.setAttribute('download', `search_results_${Date.now()}.txt`);
+                                link.click();
+                                window.URL.revokeObjectURL(downloadUrl);
+                                
+                                Toast.success('Download started!');
+                            } catch (error) {
+                                ErrorHandler.handle(error, 'Download');
+                            }
+                        };
+                    }
+                }
+                
+                // Show/hide Load More button
+                const loadMoreContainer = document.getElementById('loadMoreContainer');
+                const loadMoreBtn = document.getElementById('loadMoreBtn');
+                
+                // Free users: no Load More
+                if (subscriptionType === 'free') {
+                    if (loadMoreContainer) loadMoreContainer.style.display = 'none';
+                } else {
+                    // VIP/Unlimited: show Load More if has_more is true
+                    // For VIP: also check if we've reached 10k limit
+                    if (subscriptionType === 'vip' || subscriptionType === 'api') {
+                        if (totalLoadedNow >= 10000) {
+                            if (loadMoreContainer) loadMoreContainer.style.display = 'none';
+                        } else if (nextSearchAfter !== null) {
+                            // VIP: show Load More if nextSearchAfter exists and under 10k limit
+                            if (loadMoreContainer) {
+                                loadMoreContainer.style.display = 'block';
+                                console.log('Load More button visible for VIP - nextSearchAfter:', nextSearchAfter);
+                            }
+                        } else {
+                            if (loadMoreContainer) loadMoreContainer.style.display = 'none';
+                        }
+                    } else if (nextSearchAfter !== null) {
+                        // Unlimited users: show Load More if nextSearchAfter exists (no limit check)
+                        if (loadMoreContainer) {
+                            loadMoreContainer.style.display = 'block';
+                            console.log('Load More button visible for Unlimited - nextSearchAfter:', nextSearchAfter);
+                        }
+                    } else {
+                        if (loadMoreContainer) loadMoreContainer.style.display = 'none';
+                        console.log('Load More button hidden - nextSearchAfter:', nextSearchAfter);
+                    }
+                }
+                
+                // Setup Load More button handler
+                // Show Load More if nextSearchAfter exists (regardless of hasMore flag)
+                console.log('Regular user search response:', {
+                    nextSearchAfter: nextSearchAfter,
+                    hasMore: hasMore,
+                    subscriptionType: subscriptionType,
+                    resultsCount: resultsCount,
+                    totalLoadedNow: totalLoadedNow
+                });
+                
+                // Accept both array and non-array values (some OpenSearch versions return different formats)
+                if (loadMoreBtn && nextSearchAfter !== null && (Array.isArray(nextSearchAfter) ? nextSearchAfter.length > 0 : true) && subscriptionType !== 'free') {
+                    loadMoreBtn.onclick = async () => {
+                        loadMoreBtn.disabled = true;
+                        document.getElementById('loadMoreText').textContent = 'Loading More Results...';
+                        document.getElementById('loadMoreSpinner').style.display = 'inline-block';
+                        
+                        try {
+                            // Call search again with search_after to get next batch
+                            const loadMoreResponse = await API.search.search(
+                                window.currentQuery,
+                                'all',
+                                'all',
+                                window.currentRemoveDuplicates,
+                                window.currentSearchAfter,
+                                window.currentTotalLoaded
+                            );
+                            
+                            if (loadMoreResponse && loadMoreResponse.success) {
+                                const newTotalLoaded = loadMoreResponse.data.totalLoaded || (window.currentTotalLoaded + (loadMoreResponse.data.results?.length || 0));
+                                const newNextSearchAfter = loadMoreResponse.data.next_search_after || null;
+                                const newHasMore = loadMoreResponse.data.has_more || false;
+                                const newSearchId = loadMoreResponse.data.searchId || searchId; // Use new searchId if available
+                                
+                                // Update state
+                                window.currentSearchAfter = newNextSearchAfter;
+                                window.currentTotalLoaded = newTotalLoaded;
+                                
+                                // Update searchId for download (so download includes all loaded results)
+                                // Keep the original searchId (first page) so download can get all loaded results from Redis
+                                const downloadBtn = document.getElementById('downloadResultsBtn');
+                                if (downloadBtn) {
+                                    // Keep original searchId - download.php will get all pagination tokens from Redis
+                                    const originalSearchId = downloadBtn.getAttribute('data-search-id') || searchId;
+                                    downloadBtn.setAttribute('data-search-id', originalSearchId);
+                                }
+                                
+                                // Update counts
+                                document.getElementById('resultsCount').textContent = newTotalLoaded.toLocaleString();
+                                document.getElementById('resultsCountText').textContent = newTotalLoaded.toLocaleString();
+                                document.getElementById('premiumResultsCount').textContent = newTotalLoaded.toLocaleString();
+                                
+                                // Check VIP 10k limit
+                                if (subscriptionType === 'vip' || subscriptionType === 'api') {
+                                    if (newTotalLoaded >= 10000) {
+                                        loadMoreContainer.style.display = 'none';
+                                        Toast.info('Reached 10,000 results limit for VIP users');
+                                    } else if (newNextSearchAfter !== null) {
+                                        // VIP: show Load More if nextSearchAfter exists and under 10k limit
+                                        loadMoreContainer.style.display = 'block';
+                                        Toast.success(`Loaded more results! Total: ${newTotalLoaded.toLocaleString()}`);
+                                    } else {
+                                        loadMoreContainer.style.display = 'none';
+                                        Toast.info('All results loaded!');
+                                    }
+                                } else {
+                                    // Unlimited users: show Load More if nextSearchAfter exists (no limit check)
+                                    if (newNextSearchAfter !== null) {
+                                        loadMoreContainer.style.display = 'block';
+                                        Toast.success(`Loaded more results! Total: ${newTotalLoaded.toLocaleString()}`);
+                                    } else {
+                                        loadMoreContainer.style.display = 'none';
+                                        Toast.info('All results loaded!');
+                                    }
+                                }
+                            }
+                        } catch (error) {
+                            ErrorHandler.handle(error, 'Load More');
+                        } finally {
+                            loadMoreBtn.disabled = false;
+                            document.getElementById('loadMoreText').textContent = 'Load More Results';
+                            document.getElementById('loadMoreSpinner').style.display = 'none';
+                        }
+                    };
+                }
+                
+                // Show results section
+                searchResults.style.display = 'block';
+                
+                if (!isLoadMore) {
+                    Toast.success(`Search completed! Found ${resultsCount} results in ${(searchTime / 1000).toFixed(2)}s`);
+                    
+                    // Scroll to results
+                    setTimeout(() => {
+                        searchResults.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 100);
+                    
+                    // Reload history
+                    loadSearchHistory();
+                } else {
+                    Toast.success(`Loaded ${resultsCount} more results`);
+                }
+                
+                submitButton.disabled = false;
+                submitButton.textContent = originalText;
+                
+            } catch (error) {
+                LoadingSpinner.hide(form);
+                submitButton.disabled = false;
+                submitButton.textContent = originalText;
+                ErrorHandler.handle(error, 'Search');
+            }
+        });
+    </script>
+</body>
+</html>
+

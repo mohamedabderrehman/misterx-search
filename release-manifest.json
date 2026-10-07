@@ -31,8 +31,8 @@
   },
   {
     "path": "README.md",
-    "bytes": 7050,
-    "sha256": "14a27b819af15ac98c80ce980d55dc7e52b60a763d05c2c73de3f67fb86cccba"
+    "bytes": 7020,
+    "sha256": "01caae8377d68c42f077bf8a15933df0c51cea6cba324186394a32501a663d53"
   },
   {
     "path": "SECURITY.md",
@@ -436,8 +436,8 @@
   },
   {
     "path": "docs/case-study.md",
-    "bytes": 2325,
-    "sha256": "0177fbf93b7ba1533a69e07cf671a6205036398f61f2135dc26791c667f64b58"
+    "bytes": 2310,
+    "sha256": "e115500fa77c6330d316ad1c041f3e84e529deb58097718111a8779551c0a78a"
   },
   {
     "path": "docs/demo.ar.md",
@@ -496,13 +496,13 @@
   },
   {
     "path": "docs/verification.ar.md",
-    "bytes": 1818,
-    "sha256": "1e692927edd8d8e9a12a90834dad81ae1886670dae352309af00290211f9eb96"
+    "bytes": 1833,
+    "sha256": "1a8b7d8f0680d6a211a4498312fecf791de051b7184b0233ea5920dc6029476b"
   },
   {
     "path": "docs/verification.md",
-    "bytes": 1612,
-    "sha256": "d028add7f3e4f7b9dbe4286ef7a28919ccd08d1d2f2cc6e21a1282a8072804d7"
+    "bytes": 1616,
+    "sha256": "0578659db4eb24b380d9ec402153324f21e38331965c995b9606242dda569327"
   },
   {
     "path": "env.example",

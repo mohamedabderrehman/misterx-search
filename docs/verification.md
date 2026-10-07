@@ -1,10 +1,10 @@
 # Current release verification
 
-Recorded on 2026-10-06 using disposable local data. Historical deployment is a separate owner-provided fact.
+Recorded on 2026-10-06 using disposable local data. Historical deployment and these development checks are recorded separately.
 
 ## Passed locally
 
-PHP syntax, compatible Composer installation and fresh MariaDB synthetic bootstrap passed. Source review repaired query parameter binding, moved job ownership validation before processing, and added index/cursor values to Redis cache keys. OpenSearch ingestion/pagination/cache checks are provided but have not executed successfully in the current environment.
+PHP syntax, compatible Composer installation and fresh MariaDB synthetic bootstrap passed. I fixed query parameter binding, moved job ownership validation before processing, and added index/cursor values to Redis cache keys. OpenSearch ingestion/pagination/cache checks are provided but have not executed successfully in the current environment.
 
 ## Checks and commands
 
